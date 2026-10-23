@@ -1,0 +1,27 @@
+resources:
+  infra: k8s
+  accelerators: L4:1
+  ports: 8000
+envs:
+  MODEL_NAME: Qwen/Qwen2.5-7B-Instruct
+  MODEL_REVISION: SET_HUGGINGFACE_COMMIT
+  VLLM_VERSION: SET_INSTALLED_VERSION
+setup: 'pip install "vllm==$VLLM_VERSION"
+
+  hf download "$MODEL_NAME" --revision "$MODEL_REVISION"
+
+  '
+run: 'HF_HUB_OFFLINE=1 vllm serve "$MODEL_NAME" --revision "$MODEL_REVISION" --port
+  8000 --max-model-len 8192 --no-enable-prefix-caching
+
+  '
+service:
+  readiness_probe:
+    path: /v1/models
+    initial_delay_seconds: 600
+  replica_policy:
+    min_replicas: 1
+    max_replicas: 3
+    target_qps_per_replica: 2
+    upscale_delay_seconds: 0
+    downscale_delay_seconds: 120

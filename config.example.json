@@ -1,0 +1,29 @@
+{
+  "namespace": "centra10",
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "model_revision": "SET_HUGGINGFACE_COMMIT",
+  "vllm_version": "SET_INSTALLED_VERSION",
+  "gpu": "L4",
+  "node_selector": {"nvidia.com/gpu.product": "NVIDIA-L4"},
+  "storage_class": "SET_RWX_STORAGE_CLASS",
+  "prometheus_internal": "http://prometheus.monitoring:9090",
+  "prometheus_url": "http://localhost:9090",
+  "k8s_url": "http://vllm.centra10.svc.cluster.local:8000",
+  "sky_service": "centra10-llm",
+  "sky_namespace": "default",
+  "sky_pod_selector": "SET_LABEL_SELECTOR_FOR_THIS_SKYSERVE_SERVICE",
+  "qps_threshold": 2,
+  "queue_threshold": 2,
+  "request_rate": 4,
+  "duration_seconds": 600,
+  "burst_phase_seconds": 180,
+  "sample_seconds": 5,
+  "ready_timeout_seconds": 1800,
+  "run_timeout_seconds": 3600,
+  "sky_queries": {
+    "replicas": "SET_PROMQL_FOR_SKY_ALLOCATED_GPU_REPLICAS",
+    "ready": "SET_PROMQL_FOR_SKY_READY_REPLICAS",
+    "queue": "SET_PROMQL_FOR_SKY_WAITING_REQUESTS",
+    "qps": "SET_PROMQL_FOR_SKY_COMPLETED_QPS"
+  }
+}

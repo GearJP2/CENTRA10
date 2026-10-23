@@ -1,0 +1,1 @@
+date,operator,workload,request_rate,qps_threshold,queue_threshold,ttft_p50_seconds,ttft_p99_seconds,slo_attainment,observed_qps,observed_queue,result_directory,decision
