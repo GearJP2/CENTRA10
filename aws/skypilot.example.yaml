@@ -1,0 +1,11 @@
+# Use via SKYPILOT_CONFIG; the benchmark host must reach private VPC pod addresses.
+kubernetes:
+  allowed_contexts:
+    - SET_EKS_KUBECONFIG_CONTEXT
+  namespace: default
+  networking: portforward
+  ports: podip
+serve:
+  controller:
+    resources:
+      infra: k8s/SET_EKS_KUBECONFIG_CONTEXT

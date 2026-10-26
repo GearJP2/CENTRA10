@@ -54,6 +54,40 @@ def manifests(c):
         "selector": {"matchLabels": {"app": "vllm"}}, "namespaceSelector": {"matchNames": [ns]},
         "endpoints": [{"port": "http", "path": "/metrics", "interval": "5s"}]})
     out = {"cluster.yaml": cluster, "download.yaml": [download], "monitor.yaml": [monitor]}
+    # Separate bootstrap files avoid starting offline serving before the cache exists.
+    out["storage.yaml"] = cluster[:2]
+    out["serving.yaml"] = cluster[2:]
+    proxy_config = """events {}
+http {
+  server {
+    listen 8000;
+    client_max_body_size 8m;
+    location / {
+      proxy_pass http://vllm:8000;
+      proxy_http_version 1.1;
+      proxy_set_header Connection close;
+      proxy_buffering off;
+      proxy_read_timeout 3600s;
+    }
+  }
+}
+"""
+    out["proxy.yaml"] = [
+        resource("v1", "ConfigMap", "vllm-proxy", data={"nginx.conf": proxy_config}),
+        resource("apps/v1", "Deployment", "vllm-proxy", spec={
+            "replicas": 1, "selector": {"matchLabels": {"app": "vllm-proxy"}},
+            "template": {"metadata": {"labels": {"app": "vllm-proxy"}}, "spec": {
+                "nodeSelector": c.get("control_node_selector", {}),
+                "containers": [{"name": "proxy", "image": "nginx:1.28-alpine",
+                    "ports": [{"containerPort": 8000}],
+                    "resources": {"requests": {"cpu": "100m", "memory": "64Mi"},
+                                  "limits": {"cpu": "1", "memory": "256Mi"}},
+                    "readinessProbe": {"tcpSocket": {"port": 8000}},
+                    "volumeMounts": [{"name": "config", "mountPath": "/etc/nginx/nginx.conf", "subPath": "nginx.conf"}]}],
+                "volumes": [{"name": "config", "configMap": {"name": "vllm-proxy"}}]}}}),
+        resource("v1", "Service", "vllm-proxy", spec={"selector": {"app": "vllm-proxy"},
+            "ports": [{"name": "http", "port": 8000, "targetPort": 8000}]}),
+    ]
     for mode, metric, threshold in (("B", "qps", c["qps_threshold"]), ("C", "queue", c["queue_threshold"])):
         out[f"{mode}.yaml"] = [resource("keda.sh/v1alpha1", "ScaledObject", "vllm-autoscaler", spec={
             "scaleTargetRef": {"name": "vllm"}, "minReplicaCount": 1, "maxReplicaCount": 3,
@@ -63,7 +97,8 @@ def manifests(c):
                 "serverAddress": c["prometheus_internal"], "query": queries(c, mode)[metric],
                 "threshold": str(threshold), "ignoreNullValues": "false"}}]})]
     sky = {
-        "resources": {"infra": "k8s", "accelerators": f'{c["gpu"]}:1', "ports": 8000},
+        "resources": {"infra": f'k8s/{c["kube_context"]}' if c.get("kube_context") else "k8s",
+                      "accelerators": f'{c["gpu"]}:1', "ports": 8000},
         "envs": {"MODEL_NAME": model, "MODEL_REVISION": c["model_revision"], "VLLM_VERSION": version},
         "setup": 'pip install "vllm==$VLLM_VERSION"\n'
                  'hf download "$MODEL_NAME" --revision "$MODEL_REVISION"\n',

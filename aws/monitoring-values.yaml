@@ -1,0 +1,25 @@
+# Release name: monitoring; ephemeral storage is for short experiment sessions only.
+alertmanager:
+  enabled: false
+grafana:
+  nodeSelector:
+    centra10-role: system
+prometheusOperator:
+  nodeSelector:
+    centra10-role: system
+kube-state-metrics:
+  nodeSelector:
+    centra10-role: system
+prometheus:
+  prometheusSpec:
+    nodeSelector:
+      centra10-role: system
+    scrapeInterval: 5s
+    evaluationInterval: 5s
+    retention: 2d
+    serviceMonitorSelectorNilUsesHelmValues: false
+    podMonitorSelectorNilUsesHelmValues: false
+    serviceMonitorSelector: {}
+    serviceMonitorNamespaceSelector: {}
+    podMonitorSelector: {}
+    podMonitorNamespaceSelector: {}

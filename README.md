@@ -4,6 +4,8 @@ Implementation of **Project Brief Autoscaling LLM (1).pdf**. The experiment comp
 
 This repository contains deployment YAML, a Grafana dashboard, a 48-run experiment runner, raw-result validation, analysis and plotting, and report/poster outlines. **No GPU measurements have been collected.** Example configuration values are intentionally incomplete; tests use synthetic data only in temporary directories.
 
+**Using AWS without lab GPUs? Start with [the AWS/EKS setup guide](aws/README.md).** It includes an EKS GPU node-group template, EFS shared storage, monitoring settings, an AWS experiment profile, and a short `--smoke` test. All four treatments stay on EKS; SkyServe does not replace the KEDA comparison. Creating the cloud infrastructure is an explicit manual step.
+
 ## Requirements and configuration
 
 - A reserved Kubernetes cluster with at least three identical GPUs, each with ≥24 GB memory; NVIDIA device plugin and matching drivers.

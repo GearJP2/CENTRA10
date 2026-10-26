@@ -64,8 +64,9 @@ def command(argv, **kwargs):
     return subprocess.run(argv, check=True, text=True, timeout=1800, **kwargs)
 
 
-def kubectl(c, *args, **kwargs):
-    return command(["kubectl", "-n", c["namespace"], *args], **kwargs)
+def kubectl(c, *args, namespace=None, **kwargs):
+    context = ["--context", c["kube_context"]] if c.get("kube_context") else []
+    return command(["kubectl", *context, "-n", namespace or c["namespace"], *args], **kwargs)
 
 
 def remove_scaler(c):
@@ -140,8 +141,8 @@ def sample(c, mode):
 def pod_snapshot(c, mode):
     ns = c["sky_namespace"] if mode == "D" else c["namespace"]
     selector = c["sky_pod_selector"] if mode == "D" else "app=vllm"
-    return json.loads(command(["kubectl", "-n", ns, "get", "pods", "-l", selector,
-                               "-o", "json"], capture_output=True).stdout)
+    return json.loads(kubectl(c, "get", "pods", "-l", selector,
+                             "-o", "json", namespace=ns, capture_output=True).stdout)
 
 
 def run_one(c, mode, workload, repeat, root):
@@ -219,8 +220,8 @@ def run_one(c, mode, workload, repeat, root):
             if mode == "D":
                 if sky_created:
                     command(["sky", "serve", "down", "-y", c["sky_service"]])
-                    command(["kubectl", "-n", c["sky_namespace"], "wait", "--for=delete", "pod",
-                             "-l", c["sky_pod_selector"], "--timeout=300s"])
+                    kubectl(c, "wait", "--for=delete", "pod", "-l", c["sky_pod_selector"],
+                            "--timeout=300s", namespace=c["sky_namespace"])
                 else:
                     print("SkyServe launch did not finish; inspect sky serve status for partial provisioning.")
             else:
@@ -240,9 +241,15 @@ def main():
                         default=["short", "long", "mixed", "bursty"])
     parser.add_argument("--repeats", type=int, default=3)
     parser.add_argument("--execute", action="store_true")
+    parser.add_argument("--smoke", action="store_true", help="One short A run at 0.2 req/s for 30 seconds; no research conclusions")
     parser.add_argument("--resume", action="store_true", help="Skip completed runs with identical configuration")
     args = parser.parse_args()
     c = load(args.config)
+    if args.smoke:
+        args.modes, args.workloads, args.repeats = ["A"], ["short"], 1
+        c.update(request_rate=.2, duration_seconds=30)
+        if args.output == "results":
+            args.output = "results/smoke"
     if args.repeats < 1:
         parser.error("--repeats must be positive")
     # Rotate treatment order across repeats to reduce systematic time-of-day bias.
@@ -253,6 +260,7 @@ def main():
         print(json.dumps([{"mode": m, "workload": w, "repeat": r, "phases": phases(c, w)} for m, w, r in plan], indent=2))
         return
     needed = [c[k] for k in ("model_revision", "vllm_version", "storage_class")]
+    needed += [c.get("kube_context", "")]
     if "D" in args.modes:
         needed += [c["sky_pod_selector"], *c["sky_queries"].values()]
     if any("SET_" in str(value) for value in needed):
@@ -266,8 +274,8 @@ def main():
     root = Path(args.output)
     root.mkdir(parents=True, exist_ok=True)
     versions = {"vllm": version}
-    versions["kubernetes"] = command(["kubectl", "version", "-o", "json"], capture_output=True).stdout
-    versions["keda"] = command(["kubectl", "get", "deployments", "-A", "-l", "app=keda-operator", "-o", "json"], capture_output=True).stdout
+    versions["kubernetes"] = kubectl(c, "version", "-o", "json", capture_output=True).stdout
+    versions["keda"] = kubectl(c, "get", "deployments", "-A", "-l", "app=keda-operator", "-o", "json", capture_output=True).stdout
     if "D" in args.modes:
         versions["skypilot"] = command(["sky", "--version"], capture_output=True).stdout
     save(root / "versions.json", versions)

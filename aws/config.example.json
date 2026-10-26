@@ -1,0 +1,31 @@
+{
+  "namespace": "centra10",
+  "kube_context": "SET_EKS_KUBECONFIG_CONTEXT",
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "model_revision": "SET_HUGGINGFACE_COMMIT",
+  "vllm_version": "SET_INSTALLED_VERSION",
+  "gpu": "L4",
+  "node_selector": {"centra10-role": "gpu"},
+  "control_node_selector": {"centra10-role": "system"},
+  "storage_class": "centra10-efs",
+  "prometheus_internal": "http://monitoring-kube-prometheus-prometheus.monitoring.svc.cluster.local:9090",
+  "prometheus_url": "http://127.0.0.1:9090",
+  "k8s_url": "http://127.0.0.1:8000",
+  "sky_service": "centra10-llm",
+  "sky_namespace": "default",
+  "sky_pod_selector": "SET_LABEL_SELECTOR_FOR_THIS_SKYSERVE_SERVICE",
+  "qps_threshold": 2,
+  "queue_threshold": 2,
+  "request_rate": 4,
+  "duration_seconds": 600,
+  "burst_phase_seconds": 180,
+  "sample_seconds": 5,
+  "ready_timeout_seconds": 1800,
+  "run_timeout_seconds": 3600,
+  "sky_queries": {
+    "replicas": "SET_PROMQL_FOR_SKY_ALLOCATED_GPU_REPLICAS",
+    "ready": "SET_PROMQL_FOR_SKY_READY_REPLICAS",
+    "queue": "SET_PROMQL_FOR_SKY_WAITING_REQUESTS",
+    "qps": "SET_PROMQL_FOR_SKY_COMPLETED_QPS"
+  }
+}

@@ -6,3 +6,4 @@ generated/
 config.local.json
 .env
 *.kubeconfig
+aws/*.local.yaml

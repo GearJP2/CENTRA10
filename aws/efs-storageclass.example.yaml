@@ -1,0 +1,16 @@
+# Requires EFS CSI driver, an EFS filesystem, mount targets and NFS security rules.
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: centra10-efs
+provisioner: efs.csi.aws.com
+parameters:
+  provisioningMode: efs-ap
+  fileSystemId: SET_EFS_FILESYSTEM_ID
+  directoryPerms: "700"
+  uid: "0"
+  gid: "0"
+reclaimPolicy: Retain
+volumeBindingMode: Immediate
+mountOptions:
+  - tls

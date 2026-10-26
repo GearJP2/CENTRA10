@@ -122,6 +122,55 @@ class ExperimentTests(unittest.TestCase):
         plan = json.loads(result.stdout)
         self.assertEqual(len({(p["mode"], p["workload"], p["repeat"]) for p in plan}), 48)
 
+    def test_aws_context_applies_to_serving_and_cleanup_commands(self):
+        config = load("aws/config.example.json")
+        config["kube_context"] = "eks-test-context"
+        with patch.object(run, "command") as command:
+            run.kubectl(config, "scale", "deployment/vllm", "--replicas=0")
+            self.assertEqual(command.call_args.args[0][:5],
+                             ["kubectl", "--context", "eks-test-context", "-n", "centra10"])
+            run.kubectl(config, "get", "pods", namespace="sky")
+            self.assertEqual(command.call_args.args[0][4], "sky")
+        rendered = manifests(config)
+        for name in ("sky-single.yaml", "sky-autoscale.yaml", "sky-fixed-one.yaml"):
+            self.assertEqual(rendered[name][0]["resources"]["infra"], "k8s/eks-test-context")
+
+    def test_aws_bootstrap_storage_and_proxy(self):
+        rendered = manifests(load("aws/config.example.json"))
+        self.assertEqual([d["kind"] for d in rendered["storage.yaml"]], ["Namespace", "PersistentVolumeClaim"])
+        self.assertEqual(rendered["storage.yaml"][1]["spec"]["storageClassName"], "centra10-efs")
+        self.assertEqual(rendered["cluster.yaml"], rendered["storage.yaml"] + rendered["serving.yaml"])
+        proxy = rendered["proxy.yaml"]
+        self.assertIn("proxy_buffering off;", proxy[0]["data"]["nginx.conf"])
+        self.assertIn("proxy_set_header Connection close;", proxy[0]["data"]["nginx.conf"])
+        self.assertEqual(proxy[1]["spec"]["template"]["spec"]["nodeSelector"], {"centra10-role": "system"})
+        self.assertNotEqual(proxy[2]["spec"]["selector"], rendered["serving.yaml"][1]["spec"]["selector"])
+
+    def test_aws_smoke_plan_and_placeholder_guard(self):
+        argv = ["python3", "-m", "experiments.run", "--config", "aws/config.example.json", "--smoke"]
+        plan = json.loads(subprocess.run(argv, capture_output=True, text=True, check=True).stdout)
+        self.assertEqual(len(plan), 1)
+        self.assertEqual((plan[0]["mode"], plan[0]["workload"], plan[0]["repeat"]), ("A", "short", 1))
+        self.assertEqual(plan[0]["phases"], [[["short", .2, 30]]])
+        result = subprocess.run([*argv, "--execute"], capture_output=True, text=True)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("Replace configuration placeholders", result.stderr)
+
+    def test_aws_infrastructure_templates(self):
+        cluster = yaml.safe_load(Path("aws/eks.example.yaml").read_text())
+        gpu = next(n for n in cluster["managedNodeGroups"] if n["name"] == "gpu")
+        self.assertEqual(gpu["desiredCapacity"], 3)
+        self.assertEqual(gpu["maxSize"], 3)
+        self.assertEqual(gpu["minSize"], 0)
+        self.assertEqual(gpu["instanceType"], "g6.2xlarge")
+        self.assertTrue(gpu["privateNetworking"])
+        storage = yaml.safe_load(Path("aws/efs-storageclass.example.yaml").read_text())
+        self.assertEqual(storage["provisioner"], "efs.csi.aws.com")
+        self.assertEqual(storage["reclaimPolicy"], "Retain")
+        self.assertIn("tls", storage["mountOptions"])
+        for path in Path("aws").glob("*.yaml"):
+            self.assertIsInstance(yaml.safe_load(path.read_text()), dict)
+
     def test_analysis_cli_on_synthetic_48_runs(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

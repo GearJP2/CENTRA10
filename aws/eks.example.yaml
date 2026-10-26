@@ -1,0 +1,41 @@
+# Edit region, version and API access CIDR before creating anything.
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+metadata:
+  name: centra10
+  region: SET_AWS_REGION
+  version: "SET_SUPPORTED_EKS_VERSION"
+  tags:
+    project: centra10
+iam:
+  withOIDC: true
+vpc:
+  clusterEndpoints:
+    publicAccess: true
+    privateAccess: true
+  publicAccessCIDRs:
+    - SET_OPERATOR_PUBLIC_IP/32
+  nat:
+    gateway: Single
+managedNodeGroups:
+  - name: system
+    instanceType: m6i.2xlarge
+    amiFamily: AmazonLinux2023
+    desiredCapacity: 1
+    minSize: 1
+    maxSize: 1
+    privateNetworking: true
+    volumeSize: 100
+    labels:
+      centra10-role: system
+  - name: gpu
+    instanceType: g6.2xlarge
+    amiFamily: AmazonLinux2023
+    desiredCapacity: 3
+    minSize: 0
+    maxSize: 3
+    privateNetworking: true
+    volumeSize: 100
+    labels:
+      centra10-role: gpu
+      skypilot.co/accelerator: l4
