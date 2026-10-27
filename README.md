@@ -6,7 +6,7 @@ This repository contains deployment YAML, a Grafana dashboard, a 48-run experime
 
 **Using AWS without lab GPUs? Start with [the AWS/EKS setup guide](aws/README.md).** It includes an EKS GPU node-group template, EFS shared storage, monitoring settings, an AWS experiment profile, and a short `--smoke` test. All four treatments stay on EKS; SkyServe does not replace the KEDA comparison. Creating the cloud infrastructure is an explicit manual step.
 
-**Deployment status:** local validation last passed 18 tests. An AWS creation attempt failed on `iam:CreateRole` before GPU provisioning; its recorded resources and failed stack were subsequently deleted. Live serving and autoscaling remain unverified. Before retrying in any account, confirm deployment permissions and the regional GPU quota; see the guide's [quota request](aws/README.md#gpu-quota-request) and [failed-creation cleanup](aws/README.md#failed-creation-cleanup) sections.
+**Deployment status:** GPU-free preparation now includes pinned versions, deployment schema/render checks, and runner simulations; see [preflight instructions and limitations](docs/preflight.md). An AWS creation attempt failed on `iam:CreateRole` before GPU provisioning; its recorded resources and failed stack were subsequently deleted. Live serving and autoscaling remain unverified. See the guide's [quota request](aws/README.md#gpu-quota-request) and [failed-creation cleanup](aws/README.md#failed-creation-cleanup) sections.
 
 ## Requirements and configuration
 
@@ -18,8 +18,7 @@ This repository contains deployment YAML, a Grafana dashboard, a 48-run experime
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
-pip install -r requirements.txt
-pip install 'skypilot[kubernetes]' vllm
+pip install -r requirements-serving.txt
 cp config.example.json config.local.json
 vllm --version
 sky --version
@@ -27,7 +26,7 @@ sky check
 vllm bench serve --help
 ```
 
-Edit `config.local.json`: use the installed vLLM version (without `v`), a full Hugging Face model commit SHA, your RWX storage class, the correct GPU node labels, and reachable endpoints. Pin the same vLLM release and model revision for every treatment; generated images use `vllm/vllm-openai:v<VERSION>`. Check that tag exists for your chosen release. Keep the resulting environment (`pip freeze`) with the experiment records. The runner downloads only tokenizer files at the pinned revision on the load host.
+Use Python 3.12 on the Linux benchmark host. For preparation without serving libraries, install only `requirements.txt`. Edit `config.local.json` with your RWX storage class, GPU node labels, and reachable endpoints. The vLLM release and full model revision are already pinned to the baseline in `versions.json`; retain them across treatments. Generated images use `vllm/vllm-openai:v<VERSION>`. Keep the resulting environment (`pip freeze`) with the experiment records. The runner downloads only tokenizer files at the pinned revision on the load host.
 
 `prometheus_internal` is reachable by KEDA inside the cluster; `prometheus_url` is reachable by the runner. `k8s_url` must reach the Service or a request-balancing ingress. **Do not benchmark through `kubectl port-forward deployment/vllm` or `service/vllm`: port-forward selects one pod and bypasses replica balancing.** Use port-forward only for inspection. Check request distribution across replicas: persistent TCP connections to a plain Kubernetes Service can concentrate requests; use an ingress with per-request upstream balancing if needed, identically for A–C, and document it.
 

@@ -1,0 +1,23 @@
+{
+  "python": "3.12",
+  "kubernetes": "1.35",
+  "eksctl": "0.231.0",
+  "helm": "4.3.1",
+  "kubeconform": "0.8.0",
+  "vllm": "0.32.0",
+  "skypilot": "0.14.1",
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "model_revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+  "charts": {
+    "keda": {
+      "version": "2.21.0",
+      "url": "https://kedacore.github.io/charts/keda-2.21.0.tgz",
+      "sha256": "a7da56bf41a33dad9d2fc82a6fdecee552fff947d80bf1e1dbcf4db0f9e26dee"
+    },
+    "monitoring": {
+      "version": "92.14.0",
+      "url": "https://github.com/prometheus-community/helm-charts/releases/download/kube-prometheus-stack-92.14.0/kube-prometheus-stack-92.14.0.tgz",
+      "sha256": "883422f197e575cbf51f5deab013754157df647c79ce5cb663a07f023bd97a94"
+    }
+  }
+}

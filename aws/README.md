@@ -104,11 +104,11 @@ The Retain policy preserves model data. EFS's PVC size request is not a hard fil
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 helm repo add kedacore https://kedacore.github.io/charts
 helm repo update
-# Choose and record chart versions once, then retain them for all runs.
+# Baseline versions from versions.json; retain them for all runs.
 helm upgrade --install monitoring prometheus-community/kube-prometheus-stack \
-  --version PROMETHEUS_CHART_VERSION -n monitoring --create-namespace \
+  --version 92.14.0 -n monitoring --create-namespace \
   -f aws/monitoring-values.yaml --wait --timeout 10m
-helm upgrade --install keda kedacore/keda --version KEDA_CHART_VERSION \
+helm upgrade --install keda kedacore/keda --version 2.21.0 \
   -n keda --create-namespace --wait --timeout 10m
 helm list -A
 ```
@@ -119,7 +119,7 @@ The supplied values enable discovery of monitors across namespaces and use ephem
 
 ```bash
 cp aws/config.example.json config.local.json
-# Set kube_context to the EXACT kubectl context, plus model revision and vLLM version.
+# Set kube_context to the EXACT kubectl context; retain the pinned model/vLLM versions.
 python3 -m experiments.render --config config.local.json
 kubectl apply -f generated/storage.yaml
 kubectl apply -f generated/download.yaml

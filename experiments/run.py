@@ -201,6 +201,10 @@ def run_one(c, mode, workload, repeat, root):
                     raise TimeoutError("Run exceeded run_timeout_seconds")
                 time.sleep(c["sample_seconds"])
             phase["end"] = time.time()
+        from experiments.analyze import timings
+        for phase in meta["phases"]:
+            for stream in phase["streams"]:
+                timings(json.loads((folder / stream["file"]).read_text()), stream["requests"])
         meta.update(status="complete", end=time.time())
     except BaseException as exc:
         meta.update(status="failed", error=str(exc), end=time.time())

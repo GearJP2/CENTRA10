@@ -1,0 +1,4 @@
+# Install on the Linux benchmark host, not in CloudShell; Python 3.12 baseline.
+-r requirements.txt
+vllm==0.32.0
+skypilot[kubernetes]==0.14.1

@@ -10,7 +10,7 @@ spec:
       restartPolicy: Never
       containers:
       - name: download
-        image: vllm/vllm-openai:vSET_INSTALLED_VERSION
+        image: vllm/vllm-openai:v0.32.0
         command:
         - python3
         - -c
@@ -22,7 +22,7 @@ spec:
         - name: MODEL
           value: Qwen/Qwen2.5-7B-Instruct
         - name: REVISION
-          value: SET_HUGGINGFACE_COMMIT
+          value: a09a35458c702b33eeacc393d103063234e8bc28
         volumeMounts:
         - name: models
           mountPath: /models

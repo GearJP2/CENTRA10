@@ -4,8 +4,8 @@ resources:
   ports: 8000
 envs:
   MODEL_NAME: Qwen/Qwen2.5-7B-Instruct
-  MODEL_REVISION: SET_HUGGINGFACE_COMMIT
-  VLLM_VERSION: SET_INSTALLED_VERSION
+  MODEL_REVISION: a09a35458c702b33eeacc393d103063234e8bc28
+  VLLM_VERSION: 0.32.0
 setup: 'pip install "vllm==$VLLM_VERSION"
 
   hf download "$MODEL_NAME" --revision "$MODEL_REVISION"

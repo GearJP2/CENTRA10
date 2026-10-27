@@ -37,12 +37,12 @@ spec:
         nvidia.com/gpu.product: NVIDIA-L4
       containers:
       - name: vllm
-        image: vllm/vllm-openai:vSET_INSTALLED_VERSION
+        image: vllm/vllm-openai:v0.32.0
         args:
         - --model
         - Qwen/Qwen2.5-7B-Instruct
         - --revision
-        - SET_HUGGINGFACE_COMMIT
+        - a09a35458c702b33eeacc393d103063234e8bc28
         - --max-model-len
         - '8192'
         - --no-enable-prefix-caching
