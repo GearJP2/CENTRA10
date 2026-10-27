@@ -6,6 +6,8 @@ This repository contains deployment YAML, a Grafana dashboard, a 48-run experime
 
 **Using AWS without lab GPUs? Start with [the AWS/EKS setup guide](aws/README.md).** It includes an EKS GPU node-group template, EFS shared storage, monitoring settings, an AWS experiment profile, and a short `--smoke` test. All four treatments stay on EKS; SkyServe does not replace the KEDA comparison. Creating the cloud infrastructure is an explicit manual step.
 
+**Deployment status:** local validation last passed 18 tests. An AWS creation attempt failed on `iam:CreateRole` before GPU provisioning; its recorded resources and failed stack were subsequently deleted. Live serving and autoscaling remain unverified. Before retrying in any account, confirm deployment permissions and the regional GPU quota; see the guide's [quota request](aws/README.md#gpu-quota-request) and [failed-creation cleanup](aws/README.md#failed-creation-cleanup) sections.
+
 ## Requirements and configuration
 
 - A reserved Kubernetes cluster with at least three identical GPUs, each with ≥24 GB memory; NVIDIA device plugin and matching drivers.
