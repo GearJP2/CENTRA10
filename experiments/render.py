@@ -131,15 +131,21 @@ def main():
     dashboard = {
         "title": "CENTRA10 — autoscaling LLM", "uid": "centra10-llm", "schemaVersion": 39,
         "refresh": "5s", "time": {"from": "now-30m", "to": "now"},
-        "panels": [{"id": 1, "type": "timeseries", "title": "Ready replicas, queue, completed QPS",
+        "panels": [{"id": 1, "type": "timeseries", "title": "Ready replicas, waiting/running requests, completed QPS",
             "datasource": {"type": "prometheus", "uid": "${DS_PROMETHEUS}"},
             "gridPos": {"x": 0, "y": 0, "w": 24, "h": 14},
-            "targets": [{"refId": key, "expr": qs[key], "legendFormat": key} for key in ("ready", "queue", "qps")],
+            "targets": [{"refId": key, "expr": qs[key], "legendFormat": key} for key in ("ready", "queue", "running", "qps")],
             "fieldConfig": {"defaults": {"min": 0}, "overrides": [{
                 "matcher": {"id": "byName", "options": "qps"},
                 "properties": [{"id": "unit", "value": "reqps"}, {"id": "custom.axisPlacement", "value": "right"}]}]}}],
         "__inputs": [{"name": "DS_PROMETHEUS", "label": "Prometheus", "type": "datasource", "pluginId": "prometheus", "pluginName": "Prometheus"}],
     }
+    dashboard["panels"].append({"id": 2, "type": "timeseries", "title": "Maximum replica KV-cache usage (if available)",
+        "description": "No data means unavailable, not zero usage. Verify the metric name on the deployed vLLM version.",
+        "datasource": {"type": "prometheus", "uid": "${DS_PROMETHEUS}"},
+        "gridPos": {"x": 0, "y": 14, "w": 24, "h": 8},
+        "targets": [{"refId": "kv_cache", "expr": qs["kv_cache"], "legendFormat": "max KV-cache usage"}],
+        "fieldConfig": {"defaults": {"unit": "percentunit", "min": 0, "max": 1}, "overrides": []}})
     (output / "dashboard.json").write_text(json.dumps(dashboard, indent=2) + "\n")
     print(f"Wrote manifests to {output}")
 

@@ -16,12 +16,18 @@ def load(path):
 
 def queries(config, mode):
     if mode == "D":
-        return config["sky_queries"]
+        result = dict(config["sky_queries"])
+        if not result.get("running"):
+            raise ValueError("Configure sky_queries.running for the revised brief")
+        result.setdefault("kv_cache", None)
+        return result
     ns = config["namespace"]
     selector = f'namespace="{ns}",service="vllm"'
     return {
         "replicas": f'sum(kube_pod_container_resource_requests{{namespace="{ns}",container="vllm",resource="nvidia_com_gpu"}} and on(namespace,pod) (kube_pod_status_scheduled{{namespace="{ns}",condition="true"}} == 1) and on(namespace,pod) (kube_pod_status_phase{{namespace="{ns}",phase=~"Pending|Running"}} == 1))',
         "ready": f'sum(kube_deployment_status_replicas_available{{namespace="{ns}",deployment="vllm"}})',
         "queue": f'sum(vllm:num_requests_waiting{{{selector}}})',
+        "running": f'sum(vllm:num_requests_running{{{selector}}})',
+        "kv_cache": f'max(vllm:kv_cache_usage_perc{{{selector}}})',
         "qps": f'sum(rate(vllm:request_success_total{{{selector}}}[1m]))',
     }

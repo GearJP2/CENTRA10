@@ -11,7 +11,7 @@
     {
       "id": 1,
       "type": "timeseries",
-      "title": "Ready replicas, queue, completed QPS",
+      "title": "Ready replicas, waiting/running requests, completed QPS",
       "datasource": {
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS}"
@@ -32,6 +32,11 @@
           "refId": "queue",
           "expr": "sum(vllm:num_requests_waiting{namespace=\"centra10\",service=\"vllm\"})",
           "legendFormat": "queue"
+        },
+        {
+          "refId": "running",
+          "expr": "sum(vllm:num_requests_running{namespace=\"centra10\",service=\"vllm\"})",
+          "legendFormat": "running"
         },
         {
           "refId": "qps",
@@ -61,6 +66,37 @@
             ]
           }
         ]
+      }
+    },
+    {
+      "id": 2,
+      "type": "timeseries",
+      "title": "Maximum replica KV-cache usage (if available)",
+      "description": "No data means unavailable, not zero usage. Verify the metric name on the deployed vLLM version.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 14,
+        "w": 24,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "kv_cache",
+          "expr": "max(vllm:kv_cache_usage_perc{namespace=\"centra10\",service=\"vllm\"})",
+          "legendFormat": "max KV-cache usage"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percentunit",
+          "min": 0,
+          "max": 1
+        },
+        "overrides": []
       }
     }
   ],

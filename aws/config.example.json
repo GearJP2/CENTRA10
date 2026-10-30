@@ -23,6 +23,8 @@
   "ready_timeout_seconds": 1800,
   "run_timeout_seconds": 3600,
   "sky_queries": {
+    "running": "SET_PROMQL_FOR_SKY_RUNNING_REQUESTS",
+    "kv_cache": null,
     "replicas": "SET_PROMQL_FOR_SKY_ALLOCATED_GPU_REPLICAS",
     "ready": "SET_PROMQL_FOR_SKY_READY_REPLICAS",
     "queue": "SET_PROMQL_FOR_SKY_WAITING_REQUESTS",

@@ -26,8 +26,12 @@ def http_json(url, data=None):
         return json.load(response)
 
 
-def metric(c, query):
+def metric(c, query, optional=False):
+    if query is None and optional:
+        return None
     result = http_json(c["prometheus_url"].rstrip("/") + "/api/v1/query?" + urlencode({"query": query}))
+    if optional and result.get("status") == "success" and result["data"]["result"] == []:
+        return None
     if result.get("status") != "success" or len(result["data"]["result"]) != 1:
         raise ValueError(f"Expected exactly one Prometheus series: {query}")
     stamp, value = result["data"]["result"][0]["value"]
@@ -133,7 +137,7 @@ def warm(c, mode, url):
 
 
 def sample(c, mode):
-    values = {key: metric(c, query) for key, query in queries(c, mode).items()}
+    values = {key: metric(c, query, optional=key == "kv_cache") for key, query in queries(c, mode).items()}
     values["timestamp"] = time.time()
     return values
 
@@ -145,6 +149,24 @@ def pod_snapshot(c, mode):
                              "-o", "json", namespace=ns, capture_output=True).stdout)
 
 
+def scaling_snapshot(c, mode, pods):
+    ns = c["sky_namespace"] if mode == "D" else c["namespace"]
+    events = json.loads(kubectl(c, "get", "events", "-o", "json", namespace=ns,
+                               capture_output=True).stdout)
+    uids = {p["metadata"]["uid"] for p in pods["items"]}
+    events["items"] = [e for e in events["items"] if
+        e.get("involvedObject", {}).get("uid") in uids or
+        (mode != "D" and e.get("involvedObject", {}).get("kind") in
+         ("HorizontalPodAutoscaler", "ScaledObject", "Deployment", "ReplicaSet"))]
+    state = {"timestamp": time.time(), "events": events}
+    if mode == "D":
+        state["sky_status"] = command(["sky", "serve", "status", c["sky_service"]], capture_output=True).stdout
+    else:
+        state["controllers"] = json.loads(kubectl(c, "get", "hpa,scaledobject", "-o", "json",
+                                                  capture_output=True).stdout)
+    return state
+
+
 def run_one(c, mode, workload, repeat, root):
     folder = root / f"{workload}_{mode}_run{repeat}"
     folder.mkdir(parents=True, exist_ok=False)
@@ -153,10 +175,11 @@ def run_one(c, mode, workload, repeat, root):
     for name, docs in manifests(c).items():
         (manifest_dir / name).write_text(yaml.safe_dump_all(docs, sort_keys=False))
     save(folder / "config.json", c)
-    meta = {"mode": mode, "workload": workload, "repeat": repeat, "status": "preparing", "phases": []}
+    meta = {"mode": mode, "workload": workload, "repeat": repeat, "status": "preparing", "phases": [],
+            "measurement_schema": 2}
     save(folder / "run.json", meta)
     url = c["k8s_url"]
-    samples, pods, processes = [], [], []
+    samples, pods, scaling, processes = [], [], [], []
     sky_created = False
     try:
         if mode == "D":
@@ -173,7 +196,9 @@ def run_one(c, mode, workload, repeat, root):
         # SkyServe updates asynchronously; require the same warm baseline again.
         if mode == "D":
             warm(c, mode, url)
-        meta.update(status="running", start=time.time())
+        # vLLM 0.32 detailed start_times use perf_counter, shared by local processes.
+        meta.update(status="running", start=time.time(), clock_offset=time.time() - time.perf_counter())
+        save(folder / "queries.json", queries(c, mode))
         save(folder / "run.json", meta)
         deadline = time.monotonic() + c["run_timeout_seconds"]
         for index, streams in enumerate(phases(c, workload)):
@@ -183,7 +208,8 @@ def run_one(c, mode, workload, repeat, root):
             for stream_index, (kind, rate, duration) in enumerate(streams):
                 filename = f"bench_{index}_{kind}.json"
                 argv = bench(c, url, kind, rate, duration, repeat * 100 + index * 10 + stream_index, folder, filename)
-                phase["streams"].append({"file": filename, "requests": round(rate * duration), "command": argv})
+                phase["streams"].append({"file": filename, "requests": round(rate * duration),
+                                         "target_qps": rate, "target_duration_seconds": duration, "command": argv})
                 with (folder / f"bench_{index}_{kind}.log").open("w") as log:
                     processes.append(subprocess.Popen(argv, stdout=log, stderr=subprocess.STDOUT))
             save(folder / "run.json", meta)
@@ -192,6 +218,8 @@ def run_one(c, mode, workload, repeat, root):
                 save(folder / "metrics.json", samples)
                 pods.append({"timestamp": time.time(), "pods": pod_snapshot(c, mode)})
                 save(folder / "pods.json", pods)
+                scaling.append(scaling_snapshot(c, mode, pods[-1]["pods"]))
+                save(folder / "scaling.json", scaling)
                 codes = [p.poll() for p in processes]
                 if any(code not in (None, 0) for code in codes):
                     raise RuntimeError("Benchmark failed; see bench logs")
@@ -201,11 +229,25 @@ def run_one(c, mode, workload, repeat, root):
                     raise TimeoutError("Run exceeded run_timeout_seconds")
                 time.sleep(c["sample_seconds"])
             phase["end"] = time.time()
-        from experiments.analyze import timings
+        samples.append(sample(c, mode))
+        save(folder / "metrics.json", samples)
+        from experiments.analyze import timings, request_arrivals, traffic_samples
+        arrivals = []
         for phase in meta["phases"]:
             for stream in phase["streams"]:
-                timings(json.loads((folder / stream["file"]).read_text()), stream["requests"])
+                result = json.loads((folder / stream["file"]).read_text())
+                timings(result, stream["requests"])
+                starts = request_arrivals(result, stream["requests"], meta["clock_offset"], phase["start"], phase["end"])
+                stream["first_request_at"], stream["last_request_at"] = min(starts), max(starts)
+                arrivals.extend({"timestamp": stamp, "file": stream["file"]} for stamp in starts)
+            phase["first_request_at"] = min(s["first_request_at"] for s in phase["streams"])
+        save(folder / "arrivals.json", sorted(arrivals, key=lambda a: a["timestamp"]))
+        save(folder / "traffic.json", traffic_samples(arrivals, samples, meta["start"]))
         meta.update(status="complete", end=time.time())
+        if mode == "D":
+            with (folder / "sky-controller.log").open("w") as log:
+                command(["sky", "serve", "logs", c["sky_service"], "--controller", "--no-follow"],
+                        stdout=log, stderr=subprocess.STDOUT)
     except BaseException as exc:
         meta.update(status="failed", error=str(exc), end=time.time())
         raise
@@ -266,6 +308,7 @@ def main():
     needed = [c[k] for k in ("model_revision", "vllm_version", "storage_class")]
     needed += [c.get("kube_context", "")]
     if "D" in args.modes:
+        queries(c, "D")
         needed += [c["sky_pod_selector"], *c["sky_queries"].values()]
     if any("SET_" in str(value) for value in needed):
         parser.error("Replace configuration placeholders before executing")
@@ -287,7 +330,8 @@ def main():
         folder = root / f"{workload}_{mode}_run{repeat}"
         if args.resume and (folder / "run.json").exists():
             old = json.loads((folder / "run.json").read_text())
-            if old["status"] == "complete" and json.loads((folder / "config.json").read_text()) == c:
+            if (old["status"] == "complete" and old.get("measurement_schema") == 2
+                    and json.loads((folder / "config.json").read_text()) == c):
                 print(f"Skipping completed {folder}")
                 continue
         print(f"Running {workload} / {mode} / {repeat}", flush=True)

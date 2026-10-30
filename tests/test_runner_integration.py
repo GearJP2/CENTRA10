@@ -73,7 +73,7 @@ class RunnerIntegrationTests(unittest.TestCase):
         self.url = f"http://127.0.0.1:{self.server.server_port}"
         self.config = load("aws/config.example.json")
         self.config.update(kube_context="simulated", k8s_url=self.url, prometheus_url=self.url,
-            sky_pod_selector="test=simulated", sky_queries={k: k for k in ("replicas", "ready", "queue", "qps")},
+            sky_pod_selector="test=simulated", sky_queries={k: k for k in ("replicas", "ready", "queue", "qps", "running", "kv_cache")},
             request_rate=2, duration_seconds=5, burst_phase_seconds=5, sample_seconds=5)
         self.config_path = self.folder / "config.json"
         run.save(self.config_path, self.config)
@@ -122,6 +122,20 @@ class RunnerIntegrationTests(unittest.TestCase):
             self.assertEqual(row["failed"], 0)
             self.assertGreaterEqual(len(samples), 2)
             self.assertGreater(row["gpu_hours"], 0)
+            self.assertTrue(all("running" in s and "kv_cache" in s for s in samples))
+            arrivals = json.loads((path.parent / "arrivals.json").read_text())
+            traffic = json.loads((path.parent / "traffic.json").read_text())
+            self.assertEqual(len(arrivals), row["requests"])
+            self.assertEqual(sum(s["dispatched_requests"] for s in traffic), row["requests"])
+            scaling = json.loads((path.parent / "scaling.json").read_text())
+            self.assertTrue(scaling)
+            self.assertIn("sky_status" if row["mode"] == "D" else "controllers", scaling[0])
+            self.assertTrue((path.parent / "queries.json").exists())
+            if row["mode"] == "D":
+                self.assertTrue((path.parent / "sky-controller.log").exists())
+            if row["workload"] == "bursty":
+                meta = json.loads(path.read_text())
+                self.assertEqual(row["burst_start"], meta["phases"][1]["first_request_at"])
         before = len([c for c in self.commands() if c[:3] == ["vllm", "bench", "serve"]])
         self.invoke("--repeats", "1", "--resume")
         after = len([c for c in self.commands() if c[:3] == ["vllm", "bench", "serve"]])
@@ -189,3 +203,18 @@ class RunnerIntegrationTests(unittest.TestCase):
         with self.assertRaises((KeyError, ValueError)):
             self.invoke("--modes", "B", "--workloads", "short", "--repeats", "1")
         self.assert_failed_and_released()
+
+    def test_invalid_dispatch_timestamp_fails_and_cleans_up(self):
+        self.scenario("bad_timestamp")
+        with self.assertRaisesRegex(ValueError, "timestamp"):
+            self.invoke("--modes", "B", "--workloads", "short", "--repeats", "1")
+        self.assert_failed_and_released()
+
+    def test_legacy_completed_run_is_not_silently_resumed(self):
+        self.invoke("--modes", "A", "--workloads", "short", "--repeats", "1")
+        path = self.results / "short_A_run1/run.json"
+        meta = json.loads(path.read_text())
+        meta.pop("measurement_schema")
+        run.save(path, meta)
+        with self.assertRaises(FileExistsError):
+            self.invoke("--modes", "A", "--workloads", "short", "--repeats", "1", "--resume")

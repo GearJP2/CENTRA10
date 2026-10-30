@@ -4,7 +4,7 @@ Status: report template; no measurements collected. Target length: 4–6 pages.
 
 ## 1. Research question and hypothesis (½ page)
 
-Does queue-based autoscaling improve the proportion of requests with TTFT ≤ 2 seconds without increasing GPU-hours under heterogeneous request lengths? Explain prefill/decode cost and why equal request rates need not mean equal GPU load. Treat B versus C as the controlled comparison and D as an external reference.
+How do completed-QPS and waiting-queue scaling affect TTFT SLO attainment, allocated GPU-hours, and scaling response under different workloads? Queue scaling may help mixed workloads, but neither signal is assumed to win. Explain prefill/decode cost, admission behavior, and startup delays. Treat B versus C as the controlled comparison and D as an external reference.
 
 ## 2. Experimental setup (1–1½ pages)
 
@@ -17,6 +17,8 @@ Describe A/B/C/D, fixed versus 1–3 replicas, 120-second downscale settings and
 Describe short 100/100, long 6,000/200, mixed 80:20 and bursty 1×/4×/1×. State the final request rate, seeds, repeat order, approximate input lengths, phase drain gaps, warm-up conditions and failure accounting. Attach the 48-cell completeness check.
 
 Define TTFT percentiles over successful requests and SLO fraction over all attempted requests. Define the allocated-GPU cost interval and sampling method. Separate cold-start timing from load-to-ready response; document censored pods, restarts and benchmark initialization overhead. Identify load-generator limitations and competing workloads, if any.
+
+Use `runtime.csv` to compare measured client dispatch QPS with completed QPS and waiting/running requests. State whether KV-cache telemetry was available (maximum replica occupancy, not average utilization). Show target versus observed load; dispatch attempts do not establish server receipt. Use `scaling.json`, pod readiness timestamps, and D's `sky-controller.log` to explain delays. State clock synchronization, sampling uncertainty, and unavailable decision events. Mark burst start and new replica readiness on the burst figure.
 
 ## 4. Results (1–1½ pages)
 

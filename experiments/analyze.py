@@ -29,6 +29,32 @@ def timings(result, expected):
     return successful
 
 
+def request_arrivals(result, expected, clock_offset, start, end):
+    starts = result["start_times"]
+    if len(starts) != expected:
+        raise ValueError("Missing per-request start_times: use pinned vLLM with --save-detailed")
+    if any(not isinstance(t, (int, float)) or not math.isfinite(t) or t <= 0 for t in starts):
+        raise ValueError("Invalid client request timestamp")
+    stamps = [t + clock_offset for t in starts]
+    if any(not start <= t <= end for t in stamps):
+        raise ValueError("Request timestamps outside phase: verify local benchmark clock alignment")
+    return stamps
+
+
+def traffic_samples(arrivals, samples, start):
+    """Client dispatch rate over disjoint sample intervals, including failed requests."""
+    result, previous = [], start
+    for sample in samples:
+        end = sample["timestamp"]
+        if end <= previous:
+            continue
+        count = sum(previous <= a["timestamp"] < end for a in arrivals)
+        result.append({"start": previous, "timestamp": end, "dispatched_requests": count,
+                       "incoming_qps": count / (end - previous)})
+        previous = end
+    return result
+
+
 def gpu_hours(samples, start, end, interval):
     if len(samples) < 2 or end <= start:
         raise ValueError("Insufficient metric samples or invalid measurement window")
@@ -74,16 +100,30 @@ def summarize(folder):
         raise ValueError(f"{folder}: incomplete run ({meta['status']})")
     config = json.loads((folder / "config.json").read_text())
     samples = json.loads((folder / "metrics.json").read_text())
+    if meta.get("measurement_schema") == 2:
+        for s in samples:
+            for key in ("running", "queue", "qps", "ready"):
+                if not isinstance(s.get(key), (int, float)) or not math.isfinite(s[key]) or s[key] < 0:
+                    raise ValueError(f"Invalid required telemetry: {key}")
+            if "kv_cache" not in s or (s["kv_cache"] is not None and
+                    (not math.isfinite(s["kv_cache"]) or s["kv_cache"] < 0)):
+                raise ValueError("Invalid KV-cache telemetry (use null when unavailable)")
+        for required in ("arrivals.json", "traffic.json", "scaling.json", "queries.json"):
+            if not (folder / required).is_file():
+                raise ValueError(f"Missing revised-brief evidence: {required}")
     times, requested = [], 0
     for phase in meta["phases"]:
         for stream in phase["streams"]:
-            times.extend(timings(json.loads((folder / stream["file"]).read_text()), stream["requests"]))
+            result = json.loads((folder / stream["file"]).read_text())
+            times.extend(timings(result, stream["requests"]))
+            if meta.get("measurement_schema") == 2:
+                request_arrivals(result, stream["requests"], meta["clock_offset"], phase["start"], phase["end"])
             requested += stream["requests"]
     if requested == 0:
         raise ValueError("No benchmark requests recorded")
     response = None
     if meta["workload"] == "bursty":
-        high = meta["phases"][1]["start"]
+        high = meta["phases"][1].get("first_request_at", meta["phases"][1]["start"])
         before = [s["ready"] for s in samples if s["timestamp"] <= high]
         baseline = before[-1] if before else samples[0]["ready"]
         increased = [s["timestamp"] for s in samples if s["timestamp"] >= high and s["ready"] > baseline]
@@ -95,6 +135,8 @@ def summarize(folder):
         "slo_attainment": sum(t <= 2 for t in times) / requested,
         "gpu_hours": gpu_hours(samples, meta["start"], meta["end"], config["sample_seconds"]),
         "response_seconds": response,
+        "measurement_start": meta["start"],
+        "burst_start": high if meta["workload"] == "bursty" else None,
     }
     snapshots = json.loads((folder / "pods.json").read_text())
     return row, samples, cold_starts(snapshots, meta["start"])
@@ -109,7 +151,7 @@ def write_csv(path, rows):
         writer.writerows(rows)
 
 
-def plots(rows, series, output):
+def plots(rows, series, output, cold=()):
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
@@ -131,10 +173,17 @@ def plots(rows, series, output):
         twin = ax.twinx()
         for row, samples in series:
             if row["mode"] == mode and row["workload"] == "bursty":
-                elapsed = [(s["timestamp"] - samples[0]["timestamp"]) / 60 for s in samples]
+                elapsed = [(s["timestamp"] - row["measurement_start"]) / 60 for s in samples]
                 ax.step(elapsed, [s["ready"] for s in samples], where="post", color=colors[mode], alpha=.65)
                 twin.plot(elapsed, [s["queue"] for s in samples], color="#777777", linestyle="--", alpha=.65)
-        ax.set(xlabel="Elapsed time (min)", ylabel="Ready replicas (solid)", title=f"{mode}: bursty, all repeats", ylim=(0, 3.5))
+                ax.axvline((row["burst_start"] - row["measurement_start"]) / 60,
+                           color=colors[mode], linestyle=":", alpha=.65)
+                for event in cold:
+                    if (event["mode"], event["workload"], event["repeat"]) == (mode, "bursty", row["repeat"]):
+                        ax.plot((event["ready"] - row["measurement_start"]) / 60, 3.25,
+                                marker="v", color=colors[mode], alpha=.65)
+        ax.set(xlabel="Elapsed time (min); dotted: burst start; triangles: new pod Ready",
+               ylabel="Ready replicas (solid)", title=f"{mode}: bursty, all repeats", ylim=(0, 3.5))
         twin.set_ylabel("Waiting requests (dashed)")
     fig.savefig(output / "bursty-replicas-queue.png", dpi=200)
     plt.close(fig)
@@ -162,12 +211,17 @@ def main():
     parser.add_argument("--output", type=Path, default=Path("results/analysis"))
     parser.add_argument("--require-complete", action="store_true", help="Require exactly 48 unique conditions")
     args = parser.parse_args()
-    rows, series, cold = [], [], []
+    rows, series, cold, runtime = [], [], [], []
     for path in sorted(args.results.glob("*/run.json")):
         row, samples, starts = summarize(path.parent)
         rows.append(row)
         series.append((row, samples))
         cold.extend({"mode": row["mode"], "workload": row["workload"], "repeat": row["repeat"], **s} for s in starts)
+        traffic = json.loads((path.parent / "traffic.json").read_text()) if (path.parent / "traffic.json").exists() else []
+        incoming = {s["timestamp"]: s["incoming_qps"] for s in traffic}
+        runtime.extend({"mode": row["mode"], "workload": row["workload"], "repeat": row["repeat"],
+                        **{key: s.get(key) for key in ("timestamp", "replicas", "ready", "queue", "running", "qps", "kv_cache")},
+                        "incoming_qps": incoming.get(s["timestamp"])} for s in samples)
     if not rows:
         parser.error("No completed result folders found")
     actual = {(r["mode"], r["workload"], r["repeat"]) for r in rows}
@@ -176,6 +230,7 @@ def main():
         parser.error(f"Expected 48 unique runs; missing {sorted(expected - actual)}, extra {sorted(actual - expected)}")
     args.output.mkdir(parents=True, exist_ok=True)
     write_csv(args.output / "runs.csv", rows)
+    write_csv(args.output / "runtime.csv", runtime)
     write_csv(args.output / "cold-starts.csv", cold)
     groups = []
     for mode, workload in sorted({(r["mode"], r["workload"]) for r in rows}):
@@ -187,7 +242,7 @@ def main():
             summary[key + "_std"] = statistics.stdev(values) if len(values) > 1 else None
         groups.append(summary)
     write_csv(args.output / "summary.csv", groups)
-    plots(rows, series, args.output)
+    plots(rows, series, args.output, cold)
     print(f"Analyzed {len(rows)}/48 runs into {args.output}; no missing runs were imputed.")
 
 

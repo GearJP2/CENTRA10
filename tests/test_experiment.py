@@ -80,6 +80,46 @@ class ExperimentTests(unittest.TestCase):
                 with self.assertRaises(ValueError):
                     run.metric(CONFIG, "test_metric")
 
+    def test_optional_kv_cache_absence_is_not_zero_or_a_hidden_error(self):
+        with patch.object(run, "http_json", return_value={"status": "success", "data": {"result": []}}):
+            self.assertIsNone(run.metric(CONFIG, "kv_cache", optional=True))
+            with self.assertRaises(ValueError):
+                run.metric(CONFIG, "running")
+        with patch.object(run, "http_json", return_value={"status": "success", "data": {
+                "result": [{"value": [run.time.time(), "NaN"]}]}}):
+            with self.assertRaises(ValueError):
+                run.metric(CONFIG, "kv_cache", optional=True)
+
+    def test_arrival_clock_conversion_includes_failures_and_rejects_bad_data(self):
+        result = {"start_times": [10, 12], "errors": ["", "timeout"]}
+        self.assertEqual(analyze.request_arrivals(result, 2, 100, 109, 113), [110, 112])
+        for stamps in ([10], [0, 12], [float("nan"), 12], [10, 50]):
+            with self.assertRaises(ValueError):
+                analyze.request_arrivals({"start_times": stamps}, 2, 100, 109, 113)
+
+    def test_incoming_qps_bins_have_no_double_count_and_include_idle(self):
+        arrivals = [{"timestamp": t} for t in (0, 1, 5, 9)]
+        bins = analyze.traffic_samples(arrivals, [{"timestamp": t} for t in (0, 5, 10, 15)], 0)
+        self.assertEqual([s["dispatched_requests"] for s in bins], [2, 2, 0])
+        self.assertEqual([s["incoming_qps"] for s in bins], [.4, .4, 0])
+
+    def test_scaling_evidence_filters_unrelated_pods_in_sky_namespace(self):
+        events = {"items": [{"involvedObject": {"uid": "ours", "kind": "Pod"}},
+                            {"involvedObject": {"uid": "other", "kind": "Pod"}}]}
+        with patch.object(run, "kubectl", return_value=Mock(stdout=json.dumps(events))), \
+             patch.object(run, "command", return_value=Mock(stdout="replica ready")):
+            state = run.scaling_snapshot(CONFIG, "D", {"items": [{"metadata": {"uid": "ours"}}]})
+        self.assertEqual(len(state["events"]["items"]), 1)
+        self.assertEqual(state["sky_status"], "replica ready")
+
+    def test_d_requires_running_query_but_kv_cache_can_be_unavailable(self):
+        config = deepcopy(CONFIG)
+        config["sky_queries"].pop("running")
+        with self.assertRaises(ValueError):
+            queries(config, "D")
+        config["sky_queries"]["running"] = "running"
+        self.assertIsNone(queries(config, "D")["kv_cache"])
+
     def test_cold_start_excludes_warm_pods_and_deduplicates(self):
         pod = {"metadata": {"name": "p", "uid": "uid"}, "status": {
             "startTime": "2026-01-01T00:00:00Z", "conditions": [{"type": "Ready", "status": "True",
@@ -191,6 +231,7 @@ class ExperimentTests(unittest.TestCase):
             self.assertEqual(result.returncode, 0, result.stderr)
             self.assertEqual(len(list((root / "analysis").glob("*.png"))), 3)
             self.assertEqual(len((root / "analysis/runs.csv").read_text().splitlines()), 49)
+            self.assertIn("incoming_qps", (root / "analysis/runtime.csv").read_text().splitlines()[0])
 
 
 if __name__ == "__main__":

@@ -6,11 +6,11 @@ Draft outline only. Replace bracketed fields after real experiments; do not pres
 
 ## Research question
 
-Can waiting-queue length improve the percentage of requests receiving their first token within 2 seconds, without increasing GPU-hours?
+How do completed-QPS and waiting-queue scaling affect TTFT SLO attainment, allocated GPU-hours, and response to different workloads?
 
 ## Why this matters
 
-Short questions and long documents can arrive at the same request rate but require very different GPU work. Queue length reflects requests waiting for capacity.
+Short questions and long documents can arrive at the same request rate but require very different GPU work. Waiting queues can stay short while requests are running, and completed QPS can saturate. Neither signal is assumed to win; running requests, client dispatch rate, KV-cache usage (if available), and startup delays help explain the observations.
 
 ## Controlled experiment
 
@@ -33,7 +33,7 @@ Horizontal axis: GPU-hours. Vertical axis: requests meeting TTFT ≤ 2 s. Each p
 
 ## Response to bursts
 
-Insert `bursty-replicas-queue.png`. Caption: [Explain readiness/queue dynamics and measured cold starts.]
+Insert `bursty-replicas-queue.png`. Caption: [Explain readiness/queue dynamics and measured cold starts. Dotted lines mark first high-phase dispatch; triangles mark new pods becoming Ready. Distinguish controller detection, pod start, and Ready times.]
 
 ## Tail latency across workloads
 

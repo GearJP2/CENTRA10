@@ -39,9 +39,10 @@ def main():
     def flag(key):
         return args[args.index(key) + 1]
 
-    ttfts, errors = [], []
+    ttfts, errors, start_times = [], [], []
     for _ in range(int(flag("--num-prompts"))):
         started = time.monotonic()
+        start_times.append(time.perf_counter())
         request = Request(flag("--base-url") + flag("--endpoint"),
             data=json.dumps({"model": flag("--model"), "stream": True,
                              "messages": [{"role": "user", "content": "synthetic test"}]}).encode(),
@@ -57,9 +58,11 @@ def main():
             ttfts.append(0)
             errors.append(str(exc))
     time.sleep(.08)
-    result = {"ttfts": ttfts, "errors": errors, "completed": sum(not e for e in errors)}
+    result = {"ttfts": ttfts, "errors": errors, "start_times": start_times, "completed": sum(not e for e in errors)}
     if scenario == "bad_result":
         del result["ttfts"]
+    if scenario == "bad_timestamp":
+        result["start_times"][0] = 0
     target = Path(flag("--result-dir")) / flag("--result-filename")
     target.write_text(json.dumps(result))
 
