@@ -95,6 +95,13 @@ def client_clock(c):
     return offset, elapsed / 2
 
 
+def client_version(c):
+    # The serving CLI probes GPU hardware even for --version; CPU clients only need metadata.
+    argv = (["python3", "-c", "from importlib.metadata import version; print(version('vllm'))"]
+            if c.get("benchmark_pod") else ["vllm", "--version"])
+    return command(client_command(c, argv), capture_output=True).stdout.strip()
+
+
 def remove_scaler(c):
     kubectl(c, "delete", "scaledobject", "vllm-autoscaler", "--ignore-not-found=true", "--wait=true")
     # Wait for the owned HPA to disappear before manually setting replicas.
@@ -354,7 +361,7 @@ def main():
         parser.error("Replace configuration placeholders before executing")
     if c.get("benchmark_pod") and ("D" in args.modes or not c.get("benchmark_url")):
         parser.error("benchmark_pod requires benchmark_url and supports only A/B/C")
-    version = command(client_command(c, ["vllm", "--version"]), capture_output=True).stdout.strip()
+    version = client_version(c)
     if c["vllm_version"] not in version.split():
         parser.error(f"Benchmark vLLM version differs from server configuration: {version}")
     if c.get("benchmark_pod"):

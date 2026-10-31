@@ -17,6 +17,15 @@ CONFIG = load("config.example.json")
 
 
 class ExperimentTests(unittest.TestCase):
+    @patch("experiments.run.command")
+    def test_cpu_client_version_reads_metadata_without_serving_cli(self, command):
+        command.return_value = Mock(stdout="0.32.0\n")
+        c = {**CONFIG, "benchmark_pod": "benchmark-client"}
+        self.assertEqual(run.client_version(c), "0.32.0")
+        argv = command.call_args.args[0]
+        self.assertIn("importlib.metadata", argv[-1])
+        self.assertNotIn("--version", argv)
+
     def test_remote_client_command_preserves_arguments_and_context(self):
         c = {**CONFIG, "benchmark_pod": "benchmark-client", "kube_context": "test-context"}
         argv = ["python3", "-c", "print('literal argument')"]
