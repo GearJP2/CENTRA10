@@ -58,7 +58,7 @@ def bench(c, url, kind, rate, duration, seed, folder, filename):
     return ["vllm", "bench", "serve", "--backend", "openai-chat", "--endpoint", "/v1/chat/completions",
             "--base-url", url, "--model", c["model"], "--tokenizer", c.get("tokenizer_path", c["model"]),
             "--dataset-name", "random", "--random-input-len", "6000" if kind == "long" else "100",
-            "--random-output-len", "200" if kind == "long" else "100", "--random-range-ratio", "1",
+            "--random-output-len", "200" if kind == "long" else "100", "--random-range-ratio", "0",
             "--request-rate", str(rate), "--num-prompts", str(count), "--seed", str(seed),
             "--ignore-eos", "--temperature", "0", "--save-result", "--save-detailed", "--result-dir", str(folder),
             "--result-filename", filename, "--percentile-metrics", "ttft", "--metric-percentiles", "50,99"]

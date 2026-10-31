@@ -72,6 +72,8 @@ class ExperimentTests(unittest.TestCase):
         self.assertIn("--save-detailed", cmd)
         self.assertIn("--ignore-eos", cmd)
         self.assertEqual(cmd[cmd.index("--random-input-len") + 1], "6000")
+        self.assertEqual(cmd[cmd.index("--random-range-ratio") + 1], "0")
+        self.assertEqual(cmd[cmd.index("--random-output-len") + 1], "200")
         with self.assertRaises(ValueError):
             run.bench(CONFIG, "http://example", "short", .001, 1, 1, Path("."), "x.json")
 
