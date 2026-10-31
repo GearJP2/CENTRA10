@@ -25,7 +25,7 @@ For N. Virginia, select **us-east-1** in **Service Quotas → AWS services → A
 | One-GPU smoke test | 1 × g6.2xlarge | 8 vCPUs |
 | Full experiment | 3 × g6.2xlarge | 24 vCPUs |
 
-Request **24 as the total quota value**, not an increase of 24 above the existing value. Allow additional headroom if other G/VT instances will run concurrently. An applied quota of 8 only covers the single-worker smoke test when none of that quota is already in use. For that test, change the GPU node group's `desiredCapacity` from 3 to 1 before creating the cluster.
+Request **24 as the total quota value**, not an increase of 24 above the existing value. Allow additional headroom if other G/VT instances will run concurrently. An applied quota of 8 only covers the single-worker smoke test when none of that quota is already in use. For that test, change both the GPU node group's `desiredCapacity` and `maxSize` from 3 to 1 before creating the cluster.
 
 Paste this into the AWS request's **Correspondence** field, adjusting the region and actual use case if needed:
 
@@ -57,10 +57,43 @@ For a short A smoke test you can operate from your laptop without a GPU. For D a
 
 ## 2. EKS and GPU availability
 
+For the initial one-GPU test in CloudShell, use the existing template with a hard node-group ceiling of one. This still creates one CPU system node, an EKS control plane, and networking; it is not a single-instance-only deployment. The CPU node needs separate Standard-family quota. Confirm the account and that no `centra10` cluster/stack already exists before creation.
+
+```bash
+export AWS_REGION=us-east-1
+export AWS_DEFAULT_REGION=us-east-1
+aws sts get-caller-identity
+aws eks list-clusters --no-cli-pager
+aws cloudformation describe-stacks \
+  --query 'Stacks[?StackName==`eksctl-centra10-cluster`].{Name:StackName,Status:StackStatus}' \
+  --output table --no-cli-pager
+```
+
+From the repository root, generate the local file without overwriting an existing one:
+
+```bash
+(
+  set -euo pipefail
+  set -o noclobber
+  CENTRA_SHELL_IP=$(curl -4 -fsS https://checkip.amazonaws.com)
+  python3 -c 'import ipaddress,sys; ipaddress.IPv4Address(sys.argv[1])' "$CENTRA_SHELL_IP"
+  sed \
+    -e 's/SET_AWS_REGION/us-east-1/' \
+    -e "s|SET_OPERATOR_PUBLIC_IP|$CENTRA_SHELL_IP|" \
+    -e 's/desiredCapacity: 3/desiredCapacity: 1/' \
+    -e 's/maxSize: 3/maxSize: 1/' \
+    aws/eks.example.yaml > aws/eks.local.yaml
+  eksctl create cluster -f aws/eks.local.yaml --dry-run
+)
+```
+
+Check the dry-run output: `gpu` must be `g6.2xlarge`, desired **1**, maximum **1**, minimum **0**; `system` remains one `m6i.2xlarge`. Verify the pinned Kubernetes version is still supported in the region. After creation, follow sections 3–5 and execute only `--smoke` (A). Do not run B/C/D, the two-replica walkthrough, or the full matrix with this capacity. The full-experiment instructions below require restoring three-worker capacity after quota approval.
+
 ```bash
 cp aws/eks.example.yaml aws/eks.local.yaml
 # Edit region, supported Kubernetes version, and operator public IP /32.
-# Set GPU desiredCapacity to 1 for the initial smoke test, 3 for full experiments.
+# Full experiment: desiredCapacity=3 and maxSize=3.
+# For one-GPU smoke, use the generation block above instead of this cp command.
 eksctl create cluster -f aws/eks.local.yaml --dry-run
 # The following command creates paid AWS infrastructure:
 eksctl create cluster -f aws/eks.local.yaml

@@ -36,6 +36,7 @@ def manifests(c):
             "replicas": 1, "strategy": {"type": "Recreate"},
             "selector": {"matchLabels": {"app": "vllm"}},
             "template": {"metadata": {"labels": {"app": "vllm"}}, "spec": {
+                "enableServiceLinks": False,  # Service vllm otherwise injects a conflicting VLLM_PORT URI.
                 "nodeSelector": c["node_selector"],
                 "containers": [container], "volumes": [volume, {"name": "shm", "emptyDir": {"medium": "Memory", "sizeLimit": "8Gi"}}]}}}),
         resource("v1", "Service", "vllm", spec={"selector": {"app": "vllm"},

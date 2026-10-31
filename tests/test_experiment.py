@@ -38,6 +38,7 @@ class ExperimentTests(unittest.TestCase):
         files = manifests(CONFIG)
         deployment = files["cluster.yaml"][2]["spec"]["template"]["spec"]
         self.assertEqual(deployment["nodeSelector"], CONFIG["node_selector"])
+        self.assertIs(deployment["enableServiceLinks"], False)
         container = deployment["containers"][0]
         self.assertIn(CONFIG["model_revision"], container["args"])
         self.assertEqual(files["sky-autoscale.yaml"][0]["envs"]["VLLM_VERSION"], CONFIG["vllm_version"])
