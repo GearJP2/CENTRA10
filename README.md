@@ -2,11 +2,11 @@
 
 Implementation of **CENTRA10_Autoscaling_LLM_Highlighted_Changes.pdf (29 October 2026)**. The experiment compares fixed capacity (A), KEDA completed-QPS scaling (B), KEDA waiting-queue scaling (C), and SkyServe QPS scaling (D). Queue scaling may improve TTFT SLO attainment on mixed request lengths, but both signals can miss load and replica startup delays can dominate. Results must determine whether the hypothesis holds. Running requests and KV-cache usage are explanatory measurements, not additional scaling treatments.
 
-This repository contains deployment YAML, a Grafana dashboard, a 48-run experiment runner, raw-result validation, analysis and plotting, and report/poster outlines. **No GPU measurements have been collected.** Example configuration values are intentionally incomplete; tests use synthetic data only in temporary directories.
+This repository contains deployment YAML, a Grafana dashboard, a 48-run experiment runner, raw-result validation, analysis and plotting, and report/poster outlines. **A single-L4 AWS smoke test has completed; the 48-run research comparison has not.** See the [live smoke record](docs/aws-smoke.md) for evidence and limits. Example configuration values are intentionally incomplete; tests use synthetic data only in temporary directories.
 
 **Using AWS without lab GPUs? Start with [the AWS/EKS setup guide](aws/README.md).** It includes an EKS GPU node-group template, EFS shared storage, monitoring settings, an AWS experiment profile, and a short `--smoke` test. All four treatments stay on EKS; SkyServe does not replace the KEDA comparison. Creating the cloud infrastructure is an explicit manual step.
 
-**Deployment status:** GPU-free preparation now includes pinned versions, deployment schema/render checks, and runner simulations; see [preflight instructions and limitations](docs/preflight.md). An AWS creation attempt failed on `iam:CreateRole` before GPU provisioning; its recorded resources and failed stack were subsequently deleted. Live serving and autoscaling remain unverified. See the guide's [quota request](aws/README.md#gpu-quota-request) and [failed-creation cleanup](aws/README.md#failed-creation-cleanup) sections.
+**Deployment status:** GPU-free preparation now includes pinned versions, deployment schema/render checks, and runner simulations; see [preflight instructions and limitations](docs/preflight.md). An AWS creation attempt failed on `iam:CreateRole` before GPU provisioning; its recorded resources and failed stack were subsequently deleted. A later single-GPU EKS deployment verified serving, CPU-client benchmarking, telemetry, and automated mode A cleanup. Multi-replica autoscaling and SkyServe remain unverified. See the guide's [quota request](aws/README.md#gpu-quota-request) and [failed-creation cleanup](aws/README.md#failed-creation-cleanup) sections.
 
 ## Requirements and configuration
 
@@ -153,6 +153,6 @@ sky serve down centra10-llm
 
 The runner cleans up successful starts but cannot guarantee cleanup after a killed process, interrupted SkyServe provisioning, or a cluster/API outage. Always inspect `sky status`, `sky serve status`, and GPU pods after a session. Cleanup retains the model PVC and raw results. Never delete the namespace/PVC unless you intend to discard the model cache.
 
-Local tests validate manifests, workload construction, failure cleanup, metric rejection, aggregation, and all three figures on synthetic 48-run data. Live YAML acceptance, GPU serving, SkyPilot integration, label discovery, and threshold quality require the target cluster and are not verified by these tests.
+Local tests validate manifests, workload construction, failure cleanup, metric rejection, aggregation, and all three figures on synthetic 48-run data. Local tests do not establish live compatibility. The [AWS smoke record](docs/aws-smoke.md) separately documents live mode A serving and telemetry; SkyPilot integration, multi-replica scaling, and threshold quality remain unverified.
 
 References: [vLLM benchmark CLI](https://docs.vllm.ai/en/stable/cli/bench/serve/), [SkyPilot YAML](https://docs.skypilot.ai/en/latest/reference/yaml-spec.html), [SkyServe service updates](https://docs.skypilot.ai/en/stable/serving/update.html), [KEDA Prometheus scaler](https://keda.sh/docs/2.20/scalers/prometheus/).

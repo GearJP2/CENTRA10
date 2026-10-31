@@ -2,7 +2,7 @@
 
 This path uses **Amazon EKS with three EC2 L4 GPU workers**. A/B/C use Kubernetes and KEDA; D uses SkyServe on the same EKS cluster. `infra: k8s/<context>` is intentional: AWS supplies the Kubernetes infrastructure. Direct SkyServe-on-EC2 would be a different deployment and is not supported by this experiment runner.
 
-No AWS resources are created by rendering, planning, or running local tests. Commands below that create clusters, node groups, EFS, or add-ons change your AWS account and can incur charges. Choose a region, budget, and supported EKS version before running them. A live creation attempt failed on missing IAM role-creation permission before GPU provisioning; its recorded resources and failed stack were deleted. A successful deployment and live experiment have not yet been verified.
+No AWS resources are created by rendering, planning, or running local tests. Commands below that create clusters, node groups, EFS, or add-ons change your AWS account and can incur charges. Choose a region, budget, and supported EKS version before running them. A live creation attempt failed on missing IAM role-creation permission before GPU provisioning; its recorded resources and failed stack were deleted. A later single-L4 deployment and automated mode A smoke test succeeded; see the [live smoke record](../docs/aws-smoke.md). The full autoscaling experiment remains unverified.
 
 ## 1. Account and workstation
 
