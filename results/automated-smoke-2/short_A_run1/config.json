@@ -1,0 +1,40 @@
+{
+  "namespace": "centra10",
+  "kube_context": "gearRojsak@centra10.us-east-1.eksctl.io",
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "model_revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+  "vllm_version": "0.32.0",
+  "gpu": "L4",
+  "node_selector": {
+    "centra10-role": "gpu"
+  },
+  "control_node_selector": {
+    "centra10-role": "system"
+  },
+  "storage_class": "centra10-efs",
+  "prometheus_internal": "http://monitoring-kube-prometheus-prometheus.monitoring.svc.cluster.local:9090",
+  "prometheus_url": "http://127.0.0.1:9090",
+  "k8s_url": "http://127.0.0.1:8000",
+  "sky_service": "centra10-llm",
+  "sky_namespace": "default",
+  "sky_pod_selector": "SET_LABEL_SELECTOR_FOR_THIS_SKYSERVE_SERVICE",
+  "qps_threshold": 2,
+  "queue_threshold": 2,
+  "request_rate": 0.2,
+  "duration_seconds": 30,
+  "burst_phase_seconds": 180,
+  "sample_seconds": 5,
+  "ready_timeout_seconds": 1800,
+  "run_timeout_seconds": 3600,
+  "sky_queries": {
+    "running": "SET_PROMQL_FOR_SKY_RUNNING_REQUESTS",
+    "kv_cache": null,
+    "replicas": "SET_PROMQL_FOR_SKY_ALLOCATED_GPU_REPLICAS",
+    "ready": "SET_PROMQL_FOR_SKY_READY_REPLICAS",
+    "queue": "SET_PROMQL_FOR_SKY_WAITING_REQUESTS",
+    "qps": "SET_PROMQL_FOR_SKY_COMPLETED_QPS"
+  },
+  "benchmark_pod": "benchmark-client",
+  "benchmark_url": "http://vllm-proxy:8000",
+  "tokenizer_path": "/root/.cache/huggingface/hub/models--Qwen--Qwen2.5-7B-Instruct/snapshots/a09a35458c702b33eeacc393d103063234e8bc28"
+}

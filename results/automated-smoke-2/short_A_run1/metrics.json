@@ -1,0 +1,74 @@
+[
+  {
+    "replicas": 1.0,
+    "ready": 1.0,
+    "queue": 0.0,
+    "running": 1.0,
+    "kv_cache": 0.0005948839976204212,
+    "qps": 0.0,
+    "timestamp": 1793475605.6938841
+  },
+  {
+    "replicas": 1.0,
+    "ready": 1.0,
+    "queue": 0.0,
+    "running": 0.0,
+    "kv_cache": 0.0,
+    "qps": 0.017744848484848485,
+    "timestamp": 1793475614.9940894
+  },
+  {
+    "replicas": 1.0,
+    "ready": 1.0,
+    "queue": 0.0,
+    "running": 0.0,
+    "kv_cache": 0.0,
+    "qps": 0.017067272727272726,
+    "timestamp": 1793475622.7578282
+  },
+  {
+    "replicas": 1.0,
+    "ready": 1.0,
+    "queue": 0.0,
+    "running": 2.0,
+    "kv_cache": 0.0041641879833432816,
+    "qps": 0.01792848484848485,
+    "timestamp": 1793475630.5990384
+  },
+  {
+    "replicas": 1.0,
+    "ready": 1.0,
+    "queue": 0.0,
+    "running": 0.0,
+    "kv_cache": 0.0,
+    "qps": 0.06919515151515152,
+    "timestamp": 1793475638.521304
+  },
+  {
+    "replicas": 1.0,
+    "ready": 1.0,
+    "queue": 0.0,
+    "running": 0.0,
+    "kv_cache": 0.0,
+    "qps": 0.07255151515151516,
+    "timestamp": 1793475646.2908087
+  },
+  {
+    "replicas": 1.0,
+    "ready": 1.0,
+    "queue": 0.0,
+    "running": 3.0,
+    "kv_cache": 0.008328375966686452,
+    "qps": 0.06984,
+    "timestamp": 1793475654.0537677
+  },
+  {
+    "replicas": 1.0,
+    "ready": 1.0,
+    "queue": 0.0,
+    "running": 0.0,
+    "kv_cache": 0.0,
+    "qps": 0.11940727272727274,
+    "timestamp": 1793475657.7278032
+  }
+]

@@ -1,0 +1,30 @@
+W1031 19:40:14.931000 273 torch/utils/cpp_extension.py:178] No CUDA runtime is found, using CUDA_HOME='/usr/local/cuda'
+Failed to import from vllm._C: ModuleNotFoundError("No module named 'vllm._C'")
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x7ff72f26bf60>, trust_remote_code=False, seed=100, num_prompts=6, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=100, random_output_len=100, random_range_ratio='0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai-chat', base_url='http://vllm-proxy:8000', host='127.0.0.1', port=8000, endpoint='/v1/chat/completions', header=None, max_concurrency=None, model='Qwen/Qwen2.5-7B-Instruct', input_len=None, output_len=None, tokenizer='/root/.cache/huggingface/hub/models--Qwen--Qwen2.5-7B-Instruct/snapshots/a09a35458c702b33eeacc393d103063234e8bc28', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=0.2, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=True, save_detailed=True, append_result=False, metadata=None, result_dir='/tmp/centra10-bench-lmob9knv', result_filename='bench_0_short.json', ignore_eos=True, self_timed=None, percentile_metrics='ttft', metric_percentiles='50,99', goodput=None, request_id_prefix='bench-4f37c555-', top_p=None, top_k=None, min_p=None, temperature=0.0, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=273) INFO 10-31 19:40:16 [utils.py:88] Sampling input_len from [100, 100] and output_len from [100, 100]
+  0%|          | 0/6 [00:00<?, ?it/s]Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 0.2
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+ 17%|█▋        | 1/6 [00:12<01:00, 12.16s/it] 33%|███▎      | 2/6 [00:14<00:26,  6.66s/it] 50%|█████     | 3/6 [00:19<00:16,  5.65s/it] 67%|██████▋   | 4/6 [00:34<00:18,  9.45s/it] 83%|████████▎ | 5/6 [00:34<00:06,  6.09s/it]100%|██████████| 6/6 [00:35<00:00,  4.36s/it]100%|██████████| 6/6 [00:35<00:00,  5.97s/it]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     6         
+Failed requests:                         0         
+Request rate configured (RPS):           0.20      
+Benchmark duration (s):                  35.83     
+Total input tokens:                      774       
+Total generated tokens:                  600       
+Request throughput (req/s):              0.17      
+Output token throughput (tok/s):         16.74     
+Peak output token throughput (tok/s):    54.00     
+Peak concurrent requests:                3.00      
+Total token throughput (tok/s):          38.34     
+---------------Time to First Token----------------
+Mean TTFT (ms):                          143.82    
+Median TTFT (ms):                        164.17    
+P50 TTFT (ms):                           164.17    
+P99 TTFT (ms):                           188.20    
+==================================================
