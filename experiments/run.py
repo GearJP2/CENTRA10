@@ -60,7 +60,7 @@ def bench(c, url, kind, rate, duration, seed, folder, filename):
             "--dataset-name", "random", "--random-input-len", "6000" if kind == "long" else "100",
             "--random-output-len", "200" if kind == "long" else "100", "--random-range-ratio", "1",
             "--request-rate", str(rate), "--num-prompts", str(count), "--seed", str(seed),
-            "--ignore-eos", "--save-result", "--save-detailed", "--result-dir", str(folder),
+            "--ignore-eos", "--temperature", "0", "--save-result", "--save-detailed", "--result-dir", str(folder),
             "--result-filename", filename, "--percentile-metrics", "ttft", "--metric-percentiles", "50,99"]
 
 
@@ -71,6 +71,28 @@ def command(argv, **kwargs):
 def kubectl(c, *args, namespace=None, **kwargs):
     context = ["--context", c["kube_context"]] if c.get("kube_context") else []
     return command(["kubectl", *context, "-n", namespace or c["namespace"], *args], **kwargs)
+
+
+def client_command(c, argv):
+    if not c.get("benchmark_pod"):
+        return argv
+    context = ["--context", c["kube_context"]] if c.get("kube_context") else []
+    return ["kubectl", *context, "-n", c["namespace"], "exec", c["benchmark_pod"], "--", *argv]
+
+
+def client_clock(c):
+    if not c.get("benchmark_pod"):
+        return time.time() - time.perf_counter(), 0
+    # Map the remote monotonic clock to the collector's wall clock; retain the RTT uncertainty.
+    readings = []
+    for _ in range(3):
+        before = time.time()
+        remote = float(command(client_command(c, ["python3", "-c",
+            "import time; print(time.perf_counter())"]), capture_output=True).stdout)
+        after = time.time()
+        readings.append((after - before, (before + after) / 2 - remote))
+    elapsed, offset = min(readings)
+    return offset, elapsed / 2
 
 
 def remove_scaler(c):
@@ -181,6 +203,7 @@ def run_one(c, mode, workload, repeat, root):
     url = c["k8s_url"]
     samples, pods, scaling, processes = [], [], [], []
     sky_created = False
+    remote_folder = None
     try:
         if mode == "D":
             release_k8s(c)
@@ -196,8 +219,14 @@ def run_one(c, mode, workload, repeat, root):
         # SkyServe updates asynchronously; require the same warm baseline again.
         if mode == "D":
             warm(c, mode, url)
-        # vLLM 0.32 detailed start_times use perf_counter, shared by local processes.
-        meta.update(status="running", start=time.time(), clock_offset=time.time() - time.perf_counter())
+        # vLLM 0.32 detailed start_times use the benchmark host's perf_counter.
+        offset, uncertainty = client_clock(c)
+        if c.get("benchmark_pod"):
+            remote_folder = command(client_command(c, ["python3", "-c",
+                "import tempfile; print(tempfile.mkdtemp(prefix='centra10-bench-'))"]),
+                capture_output=True).stdout.strip()
+        meta.update(status="running", start=time.time(), clock_offset=offset,
+                    clock_uncertainty_seconds=uncertainty)
         save(folder / "queries.json", queries(c, mode))
         save(folder / "run.json", meta)
         deadline = time.monotonic() + c["run_timeout_seconds"]
@@ -207,7 +236,13 @@ def run_one(c, mode, workload, repeat, root):
             processes = []
             for stream_index, (kind, rate, duration) in enumerate(streams):
                 filename = f"bench_{index}_{kind}.json"
-                argv = bench(c, url, kind, rate, duration, repeat * 100 + index * 10 + stream_index, folder, filename)
+                argv = bench(c, c.get("benchmark_url", url), kind, rate, duration,
+                             repeat * 100 + index * 10 + stream_index, remote_folder or folder, filename)
+                if remote_folder:
+                    # Bound remote execution even if the kubectl connection is interrupted.
+                    argv = client_command(c, ["python3", "-c",
+                        "import json,subprocess,sys; subprocess.run(json.loads(sys.argv[1]), check=True, timeout=float(sys.argv[2]))",
+                        json.dumps(argv), str(c["run_timeout_seconds"])])
                 phase["streams"].append({"file": filename, "requests": round(rate * duration),
                                          "target_qps": rate, "target_duration_seconds": duration, "command": argv})
                 with (folder / f"bench_{index}_{kind}.log").open("w") as log:
@@ -229,6 +264,11 @@ def run_one(c, mode, workload, repeat, root):
                     raise TimeoutError("Run exceeded run_timeout_seconds")
                 time.sleep(c["sample_seconds"])
             phase["end"] = time.time()
+            if remote_folder:
+                for stream in phase["streams"]:
+                    result = command(client_command(c, ["cat", f"{remote_folder}/{stream['file']}"]),
+                                     capture_output=True).stdout
+                    save(folder / stream["file"], json.loads(result))
         samples.append(sample(c, mode))
         save(folder / "metrics.json", samples)
         from experiments.analyze import timings, request_arrivals, traffic_samples
@@ -312,12 +352,19 @@ def main():
         needed += [c["sky_pod_selector"], *c["sky_queries"].values()]
     if any("SET_" in str(value) for value in needed):
         parser.error("Replace configuration placeholders before executing")
-    version = command(["vllm", "--version"], capture_output=True).stdout.strip()
+    if c.get("benchmark_pod") and ("D" in args.modes or not c.get("benchmark_url")):
+        parser.error("benchmark_pod requires benchmark_url and supports only A/B/C")
+    version = command(client_command(c, ["vllm", "--version"]), capture_output=True).stdout.strip()
     if c["vllm_version"] not in version.split():
         parser.error(f"Benchmark vLLM version differs from server configuration: {version}")
-    from huggingface_hub import snapshot_download
-    c["tokenizer_path"] = snapshot_download(c["model"], revision=c["model_revision"],
-        allow_patterns=["*.json", "*.txt", "*.model", "*.jinja"])
+    if c.get("benchmark_pod"):
+        c["tokenizer_path"] = command(client_command(c, ["python3", "-c",
+            "from huggingface_hub import snapshot_download; import sys; print(snapshot_download(sys.argv[1], revision=sys.argv[2], allow_patterns=['*.json','*.txt','*.model','*.jinja']))",
+            c["model"], c["model_revision"]]), capture_output=True).stdout.strip()
+    else:
+        from huggingface_hub import snapshot_download
+        c["tokenizer_path"] = snapshot_download(c["model"], revision=c["model_revision"],
+            allow_patterns=["*.json", "*.txt", "*.model", "*.jinja"])
     root = Path(args.output)
     root.mkdir(parents=True, exist_ok=True)
     versions = {"vllm": version}

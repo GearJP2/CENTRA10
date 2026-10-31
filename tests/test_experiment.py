@@ -17,6 +17,21 @@ CONFIG = load("config.example.json")
 
 
 class ExperimentTests(unittest.TestCase):
+    def test_remote_client_command_preserves_arguments_and_context(self):
+        c = {**CONFIG, "benchmark_pod": "benchmark-client", "kube_context": "test-context"}
+        argv = ["python3", "-c", "print('literal argument')"]
+        self.assertEqual(run.client_command(c, argv), ["kubectl", "--context", "test-context",
+            "-n", CONFIG["namespace"], "exec", "benchmark-client", "--", *argv])
+        self.assertEqual(run.client_command(CONFIG, argv), argv)
+
+    @patch("experiments.run.command")
+    @patch("experiments.run.time.time", side_effect=[100, 104, 110, 111, 120, 122])
+    def test_remote_clock_uses_smallest_round_trip(self, clock, command):
+        command.side_effect = [Mock(stdout="10"), Mock(stdout="20"), Mock(stdout="30")]
+        offset, uncertainty = run.client_clock({**CONFIG, "benchmark_pod": "benchmark-client"})
+        self.assertEqual(offset, 90.5)
+        self.assertEqual(uncertainty, 0.5)
+
     def test_workloads(self):
         mixed = run.phases(CONFIG, "mixed")[0]
         self.assertEqual(sum(rate for _, rate, _ in mixed), 4)

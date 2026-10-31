@@ -150,6 +150,18 @@ The supplied values enable discovery of monitors across namespaces and use ephem
 
 ## 5. Render and warm one GPU
 
+For CloudShell with an existing CPU `benchmark-client` pod, set `benchmark_pod`
+to `benchmark-client` and `benchmark_url` to `http://vllm-proxy:8000` in
+`config.local.json`. Keep `k8s_url` and `prometheus_url` pointed at the local
+port-forwards used by the collector. The runner checks the pod's vLLM version,
+downloads the pinned tokenizer there, and copies benchmark JSON back to the
+result folder. This client supports A/B/C; use only `--smoke` with one GPU.
+It records remote clock calibration uncertainty in `run.json`. The CPU pod must
+remain alive throughout the run; its temporary result files remain until the
+pod is deleted. An interrupted connection can leave its current benchmark
+running until `run_timeout_seconds` expires; stop that client before retrying.
+The runner scales serving replicas to zero on exit, but AWS nodes keep billing.
+
 ```bash
 cp aws/config.example.json config.local.json
 # Set kube_context to the EXACT kubectl context; retain the pinned model/vLLM versions.
