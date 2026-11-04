@@ -1,0 +1,94 @@
+LAST SEEN   TYPE      REASON                OBJECT                                             MESSAGE
+44m         Normal    Scheduled             pod/benchmark-client                               Successfully assigned centra10/benchmark-client to ip-192-168-103-193.ec2.internal
+44m         Normal    Pulled                pod/benchmark-client                               Container image "vllm/vllm-openai:v0.32.0" already present on machine and can be accessed by the pod
+44m         Normal    Created               pod/benchmark-client                               Container created
+44m         Normal    Started               pod/benchmark-client                               Container started
+29m         Normal    SuccessfulDelete      replicaset/vllm-5b7bd7466                          Deleted pod: vllm-5b7bd7466-gds2p
+29m         Normal    SuccessfulDelete      replicaset/vllm-5b7bd7466                          Deleted pod: vllm-5b7bd7466-g7z2g
+29m         Normal    Killing               pod/vllm-5b7bd7466-g7z2g                           Stopping container vllm
+29m         Normal    Killing               pod/vllm-5b7bd7466-gds2p                           Stopping container vllm
+13m         Normal    ScalingReplicaSet     deployment/vllm                                    Scaled down replica set vllm-5b7bd7466 from 3 to 1
+29m         Warning   Unhealthy             pod/vllm-5b7bd7466-gds2p                           Readiness probe failed: Get "http://192.168.124.145:8000/health": dial tcp 192.168.124.145:8000: connect: connection refused
+28m         Normal    KEDAScalerInfo        scaledobject/vllm-autoscaler                       PollingInterval is configured but is not relevant for scaling. It only affects scaling when minReplicaCount = 0, idleReplicaCount is set, or useCachedMetrics is enabled, but it still controls how often KEDA refreshes the ScaledObject status conditions and events
+28m         Normal    KEDAScalersStarted    scaledobject/vllm-autoscaler                       Started scalers watch
+28m         Normal    ScaledObjectReady     scaledobject/vllm-autoscaler                       ScaledObject is ready for scaling
+28m         Normal    KEDAScalersStarted    scaledobject/vllm-autoscaler                       Scaler prometheus is built
+28m         Normal    KEDAScalerInfo        scaledobject/vllm-autoscaler                       PollingInterval is configured but is not relevant for scaling. It only affects scaling when minReplicaCount = 0, idleReplicaCount is set, or useCachedMetrics is enabled, but it still controls how often KEDA refreshes the ScaledObject status conditions and events
+28m         Normal    KEDAScalerInfo        scaledobject/vllm-autoscaler                       PollingInterval is configured but is not relevant for scaling. It only affects scaling when minReplicaCount = 0, idleReplicaCount is set, or useCachedMetrics is enabled, but it still controls how often KEDA refreshes the ScaledObject status conditions and events
+27m         Normal    Scheduled             pod/vllm-5b7bd7466-2snz9                           Successfully assigned centra10/vllm-5b7bd7466-2snz9 to ip-192-168-124-236.ec2.internal
+27m         Normal    SuccessfulCreate      replicaset/vllm-5b7bd7466                          Created pod: vllm-5b7bd7466-2snz9
+27m         Normal    SuccessfulRescale     horizontalpodautoscaler/keda-hpa-vllm-autoscaler   New size: 2; reason: external metric s0-prometheus(&LabelSelector{MatchLabels:map[string]string{scaledobject.keda.sh/name: vllm-autoscaler,},MatchExpressions:[]LabelSelectorRequirement{},}) above target
+11m         Normal    ScalingReplicaSet     deployment/vllm                                    Scaled up replica set vllm-5b7bd7466 from 1 to 2
+27m         Normal    Pulled                pod/vllm-5b7bd7466-2snz9                           Container image "vllm/vllm-openai:v0.32.0" already present on machine and can be accessed by the pod
+27m         Normal    Created               pod/vllm-5b7bd7466-2snz9                           Container created
+27m         Normal    Started               pod/vllm-5b7bd7466-2snz9                           Container started
+25m         Warning   Unhealthy             pod/vllm-5b7bd7466-2snz9                           Readiness probe failed: Get "http://192.168.118.217:8000/health": dial tcp 192.168.118.217:8000: connect: connection refused
+10m         Normal    ScalingReplicaSet     deployment/vllm                                    Scaled up replica set vllm-5b7bd7466 from 2 to 3
+27m         Normal    Scheduled             pod/vllm-5b7bd7466-tp7f2                           Successfully assigned centra10/vllm-5b7bd7466-tp7f2 to ip-192-168-120-227.ec2.internal
+27m         Normal    SuccessfulCreate      replicaset/vllm-5b7bd7466                          Created pod: vllm-5b7bd7466-tp7f2
+27m         Normal    SuccessfulRescale     horizontalpodautoscaler/keda-hpa-vllm-autoscaler   New size: 3; reason: external metric s0-prometheus(&LabelSelector{MatchLabels:map[string]string{scaledobject.keda.sh/name: vllm-autoscaler,},MatchExpressions:[]LabelSelectorRequirement{},}) above target
+27m         Normal    Pulled                pod/vllm-5b7bd7466-tp7f2                           Container image "vllm/vllm-openai:v0.32.0" already present on machine and can be accessed by the pod
+27m         Normal    Created               pod/vllm-5b7bd7466-tp7f2                           Container created
+27m         Normal    Started               pod/vllm-5b7bd7466-tp7f2                           Container started
+25m         Warning   Unhealthy             pod/vllm-5b7bd7466-tp7f2                           Readiness probe failed: Get "http://192.168.112.10:8000/health": dial tcp 192.168.112.10:8000: connect: connection refused
+24m         Normal    KEDAScalersStopped    scaledobject/vllm-autoscaler                       Stopped scalers watch
+24m         Warning   ScaledObjectDeleted   scaledobject/vllm-autoscaler                       ScaledObject was deleted
+24m         Normal    Killing               pod/vllm-5b7bd7466-2snz9                           Stopping container vllm
+24m         Normal    Killing               pod/vllm-5b7bd7466-bqnw9                           Stopping container vllm
+24m         Normal    SuccessfulDelete      replicaset/vllm-5b7bd7466                          Deleted pod: vllm-5b7bd7466-2snz9
+24m         Normal    SuccessfulDelete      replicaset/vllm-5b7bd7466                          Deleted pod: vllm-5b7bd7466-tp7f2
+76s         Normal    ScalingReplicaSet     deployment/vllm                                    Scaled down replica set vllm-5b7bd7466 from 3 to 0
+24m         Normal    Killing               pod/vllm-5b7bd7466-tp7f2                           Stopping container vllm
+24m         Normal    SuccessfulDelete      replicaset/vllm-5b7bd7466                          Deleted pod: vllm-5b7bd7466-bqnw9
+21m         Normal    SuccessfulCreate      replicaset/vllm-5b7bd7466                          Created pod: vllm-5b7bd7466-58nht
+21m         Normal    Scheduled             pod/vllm-5b7bd7466-dvfws                           Successfully assigned centra10/vllm-5b7bd7466-dvfws to ip-192-168-124-236.ec2.internal
+21m         Normal    SuccessfulCreate      replicaset/vllm-5b7bd7466                          Created pod: vllm-5b7bd7466-8f9zg
+21m         Normal    SuccessfulCreate      replicaset/vllm-5b7bd7466                          Created pod: vllm-5b7bd7466-dvfws
+21m         Normal    ScalingReplicaSet     deployment/vllm                                    Scaled up replica set vllm-5b7bd7466 from 0 to 3
+21m         Normal    Created               pod/vllm-5b7bd7466-dvfws                           Container created
+21m         Normal    Pulled                pod/vllm-5b7bd7466-dvfws                           Container image "vllm/vllm-openai:v0.32.0" already present on machine and can be accessed by the pod
+21m         Normal    Created               pod/vllm-5b7bd7466-8f9zg                           Container created
+21m         Normal    Pulled                pod/vllm-5b7bd7466-8f9zg                           Container image "vllm/vllm-openai:v0.32.0" already present on machine and can be accessed by the pod
+21m         Normal    Scheduled             pod/vllm-5b7bd7466-8f9zg                           Successfully assigned centra10/vllm-5b7bd7466-8f9zg to ip-192-168-120-227.ec2.internal
+21m         Normal    Scheduled             pod/vllm-5b7bd7466-58nht                           Successfully assigned centra10/vllm-5b7bd7466-58nht to ip-192-168-83-93.ec2.internal
+21m         Normal    Started               pod/vllm-5b7bd7466-8f9zg                           Container started
+19m         Warning   Unhealthy             pod/vllm-5b7bd7466-dvfws                           Readiness probe failed: Get "http://192.168.98.173:8000/health": dial tcp 192.168.98.173:8000: connect: connection refused
+21m         Normal    Started               pod/vllm-5b7bd7466-dvfws                           Container started
+21m         Normal    Pulled                pod/vllm-5b7bd7466-58nht                           Container image "vllm/vllm-openai:v0.32.0" already present on machine and can be accessed by the pod
+21m         Normal    Created               pod/vllm-5b7bd7466-58nht                           Container created
+21m         Normal    Started               pod/vllm-5b7bd7466-58nht                           Container started
+19m         Warning   Unhealthy             pod/vllm-5b7bd7466-8f9zg                           Readiness probe failed: Get "http://192.168.112.10:8000/health": dial tcp 192.168.112.10:8000: connect: connection refused
+19m         Warning   Unhealthy             pod/vllm-5b7bd7466-58nht                           Readiness probe failed: Get "http://192.168.77.48:8000/health": dial tcp 192.168.77.48:8000: connect: connection refused
+13m         Normal    SuccessfulDelete      replicaset/vllm-5b7bd7466                          Deleted pod: vllm-5b7bd7466-8f9zg
+13m         Normal    Killing               pod/vllm-5b7bd7466-dvfws                           Stopping container vllm
+13m         Normal    Killing               pod/vllm-5b7bd7466-8f9zg                           Stopping container vllm
+13m         Normal    SuccessfulDelete      replicaset/vllm-5b7bd7466                          Deleted pod: vllm-5b7bd7466-dvfws
+11m         Normal    KEDAScalersStarted    scaledobject/vllm-autoscaler                       Scaler prometheus is built
+11m         Normal    KEDAScalerInfo        scaledobject/vllm-autoscaler                       PollingInterval is configured but is not relevant for scaling. It only affects scaling when minReplicaCount = 0, idleReplicaCount is set, or useCachedMetrics is enabled, but it still controls how often KEDA refreshes the ScaledObject status conditions and events
+11m         Normal    KEDAScalerInfo        scaledobject/vllm-autoscaler                       PollingInterval is configured but is not relevant for scaling. It only affects scaling when minReplicaCount = 0, idleReplicaCount is set, or useCachedMetrics is enabled, but it still controls how often KEDA refreshes the ScaledObject status conditions and events
+11m         Normal    KEDAScalerInfo        scaledobject/vllm-autoscaler                       PollingInterval is configured but is not relevant for scaling. It only affects scaling when minReplicaCount = 0, idleReplicaCount is set, or useCachedMetrics is enabled, but it still controls how often KEDA refreshes the ScaledObject status conditions and events
+11m         Normal    KEDAScalersStarted    scaledobject/vllm-autoscaler                       Started scalers watch
+11m         Normal    ScaledObjectReady     scaledobject/vllm-autoscaler                       ScaledObject is ready for scaling
+11m         Normal    ScaledObjectReady     scaledobject/vllm-autoscaler                       ScaledObject is ready for scaling
+11m         Normal    Scheduled             pod/vllm-5b7bd7466-8krlx                           Successfully assigned centra10/vllm-5b7bd7466-8krlx to ip-192-168-124-236.ec2.internal
+11m         Normal    SuccessfulCreate      replicaset/vllm-5b7bd7466                          Created pod: vllm-5b7bd7466-8krlx
+11m         Normal    SuccessfulRescale     horizontalpodautoscaler/keda-hpa-vllm-autoscaler   New size: 2; reason: external metric s0-prometheus(&LabelSelector{MatchLabels:map[string]string{scaledobject.keda.sh/name: vllm-autoscaler,},MatchExpressions:[]LabelSelectorRequirement{},}) above target
+11m         Normal    Pulled                pod/vllm-5b7bd7466-8krlx                           Container image "vllm/vllm-openai:v0.32.0" already present on machine and can be accessed by the pod
+11m         Normal    Started               pod/vllm-5b7bd7466-8krlx                           Container started
+11m         Normal    Created               pod/vllm-5b7bd7466-8krlx                           Container created
+9m8s        Warning   Unhealthy             pod/vllm-5b7bd7466-8krlx                           Readiness probe failed: Get "http://192.168.101.3:8000/health": dial tcp 192.168.101.3:8000: connect: connection refused
+10m         Normal    SuccessfulRescale     horizontalpodautoscaler/keda-hpa-vllm-autoscaler   New size: 3; reason: external metric s0-prometheus(&LabelSelector{MatchLabels:map[string]string{scaledobject.keda.sh/name: vllm-autoscaler,},MatchExpressions:[]LabelSelectorRequirement{},}) above target
+10m         Normal    SuccessfulCreate      replicaset/vllm-5b7bd7466                          Created pod: vllm-5b7bd7466-cjjbs
+10m         Normal    Scheduled             pod/vllm-5b7bd7466-cjjbs                           Successfully assigned centra10/vllm-5b7bd7466-cjjbs to ip-192-168-120-227.ec2.internal
+10m         Normal    Started               pod/vllm-5b7bd7466-cjjbs                           Container started
+10m         Normal    Created               pod/vllm-5b7bd7466-cjjbs                           Container created
+10m         Normal    Pulled                pod/vllm-5b7bd7466-cjjbs                           Container image "vllm/vllm-openai:v0.32.0" already present on machine and can be accessed by the pod
+76s         Warning   Unhealthy             pod/vllm-5b7bd7466-cjjbs                           Readiness probe failed: Get "http://192.168.96.163:8000/health": dial tcp 192.168.96.163:8000: connect: connection refused
+78s         Warning   ScaledObjectDeleted   scaledobject/vllm-autoscaler                       ScaledObject was deleted
+78s         Normal    KEDAScalersStopped    scaledobject/vllm-autoscaler                       Stopped scalers watch
+76s         Normal    SuccessfulDelete      replicaset/vllm-5b7bd7466                          Deleted pod: vllm-5b7bd7466-8krlx
+76s         Normal    Killing               pod/vllm-5b7bd7466-8krlx                           Stopping container vllm
+76s         Normal    SuccessfulDelete      replicaset/vllm-5b7bd7466                          Deleted pod: vllm-5b7bd7466-cjjbs
+76s         Normal    SuccessfulDelete      replicaset/vllm-5b7bd7466                          Deleted pod: vllm-5b7bd7466-58nht
+76s         Normal    Killing               pod/vllm-5b7bd7466-58nht                           Stopping container vllm
+76s         Normal    Killing               pod/vllm-5b7bd7466-cjjbs                           Stopping container vllm
