@@ -1,0 +1,8 @@
+{
+  "run": "results/full-validation-C-1/long_C_run1",
+  "status": "interrupted_collector",
+  "recovered_benchmark": "recovered-C-benchmark.json",
+  "completed_requests": 600,
+  "failed_requests": 0,
+  "limitation": "Collector metrics do not cover the full benchmark; exclude from complete-run comparison."
+}

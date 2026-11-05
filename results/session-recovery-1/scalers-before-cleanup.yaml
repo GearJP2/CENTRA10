@@ -1,0 +1,171 @@
+apiVersion: v1
+items:
+- apiVersion: keda.sh/v1alpha1
+  kind: ScaledObject
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"keda.sh/v1alpha1","kind":"ScaledObject","metadata":{"annotations":{},"name":"vllm-autoscaler","namespace":"centra10"},"spec":{"advanced":{"horizontalPodAutoscalerConfig":{"behavior":{"scaleDown":{"stabilizationWindowSeconds":120},"scaleUp":{"stabilizationWindowSeconds":0}}}},"maxReplicaCount":3,"minReplicaCount":1,"pollingInterval":15,"scaleTargetRef":{"name":"vllm"},"triggers":[{"metadata":{"ignoreNullValues":"false","query":"sum(vllm:num_requests_waiting{namespace=\"centra10\",service=\"vllm\"})","serverAddress":"http://monitoring-kube-prometheus-prometheus.monitoring.svc.cluster.local:9090","threshold":"2"},"metricType":"AverageValue","type":"prometheus"}]}}
+    creationTimestamp: "2026-11-06T05:32:55Z"
+    finalizers:
+    - finalizer.keda.sh
+    generation: 2
+    labels:
+      scaledobject.keda.sh/name: vllm-autoscaler
+    name: vllm-autoscaler
+    namespace: centra10
+    resourceVersion: "37946"
+    uid: 4f66bf2c-c643-405c-a70b-fafa2b3edd4f
+  spec:
+    advanced:
+      horizontalPodAutoscalerConfig:
+        behavior:
+          scaleDown:
+            stabilizationWindowSeconds: 120
+          scaleUp:
+            stabilizationWindowSeconds: 0
+      scalingModifiers: {}
+    maxReplicaCount: 3
+    minReplicaCount: 1
+    pollingInterval: 15
+    scaleTargetRef:
+      name: vllm
+    triggers:
+    - metadata:
+        ignoreNullValues: "false"
+        query: sum(vllm:num_requests_waiting{namespace="centra10",service="vllm"})
+        serverAddress: http://monitoring-kube-prometheus-prometheus.monitoring.svc.cluster.local:9090
+        threshold: "2"
+      metricType: AverageValue
+      type: prometheus
+  status:
+    authenticationsTypes: ""
+    conditions:
+    - message: ScaledObject is defined correctly and is ready for scaling
+      reason: ScaledObjectReady
+      status: "True"
+      type: Ready
+    - message: Scaling is not performed because triggers are not active
+      reason: ScalerNotActive
+      status: "False"
+      type: Active
+    - message: No fallbacks are active on this scaled object
+      reason: NoFallbackFound
+      status: "False"
+      type: Fallback
+    - status: "False"
+      type: Paused
+    - message: HPA is actively scaling
+      reason: HPAActive
+      status: "True"
+      type: HPAActive
+    externalMetricNames:
+    - s0-prometheus
+    hpaName: keda-hpa-vllm-autoscaler
+    lastActiveTime: "2026-11-06T05:50:10Z"
+    originalReplicaCount: 1
+    scaleTargetGVKR:
+      group: apps
+      kind: Deployment
+      resource: deployments
+      version: v1
+    scaleTargetKind: apps/v1.Deployment
+    triggersActivity:
+      s0-prometheus:
+        isActive: false
+    triggersTypes: prometheus
+- apiVersion: autoscaling/v2
+  kind: HorizontalPodAutoscaler
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"keda.sh/v1alpha1","kind":"ScaledObject","metadata":{"annotations":{},"name":"vllm-autoscaler","namespace":"centra10"},"spec":{"advanced":{"horizontalPodAutoscalerConfig":{"behavior":{"scaleDown":{"stabilizationWindowSeconds":120},"scaleUp":{"stabilizationWindowSeconds":0}}}},"maxReplicaCount":3,"minReplicaCount":1,"pollingInterval":15,"scaleTargetRef":{"name":"vllm"},"triggers":[{"metadata":{"ignoreNullValues":"false","query":"sum(vllm:num_requests_waiting{namespace=\"centra10\",service=\"vllm\"})","serverAddress":"http://monitoring-kube-prometheus-prometheus.monitoring.svc.cluster.local:9090","threshold":"2"},"metricType":"AverageValue","type":"prometheus"}]}}
+    creationTimestamp: "2026-11-06T05:32:55Z"
+    labels:
+      app.kubernetes.io/managed-by: keda-operator
+      app.kubernetes.io/name: keda-hpa-vllm-autoscaler
+      app.kubernetes.io/part-of: vllm-autoscaler
+      app.kubernetes.io/version: 2.21.0
+      scaledobject.keda.sh/name: vllm-autoscaler
+    name: keda-hpa-vllm-autoscaler
+    namespace: centra10
+    ownerReferences:
+    - apiVersion: keda.sh/v1alpha1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ScaledObject
+      name: vllm-autoscaler
+      uid: 4f66bf2c-c643-405c-a70b-fafa2b3edd4f
+    resourceVersion: "38374"
+    uid: 512ab87f-9842-473d-af04-dc809bf36c8d
+  spec:
+    behavior:
+      scaleDown:
+        policies:
+        - periodSeconds: 15
+          type: Percent
+          value: 100
+        selectPolicy: Max
+        stabilizationWindowSeconds: 120
+      scaleUp:
+        policies:
+        - periodSeconds: 15
+          type: Pods
+          value: 4
+        - periodSeconds: 15
+          type: Percent
+          value: 100
+        selectPolicy: Max
+        stabilizationWindowSeconds: 0
+    maxReplicas: 3
+    metrics:
+    - external:
+        metric:
+          name: s0-prometheus
+          selector:
+            matchLabels:
+              scaledobject.keda.sh/name: vllm-autoscaler
+        target:
+          averageValue: "2"
+          type: AverageValue
+      type: External
+    minReplicas: 1
+    scaleTargetRef:
+      apiVersion: apps/v1
+      kind: Deployment
+      name: vllm
+  status:
+    conditions:
+    - lastTransitionTime: "2026-11-06T05:33:10Z"
+      message: recommended size matches current size
+      reason: ReadyForNewScale
+      status: "True"
+      type: AbleToScale
+    - lastTransitionTime: "2026-11-06T05:33:10Z"
+      message: 'the HPA was able to successfully calculate a replica count from external
+        metric s0-prometheus(&LabelSelector{MatchLabels:map[string]string{scaledobject.keda.sh/name:
+        vllm-autoscaler,},MatchExpressions:[]LabelSelectorRequirement{},})'
+      reason: ValidMetricFound
+      status: "True"
+      type: ScalingActive
+    - lastTransitionTime: "2026-11-06T05:51:57Z"
+      message: the desired replica count is less than the minimum replica count
+      reason: TooFewReplicas
+      status: "True"
+      type: ScalingLimited
+    currentMetrics:
+    - external:
+        current:
+          averageValue: "0"
+        metric:
+          name: s0-prometheus
+          selector:
+            matchLabels:
+              scaledobject.keda.sh/name: vllm-autoscaler
+      type: External
+    currentReplicas: 1
+    desiredReplicas: 1
+    lastScaleTime: "2026-11-06T05:51:57Z"
+kind: List
+metadata:
+  resourceVersion: ""

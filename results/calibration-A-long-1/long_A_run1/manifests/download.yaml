@@ -1,0 +1,32 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: download-model
+  namespace: centra10
+spec:
+  backoffLimit: 2
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: download
+        image: vllm/vllm-openai:v0.32.0
+        command:
+        - python3
+        - -c
+        - from huggingface_hub import snapshot_download; import os; snapshot_download(os.environ['MODEL'],
+          revision=os.environ['REVISION'])
+        env:
+        - name: HF_HOME
+          value: /models
+        - name: MODEL
+          value: Qwen/Qwen2.5-7B-Instruct
+        - name: REVISION
+          value: a09a35458c702b33eeacc393d103063234e8bc28
+        volumeMounts:
+        - name: models
+          mountPath: /models
+      volumes:
+      - name: models
+        persistentVolumeClaim:
+          claimName: model-cache
