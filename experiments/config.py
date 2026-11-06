@@ -5,6 +5,9 @@ from pathlib import Path
 
 def load(path):
     config = json.loads(Path(path).read_text())
+    fixed = config.get("fixed_replicas", 1)
+    if type(fixed) is not int or not 1 <= fixed <= 3:
+        raise ValueError("fixed_replicas must be an integer between 1 and 3")
     for key in ("qps_threshold", "queue_threshold", "request_rate", "duration_seconds",
                 "burst_phase_seconds", "sample_seconds", "ready_timeout_seconds",
                 "run_timeout_seconds"):

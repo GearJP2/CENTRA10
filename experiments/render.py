@@ -33,7 +33,7 @@ def manifests(c):
             "accessModes": ["ReadWriteMany"], "storageClassName": c["storage_class"],
             "resources": {"requests": {"storage": "50Gi"}}}),
         resource("apps/v1", "Deployment", "vllm", spec={
-            "replicas": 1, "strategy": {"type": "Recreate"},
+            "replicas": c.get("fixed_replicas", 1), "strategy": {"type": "Recreate"},
             "selector": {"matchLabels": {"app": "vllm"}},
             "template": {"metadata": {"labels": {"app": "vllm"}}, "spec": {
                 "enableServiceLinks": False,  # Service vllm otherwise injects a conflicting VLLM_PORT URI.

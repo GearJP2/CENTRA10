@@ -76,3 +76,13 @@ allows deployment listing for the existing cross-namespace version inventory;
 it grants no secret access. Remove the two cluster-scoped RBAC resources during
 teardown, along with the namespace resources. EFS remains independently billed
 until explicitly deleted.
+
+## Fixed-three diagnostic
+
+Set `fixed_replicas: 3` in a separate A-only config, with the same long-workload
+rate, duration, tokenizer, and seed as B/C validation. The runner scales to and
+warms all three before measurement, then releases serving pods on exit. Default
+A and smoke remain fixed at one. This diagnostic is not a substitute for A in
+the planned 48-run matrix. Keep its output separate and label figures as
+fixed-three, since its internal mode field remains A. Use distinct code/settings
+ConfigMap names for this Job to preserve the completed B/C configurations.

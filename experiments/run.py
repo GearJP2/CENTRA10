@@ -127,7 +127,8 @@ def reset(c, mode, folder):
         command(["sky", "serve", "up", "-y", "-n", c["sky_service"], str(folder / "sky-fixed-one.yaml")])
     else:
         remove_scaler(c)
-        kubectl(c, "scale", "deployment/vllm", "--replicas=1")
+        replicas = c.get("fixed_replicas", 1) if mode == "A" else 1
+        kubectl(c, "scale", "deployment/vllm", f"--replicas={replicas}")
 
 
 def activate(c, mode, folder):
@@ -139,6 +140,7 @@ def activate(c, mode, folder):
 
 def warm(c, mode, url):
     qs = queries(c, mode)
+    baseline = c.get("fixed_replicas", 1) if mode == "A" else 1
     deadline = time.monotonic() + c["ready_timeout_seconds"]
     stable_since = None
     while time.monotonic() < deadline:
@@ -150,7 +152,7 @@ def warm(c, mode, url):
             stable_since = None
             time.sleep(c["sample_seconds"])
             continue
-        if ready == allocated == 1 and queue == 0:
+        if ready == allocated == baseline and queue == 0:
             stable_since = stable_since or time.monotonic()
             if time.monotonic() - stable_since >= 65:
                 result = http_json(url.rstrip("/") + "/v1/chat/completions", {
@@ -162,7 +164,7 @@ def warm(c, mode, url):
         else:
             stable_since = None
         time.sleep(c["sample_seconds"])
-    raise TimeoutError("Did not reach one warm replica with an empty queue")
+    raise TimeoutError(f"Did not reach {baseline} warm replicas with an empty queue")
 
 
 def sample(c, mode):
@@ -340,11 +342,13 @@ def main():
     c = load(args.config)
     if args.smoke:
         args.modes, args.workloads, args.repeats = ["A"], ["short"], 1
-        c.update(request_rate=.2, duration_seconds=30)
+        c.update(request_rate=.2, duration_seconds=30, fixed_replicas=1)
         if args.output == "results":
             args.output = "results/smoke"
     if args.repeats < 1:
         parser.error("--repeats must be positive")
+    if c.get("fixed_replicas", 1) != 1 and args.modes != ["A"]:
+        parser.error("fixed_replicas other than 1 is for A-only diagnostic runs")
     # Rotate treatment order across repeats to reduce systematic time-of-day bias.
     plan = [(mode, workload, repeat) for repeat in range(1, args.repeats + 1)
             for workload in args.workloads

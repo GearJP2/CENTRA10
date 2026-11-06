@@ -17,6 +17,40 @@ CONFIG = load("config.example.json")
 
 
 class ExperimentTests(unittest.TestCase):
+    @patch("experiments.run.kubectl")
+    @patch("experiments.run.remove_scaler")
+    def test_fixed_three_baseline_does_not_change_scaler_baseline(self, remove, kubectl):
+        c = {**CONFIG, "fixed_replicas": 3}
+        run.reset(c, "A", Path("unused"))
+        self.assertEqual(kubectl.call_args.args[-1], "--replicas=3")
+        run.reset(c, "B", Path("unused"))
+        self.assertEqual(kubectl.call_args.args[-1], "--replicas=1")
+        self.assertEqual(manifests(c)["serving.yaml"][0]["spec"]["replicas"], 3)
+
+    @patch("experiments.run.http_json", return_value={"choices": [{}]})
+    @patch("experiments.run.metric", side_effect=[3, 3, 0])
+    @patch("experiments.run.time.monotonic", side_effect=[0, 1, 2, 68])
+    def test_fixed_three_waits_for_three_warm_replicas(self, clock, metric, http):
+        run.warm({**CONFIG, "fixed_replicas": 3}, "A", "http://server")
+        http.assert_called_once()
+
+    def test_fixed_replica_count_rejects_invalid_values(self):
+        for value in [True, 0, 4, 1.5, "3"]:
+            with self.subTest(value=value), tempfile.TemporaryDirectory() as folder:
+                path = Path(folder) / "config.json"
+                path.write_text(json.dumps({**CONFIG, "fixed_replicas": value}))
+                with self.assertRaisesRegex(ValueError, "fixed_replicas"):
+                    load(path)
+
+    def test_fixed_three_rejects_autoscaling_modes(self):
+        with tempfile.TemporaryDirectory() as folder:
+            path = Path(folder) / "config.json"
+            path.write_text(json.dumps({**CONFIG, "fixed_replicas": 3}))
+            result = subprocess.run(["python3", "-m", "experiments.run", "--config", str(path),
+                                     "--modes", "B"], capture_output=True, text=True)
+            self.assertNotEqual(result.returncode, 0)
+            self.assertIn("A-only diagnostic", result.stderr)
+
     @patch("experiments.run.command")
     def test_cpu_client_version_reads_metadata_without_serving_cli(self, command):
         command.return_value = Mock(stdout="0.32.0\n")
@@ -236,7 +270,8 @@ class ExperimentTests(unittest.TestCase):
         self.assertEqual(storage["reclaimPolicy"], "Retain")
         self.assertIn("tls", storage["mountOptions"])
         for path in Path("aws").glob("*.yaml"):
-            self.assertIsInstance(yaml.safe_load(path.read_text()), dict)
+            for document in yaml.safe_load_all(path.read_text()):
+                self.assertIsInstance(document, dict)
 
     def test_analysis_cli_on_synthetic_48_runs(self):
         with tempfile.TemporaryDirectory() as directory:
