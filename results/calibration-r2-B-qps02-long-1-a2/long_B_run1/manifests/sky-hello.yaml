@@ -1,0 +1,5 @@
+resources:
+  infra: k8s
+  accelerators: L4:1
+  ports: 8000
+run: nvidia-smi
