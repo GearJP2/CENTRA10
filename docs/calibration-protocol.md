@@ -113,3 +113,14 @@ scale-decision cadence. Current burst phases drain between commands.
 After screening, review short/mixed/bursty load construction and validate D
 separately before committing to the complete 48-run matrix. These four long
 trials alone do not calibrate SkyServe or prove suitability for all workloads.
+
+### Revision-2 packaging failure (before workload)
+
+The first `centra10-cal-r2-b02` Job failed installing requirements because its
+settings ConfigMap omitted `requirements.txt`. No calibration workload began.
+Keep that Job/log as a preparation failure; it is not a measured policy result.
+The generator now includes that file. Prepare a fresh set using `--attempt 2`
+and a new local directory. This suffixes Job, ConfigMap and result names with
+`-a2`, avoiding immutable ConfigMap replacement and result overwrites. The
+candidate settings and four-trial order remain unchanged. Before-workload
+packaging recovery is not an additional threshold candidate.

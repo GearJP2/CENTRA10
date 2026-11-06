@@ -23,6 +23,8 @@ class CalibrationTests(unittest.TestCase):
                 maps = [d for d in docs if d['kind'] == 'ConfigMap']
                 self.assertTrue(all(d['immutable'] for d in maps))
                 config = json.loads(next(d for d in maps if 'config.json' in d['data'])['data']['config.json'])
+                settings = next(d for d in maps if 'config.json' in d['data'])
+                self.assertEqual(settings['data']['requirements.txt'], Path('requirements.txt').read_text())
                 self.assertEqual((config['request_rate'], config['duration_seconds']), (.5, 600))
                 self.assertEqual(config['fixed_replicas'], 1)
                 self.assertEqual(config['qps_threshold'], trial['qps_threshold'])
@@ -39,3 +41,16 @@ class CalibrationTests(unittest.TestCase):
                 self.assertEqual(job['spec']['backoffLimit'], 0)
             with self.assertRaises(FileExistsError):
                 prepare(load('config.example.json'), output)
+
+    def test_retry_uses_new_jobs_configmaps_and_outputs(self):
+        with tempfile.TemporaryDirectory() as folder, patch('builtins.print'):
+            output = Path(folder) / 'attempt2'
+            prepare(load('config.example.json'), output, attempt=2)
+            plan = json.loads((output / 'plan.json').read_text())
+            for trial in plan:
+                self.assertTrue(trial['job'].endswith('-a2'))
+                self.assertTrue(trial['results'].endswith('-a2'))
+                docs = list(yaml.safe_load_all((output / trial['bundle']).read_text()))
+                for doc in docs:
+                    if doc['kind'] == 'ConfigMap':
+                        self.assertTrue(doc['metadata']['name'].endswith('-a2'))
