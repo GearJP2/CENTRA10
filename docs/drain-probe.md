@@ -72,3 +72,14 @@ scale-down patterns, or other hardware.
 Only adopt a common lifecycle revision for B/C after checking the actual
 results and logs. Then amend the calibration plan and rerun all four candidates
 under the same revision. Archive the original diagnosis and raw outcomes.
+
+## Recorded outcome
+
+Saved control evidence shows stream_complete=false and serving logs explicitly
+reporting mode=abort timeout=0s and force-killing EngineCore. The client stream
+ended approximately 30.1 seconds after scale request; this delay is not engine
+drain time. The 120-second arm reports [DONE], finish_reason=length and all
+512 tokens; it ended approximately 28.8 seconds after scale request. These
+observations support using a common bounded-drain revision for subsequent
+calibration, not a guarantee for arbitrary queued work. See the revision-2
+amendment in calibration-protocol.md.

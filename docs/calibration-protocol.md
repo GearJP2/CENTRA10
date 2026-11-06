@@ -5,6 +5,41 @@ fixed-three runs informed its design; they are not independent confirmation.
 It selects one global threshold per policy for later workload comparisons.
 It does not establish optimal thresholds or equal policy expressiveness.
 
+## Revision 2 amendment: common bounded draining
+
+The original B0.2 and C1 trials are retained as original-lifecycle screening;
+they must not be ranked with revision-2 trials. The C1 run had ten truncated
+streams during a 3-to-1 downscale with running work. Controlled probes then
+observed failure with shutdown timeout 0 / pod grace 30 seconds and a complete
+512-token stream with timeout 120 / grace 150 seconds. Evidence:
+`results/drain-control-0-1` and `results/drain-control-120-1`.
+
+Revision 2 applies `--shutdown-timeout 120` and
+`terminationGracePeriodSeconds: 150` to **both B and C**, retaining the original
+trigger definitions and HPA stabilization settings. Rerun all four candidates
+below with distinct `calibration-r2-...` IDs; the original screening is not
+silently replaced. The short drain probe does not guarantee completion of all
+queued long requests. Record every failure and any termination-budget expiry.
+No per-policy lifecycle tuning is permitted.
+
+Prepare all four frozen bundles without contacting the cluster:
+
+```bash
+.venv/bin/python -m experiments.calibration \
+  --config config.validation-c1.local.json \
+  --output generated/calibration-r2
+```
+
+The printed plan maps each bundle to its Job/output name. Apply only one at a
+time, in order `b02.yaml`, `c1.yaml`, `c2.yaml`, `b01.yaml`, after confirming the
+previous Job and cleanup completed and there is no competing scaler/runner.
+Each bundle explicitly applies the shared serving settings and uses its own
+immutable code/settings ConfigMaps. It assumes the existing runner service
+account/bindings, proxy, PVC, benchmark-client and result reader. It creates
+no new AWS instances. Preparing again requires a new local directory;
+repeating a failed trial also requires new Job/output/ConfigMap names, not
+reapplying a completed Job. Archive results before deleting resources.
+
 ## Evidence and operating point
 
 Verified saved fixed-three runs all had three ready replicas throughout:
@@ -30,10 +65,10 @@ competitor and `fixed_replicas` must be 1. No other experiment may overlap.
 
 | Order | Trial ID | Mode | Scaling target |
 |---|---|---|---|
-| 1 | calibration-B-qps02-long-1 | B | 0.2 completed req/s |
-| 2 | calibration-C-queue1-long-1 | C | 1 waiting request |
-| 3 | calibration-C-queue2-long-1 | C | 2 waiting requests |
-| 4 | calibration-B-qps01-long-1 | B | 0.1 completed req/s |
+| 1 | calibration-r2-B-qps02-long-1 | B | 0.2 completed req/s |
+| 2 | calibration-r2-C-queue1-long-1 | C | 1 waiting request |
+| 3 | calibration-r2-C-queue2-long-1 | C | 2 waiting requests |
+| 4 | calibration-r2-B-qps01-long-1 | B | 0.1 completed req/s |
 
 This gives each policy two candidates at the same load and duration. The
 B-C-C-B order partly balances session order but does not eliminate cache,
