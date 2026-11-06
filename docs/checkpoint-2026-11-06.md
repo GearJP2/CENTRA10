@@ -45,8 +45,19 @@ The interrupted C1 collector run remains incomplete even though its benchmark
 JSON was recovered. Generated Kubernetes Jobs have no automatic retries.
 
 The user requested a full teardown and pause after backing up this last run.
-At the time this checkpoint was written, teardown had **not** yet been verified.
-Remove EFS access points/mount targets/filesystem and the EFS security group,
+Teardown was subsequently verified from user-provided CloudShell output in
+account 811825122205, us-east-1. Both node-group stacks were absent and no
+instances were returned for the experiment VPC. Cluster and both addon/IAM
+stack deletion waiters completed. EKS returned no clusters, NAT
+`nat-062758d6b8d3b71eb` was `deleted`, EIP and EBS inventories were empty, and
+no EFS filesystem matched `centra10-full-model-cache`. The earlier EFS cleanup
+removed mount targets/access points and security group `sg-09d36b4691263acca`;
+collector cluster RBAC and namespace deletion also completed. These outputs
+were supplied in the session, not archived as a separate AWS audit artifact.
+Do not rerun these deletion commands on unrelated future infrastructure.
+
+The sequence used was:
+remove EFS access points/mount targets/filesystem and the EFS security group,
 then node-group, cluster and addon IAM stacks; inventory billable leftovers.
 Namespace deletion also removes the CPU client, collector Jobs and EFS reader.
 Export anything else needed before deleting the namespace. Worker EC2 instances
