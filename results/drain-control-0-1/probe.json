@@ -1,0 +1,14 @@
+{
+  "status": "complete",
+  "requested_tokens": 512,
+  "request_started_at": 1793960053.815484,
+  "scale_requested_at": 1793960054.0857027,
+  "stream": {
+    "done": false,
+    "finish_reason": null,
+    "completion_tokens": null,
+    "ended_at": 1793960084.1859734
+  },
+  "stream_complete": false,
+  "ended_at": 1793960084.1911402
+}
