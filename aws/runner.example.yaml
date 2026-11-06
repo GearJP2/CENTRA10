@@ -17,7 +17,7 @@ rules:
     verbs: [get, list, watch]
   - apiGroups: [""]
     resources: [pods/exec]
-    verbs: [create]
+    verbs: [get, create]
   - apiGroups: [apps]
     resources: [deployments/scale]
     resourceNames: [vllm]
