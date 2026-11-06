@@ -1,0 +1,173 @@
+# A/B/C runner on the CPU node. Requires runner-code and runner-settings ConfigMaps.
+# No automatic retry: inspect and clean up interrupted experiments before starting another Job.
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: experiment-runner
+  namespace: centra10
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: experiment-runner
+  namespace: centra10
+rules:
+  - apiGroups: [""]
+    resources: [pods, events]
+    verbs: [get, list, watch]
+  - apiGroups: [""]
+    resources: [pods/exec]
+    verbs: [create]
+  - apiGroups: [apps]
+    resources: [deployments/scale]
+    resourceNames: [vllm]
+    verbs: [get, patch, update]
+  - apiGroups: [autoscaling]
+    resources: [horizontalpodautoscalers]
+    verbs: [get, list, watch]
+  - apiGroups: [keda.sh]
+    resources: [scaledobjects]
+    verbs: [get, list, watch, create, patch, update, delete]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: experiment-runner
+  namespace: centra10
+subjects:
+  - kind: ServiceAccount
+    name: experiment-runner
+    namespace: centra10
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: experiment-runner
+---
+# Version inventory currently lists deployments across namespaces.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: centra10-runner-version-inventory
+rules:
+  - apiGroups: [apps]
+    resources: [deployments]
+    verbs: [list]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: centra10-runner-version-inventory
+subjects:
+  - kind: ServiceAccount
+    name: experiment-runner
+    namespace: centra10
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: centra10-runner-version-inventory
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: experiment-results
+  namespace: centra10
+spec:
+  automountServiceAccountToken: false
+  enableServiceLinks: false
+  nodeSelector:
+    centra10-role: system
+  restartPolicy: Never
+  containers:
+    - name: reader
+      image: vllm/vllm-openai:v0.32.0
+      command: [sleep, "86400"]
+      resources:
+        requests:
+          cpu: 10m
+          memory: 64Mi
+      volumeMounts:
+        - name: models
+          mountPath: /models
+          readOnly: true
+  volumes:
+    - name: models
+      persistentVolumeClaim:
+        claimName: model-cache
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: centra10-runner-c3
+  namespace: centra10
+spec:
+  backoffLimit: 0
+  activeDeadlineSeconds: 5400
+  template:
+    spec:
+      serviceAccountName: experiment-runner
+      enableServiceLinks: false
+      nodeSelector:
+        centra10-role: system
+      restartPolicy: Never
+      initContainers:
+        - name: kubectl
+          image: vllm/vllm-openai:v0.32.0
+          command: [python3, -c]
+          args:
+            - |
+              import hashlib, pathlib, platform, urllib.request
+              arch = {"x86_64": "amd64", "aarch64": "arm64"}[platform.machine()]
+              url = f"https://dl.k8s.io/release/v1.35.0/bin/linux/{arch}/kubectl"
+              data = urllib.request.urlopen(url, timeout=120).read()
+              expected = urllib.request.urlopen(url + ".sha256", timeout=30).read().decode().strip()
+              if hashlib.sha256(data).hexdigest() != expected:
+                  raise RuntimeError("kubectl checksum mismatch")
+              path = pathlib.Path("/tools/kubectl")
+              path.write_bytes(data)
+              path.chmod(0o755)
+          volumeMounts:
+            - name: tools
+              mountPath: /tools
+      containers:
+        - name: runner
+          image: vllm/vllm-openai:v0.32.0
+          workingDir: /work
+          command: [/bin/bash, -c]
+          args:
+            - |
+              set -euo pipefail
+              python3 -m pip install -r /settings/requirements.txt
+              exec python3 -u -m experiments.run \
+                --config /settings/config.json \
+                --output /models/experiment-results/full-validation-C-3 \
+                --modes C --workloads long --repeats 1 --execute
+          env:
+            - name: PATH
+              value: /tools:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+          resources:
+            requests:
+              cpu: "1"
+              memory: 2Gi
+          volumeMounts:
+            - name: code
+              mountPath: /work/experiments
+              readOnly: true
+            - name: settings
+              mountPath: /settings
+              readOnly: true
+            - name: models
+              mountPath: /models
+            - name: tools
+              mountPath: /tools
+      volumes:
+        - name: code
+          configMap:
+            name: runner-code
+        - name: settings
+          configMap:
+            name: runner-settings
+        - name: models
+          persistentVolumeClaim:
+            claimName: model-cache
+        - name: tools
+          emptyDir: {}

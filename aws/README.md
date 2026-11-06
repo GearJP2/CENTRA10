@@ -196,6 +196,9 @@ python3 -m experiments.analyze results/smoke --output results/smoke-analysis
 
 Smoke mode uses only A, six short requests at 0.2 req/s, and a separate results directory. It still performs warm-up, telemetry collection, and serving-pod cleanup. It neither proves saturation nor validates autoscaling. D's placeholder settings need not be filled for this A-only check. Do not put smoke outputs in the final 48-run dataset.
 
+For long A/B/C sessions, use the [in-cluster collector](../docs/cluster-runner.md)
+to avoid depending on CloudShell sessions and port-forwards.
+
 ## 6. SkyServe and full experiment
 
 On the CPU benchmark host in the VPC, configure AWS/Kubernetes access and install the pinned vLLM benchmark release plus SkyPilot. Copy `aws/skypilot.example.yaml` to `aws/skypilot.local.yaml`, replace both context placeholders, and point `SKYPILOT_CONFIG` at its absolute path:
