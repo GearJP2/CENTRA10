@@ -1,6 +1,6 @@
 # Autoscaling LLM serving by QPS or queue length
 
-Status: report template; no measurements collected. Target length: 4–6 pages.
+Status: working report outline; live smoke, B/C validation, and fixed-three diagnostics collected. The calibrated research matrix is pending. Target: four-page IEEE short paper. See [calibration protocol](calibration-protocol.md).
 
 ## 1. Research question and hypothesis (½ page)
 
