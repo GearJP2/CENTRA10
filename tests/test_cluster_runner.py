@@ -9,6 +9,13 @@ import yaml
 
 
 class ClusterRunnerTests(unittest.TestCase):
+    def test_scale_permissions_include_reading_target_deployment(self):
+        docs = list(yaml.safe_load_all(Path('aws/runner.example.yaml').read_text()))
+        rules = next(doc for doc in docs if doc['kind'] == 'Role')['rules']
+        for resource, verb in [('deployments', 'get'), ('deployments/scale', 'patch')]:
+            self.assertTrue(any(resource in rule['resources'] and verb in rule['verbs']
+                                and rule.get('resourceNames') == ['vllm'] for rule in rules))
+
     def test_kubectl_checksum_verified_before_install(self):
         docs = list(yaml.safe_load_all(Path('aws/runner.example.yaml').read_text()))
         job = docs[-1]
