@@ -14,6 +14,8 @@ def manifests(c):
     image = f"vllm/vllm-openai:v{version}"
     args = ["--model", model, "--revision", c["model_revision"], "--max-model-len", "8192",
             "--no-enable-prefix-caching"]
+    if c.get("shutdown_timeout_seconds") is not None:
+        args += ["--shutdown-timeout", str(c["shutdown_timeout_seconds"])]
     volume = {"name": "models", "persistentVolumeClaim": {"claimName": "model-cache"}}
     mount = {"name": "models", "mountPath": "/models"}
     container = {
@@ -42,6 +44,8 @@ def manifests(c):
         resource("v1", "Service", "vllm", spec={"selector": {"app": "vllm"},
             "ports": [{"name": "http", "port": 8000, "targetPort": "http"}]}),
     ]
+    if c.get("shutdown_timeout_seconds") is not None:
+        cluster[2]["spec"]["template"]["spec"]["terminationGracePeriodSeconds"] = c["shutdown_timeout_seconds"] + 30
     cluster[-1]["metadata"]["labels"] = {"app": "vllm"}
     download = resource("batch/v1", "Job", "download-model", spec={"backoffLimit": 2, "template": {
         "spec": {"restartPolicy": "Never", "containers": [{
