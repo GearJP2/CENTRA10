@@ -1,0 +1,2 @@
+mode,workload,repeat,requests,completed,failed,ttft_p50_seconds,ttft_p99_seconds,slo_attainment,gpu_hours,response_seconds,measurement_start,burst_start
+A,long,1,150,150,0,1.8372303015021316,4.450047634731668,0.7266666666666667,0.2776370167732239,,1793956104.4055011,
