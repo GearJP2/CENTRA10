@@ -103,11 +103,12 @@ http {
                 "threshold": str(threshold), "ignoreNullValues": "false"}}]})]
     sky = {
         "resources": {"infra": f'k8s/{c["kube_context"]}' if c.get("kube_context") else "k8s",
-                      "accelerators": f'{c["gpu"]}:1', "ports": 8000},
+                      "accelerators": f'{c["gpu"]}:1', "ports": 8000,
+                      "image_id": f"docker:{image}"},
         "envs": {"MODEL_NAME": model, "MODEL_REVISION": c["model_revision"], "VLLM_VERSION": version},
-        "setup": 'pip install "vllm==$VLLM_VERSION"\n'
-                 'hf download "$MODEL_NAME" --revision "$MODEL_REVISION"\n',
-        "run": 'HF_HUB_OFFLINE=1 vllm serve "$MODEL_NAME" --revision "$MODEL_REVISION" '
+        # Use image entrypoints so SkyPilot's Python environment cannot shadow vLLM.
+        "setup": 'set -e\n/usr/local/bin/hf download "$MODEL_NAME" --revision "$MODEL_REVISION"\n',
+        "run": 'HF_HUB_OFFLINE=1 /usr/local/bin/vllm serve "$MODEL_NAME" --revision "$MODEL_REVISION" '
                '--port 8000 --max-model-len 8192 --no-enable-prefix-caching\n',
     }
     out["sky-hello.yaml"] = [{"resources": sky["resources"], "run": "nvidia-smi"}]

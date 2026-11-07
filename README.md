@@ -40,6 +40,10 @@ make test
 
 ## Days 1–3: SkyPilot walkthrough
 
+SkyPilot tasks use the same pinned vLLM Docker image as A–C. They call the image's
+`/usr/local/bin/hf` and `/usr/local/bin/vllm` directly to avoid SkyPilot's Python
+environment shadowing the installed packages; setup does not reinstall vLLM with pip.
+
 ```bash
 sky launch -c centra10-hello generated/sky-hello.yaml
 sky status

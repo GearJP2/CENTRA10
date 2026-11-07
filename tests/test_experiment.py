@@ -101,6 +101,18 @@ class ExperimentTests(unittest.TestCase):
         self.assertIn(CONFIG["model_revision"], container["args"])
         self.assertEqual(files["sky-autoscale.yaml"][0]["envs"]["VLLM_VERSION"], CONFIG["vllm_version"])
 
+    def test_sky_serving_uses_image_binaries_instead_of_installing_vllm(self):
+        files = manifests(CONFIG)
+        image = files["serving.yaml"][0]["spec"]["template"]["spec"]["containers"][0]["image"]
+        for name in ("sky-single.yaml", "sky-fixed-one.yaml", "sky-fixed-two.yaml", "sky-autoscale.yaml"):
+            with self.subTest(name=name):
+                task = files[name][0]
+                self.assertEqual(task["resources"]["image_id"], f"docker:{image}")
+                self.assertNotIn("pip install", task["setup"])
+                self.assertTrue(task["setup"].startswith("set -e\n"))
+                self.assertIn('/usr/local/bin/hf download "$MODEL_NAME" --revision "$MODEL_REVISION"', task["setup"])
+                self.assertIn('/usr/local/bin/vllm serve "$MODEL_NAME"', task["run"])
+
     def test_bench_command_records_details_and_fixed_length(self):
         cmd = run.bench(CONFIG, "http://example", "long", 1, 10, 42, Path("results"), "raw.json")
         self.assertIn("--save-detailed", cmd)
