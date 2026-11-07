@@ -328,6 +328,9 @@ def run_one(c, mode, workload, repeat, root):
             with (folder / "sky-controller.log").open("w") as log:
                 command(sky_control.argv(c, ["serve", "logs", c["sky_service"], "--controller", "--no-follow"]),
                         stdout=log, stderr=subprocess.STDOUT)
+            with (folder / "sky-load-balancer.log").open("w") as log:
+                command(sky_control.argv(c, ["serve", "logs", c["sky_service"], "--load-balancer", "--no-follow"]),
+                        stdout=log, stderr=subprocess.STDOUT)
     except BaseException as exc:
         meta.update(status="failed", error=str(exc), end=time.time())
         raise

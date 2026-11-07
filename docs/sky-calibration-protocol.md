@@ -105,3 +105,26 @@ state that design explicitly rather than implying seamless bursts.
 
 Do not count any calibration trial as one of the 48 measured runs, and do not
 interpret D/B differences as caused solely by waiting versus QPS signals.
+
+## D0.2 diagnostic note before D0.1
+
+The reported D0.2 result completed collection and cleanup: 288/300 successful
+requests, 12 incomplete streamed-response errors, SLO attainment 37%, successful
+TTFT p99 119.387 s, and allocated GPU-hours 0.482006. Its maximum sample gap was
+14.65 s. The supplied status transitions only show growth from one to three
+READY replicas, with no observed downscale during measurement; the controller
+log excerpt likewise shows no executed downscale. This does not establish
+the cause of the truncated streams.
+
+Pinned SkyPilot 0.14.1 source sets `DEFAULT_LB_STREAM_TIMEOUT = 120` in
+`sky/serve/constants.py` and applies that timeout to proxied HTTP requests in
+`sky/serve/load_balancer.py`. A read timeout while waiting for stream data is
+therefore a plausible explanation, not a confirmed finding. The load-balancer
+log was not retained before D0.2 cleanup, so it cannot establish that link.
+
+Retain D0.2 with all 12 failures. Do not rerun it or change the timeout, SLO,
+lifecycle settings or candidate budget. The collector now also saves
+`sky-load-balancer.log` after the measured interval and before cleanup. Regenerate
+the unstarted D0.1 bundle to include this extra evidence; this adds a log, not a
+new treatment or candidate. Keep code provenance with each run. D0.1 remains
+the second and final threshold candidate.

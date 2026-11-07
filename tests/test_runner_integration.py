@@ -133,6 +133,7 @@ class RunnerIntegrationTests(unittest.TestCase):
             self.assertTrue((path.parent / "queries.json").exists())
             if row["mode"] == "D":
                 self.assertTrue((path.parent / "sky-controller.log").exists())
+                self.assertTrue((path.parent / "sky-load-balancer.log").exists())
             if row["workload"] == "bursty":
                 meta = json.loads(path.read_text())
                 self.assertEqual(row["burst_start"], meta["phases"][1]["first_request_at"])
@@ -172,6 +173,10 @@ class RunnerIntegrationTests(unittest.TestCase):
         self.assertTrue(all(c[c.index("--base-url") + 1] == self.url for c in benches))
         scaling = json.loads((folder / "scaling.json").read_text())
         self.assertEqual(scaling[0]["sky_status"]["active_versions"], [2])
+        self.assertTrue((folder / "sky-load-balancer.log").exists())
+        logged = next(i for i, c in enumerate(commands) if "--load-balancer" in c and "--no-follow" in c)
+        removed = next(i for i, c in enumerate(commands) if "/opt/sky/bin/sky" in c and "down" in c)
+        self.assertLess(logged, removed)
 
     def test_d_preexisting_service_is_not_deleted(self):
         self.config["sky_operator_pod"] = "sky-operator"
