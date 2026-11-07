@@ -128,3 +128,24 @@ lifecycle settings or candidate budget. The collector now also saves
 the unstarted D0.1 bundle to include this extra evidence; this adds a log, not a
 new treatment or candidate. Keep code provenance with each run. D0.1 remains
 the second and final threshold candidate.
+
+## Frozen D selection from reported completed trials
+
+Freeze D target **0.1 QPS per replica**. The reported D0.1 result completed
+collection/cleanup, with 289 successful and 11 failed requests out of 300,
+SLO attainment 46%, successful-request p99 TTFT 117.295 s and allocated GPU-hours
+0.499561. Maximum sample gap was 14.247 s and the load-balancer log was retained.
+Its 138 SLO successes exceed D0.2's 111 by 27 requests, outside the six-request
+tie band, so the rule chooses D0.1 despite its higher allocated GPU-hours.
+Keep all failures and stop threshold screening here.
+
+The machine-readable [D freeze record](frozen-sky-calibration-r2.json) explicitly
+identifies its evidence as operator-reported CloudShell analysis/checks. Raw
+calibration directories still need to be committed and independently checked;
+the evidence commit is not yet recorded. Do not claim that the load-balancer
+log's existence establishes the cause of the eleven D0.1 errors.
+
+The B/C freeze remains B=0.1 completed QPS and C=2 waiting requests. Workload
+rate selection and the measured repetitions are still pending. Neither the
+two-candidate ranking nor D's higher SLO attainment in these screening runs
+establishes a statistically reliable cross-system advantage.

@@ -1,0 +1,59 @@
+{
+  "status": "frozen_after_bounded_screening",
+  "sky_qps_threshold": 0.1,
+  "evidence_commit": null,
+  "evidence_basis": "CloudShell analysis and validation outputs supplied by the operator; raw D calibration artifacts are not yet available in this checkout for independent verification.",
+  "calibration_workload": {
+    "kind": "long",
+    "input_tokens": 6000,
+    "output_tokens": 200,
+    "request_rate": 0.5,
+    "duration_seconds": 600,
+    "requests": 300,
+    "seed": 100
+  },
+  "shutdown_timeout_seconds": 120,
+  "termination_grace_seconds": 150,
+  "load_balancer_stream_timeout_seconds": 120,
+  "selection_rule": "Higher all-attempted-request TTFT <= 2 s attainment; within six SLO successes out of 300, prefer lower allocated GPU-hours, then lower successful-request TTFT p99, then lower threshold.",
+  "candidates": [
+    {
+      "threshold": 0.2,
+      "requests": 300,
+      "completed": 288,
+      "failed": 12,
+      "slo_successes": 111,
+      "slo_attainment": 0.37,
+      "ttft_p50_seconds": 4.973925201000384,
+      "ttft_p99_seconds": 119.38716320472889,
+      "gpu_hours": 0.4820056505335702,
+      "maximum_sample_gap_seconds": 14.649581670761108,
+      "cleanup_error": null,
+      "result_directory": "results/calibration-r2-D-qps02-long-1-a1"
+    },
+    {
+      "threshold": 0.1,
+      "requests": 300,
+      "completed": 289,
+      "failed": 11,
+      "slo_successes": 138,
+      "slo_attainment": 0.46,
+      "ttft_p50_seconds": 2.0242266219975136,
+      "ttft_p99_seconds": 117.29504767304141,
+      "gpu_hours": 0.4995607042974896,
+      "maximum_sample_gap_seconds": 14.246757984161377,
+      "cleanup_error": null,
+      "load_balancer_log_retained": true,
+      "result_directory": "results/calibration-r2-D-qps01-long-1-a1"
+    }
+  ],
+  "limits": [
+    "One run per candidate; no optimality or statistical superiority claim.",
+    "All failed requests count against SLO; p99 uses successful requests only.",
+    "D0.2 stream failures are unconfirmed in cause; D0.1 error details and retained load-balancer log remain to be inspected.",
+    "Actual sample gaps are about 14 s at maximum, not an exact 5 s cadence.",
+    "D0.1 adds load-balancer log collection after measurement without changing policy or timeout.",
+    "D is a system reference with different routing, demand estimator and model cache lifecycle from B/C.",
+    "Workload rates and the measured 48-run matrix are not frozen by this selection."
+  ]
+}
