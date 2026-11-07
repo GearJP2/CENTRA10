@@ -1,0 +1,716 @@
+[
+  {
+    "start": 1794044046.7527244,
+    "timestamp": 1794044046.8022015,
+    "dispatched_requests": 0,
+    "incoming_qps": 0.0
+  },
+  {
+    "start": 1794044046.8022015,
+    "timestamp": 1794044052.0435314,
+    "dispatched_requests": 0,
+    "incoming_qps": 0.0
+  },
+  {
+    "start": 1794044052.0435314,
+    "timestamp": 1794044057.3002727,
+    "dispatched_requests": 0,
+    "incoming_qps": 0.0
+  },
+  {
+    "start": 1794044057.3002727,
+    "timestamp": 1794044062.5551693,
+    "dispatched_requests": 0,
+    "incoming_qps": 0.0
+  },
+  {
+    "start": 1794044062.5551693,
+    "timestamp": 1794044067.8211844,
+    "dispatched_requests": 0,
+    "incoming_qps": 0.0
+  },
+  {
+    "start": 1794044067.8211844,
+    "timestamp": 1794044073.0867345,
+    "dispatched_requests": 3,
+    "incoming_qps": 0.5697410379148717
+  },
+  {
+    "start": 1794044073.0867345,
+    "timestamp": 1794044078.3490038,
+    "dispatched_requests": 4,
+    "incoming_qps": 0.7601283407418878
+  },
+  {
+    "start": 1794044078.3490038,
+    "timestamp": 1794044083.622921,
+    "dispatched_requests": 3,
+    "incoming_qps": 0.5688371446246119
+  },
+  {
+    "start": 1794044083.622921,
+    "timestamp": 1794044088.9061897,
+    "dispatched_requests": 5,
+    "incoming_qps": 0.9463838190475611
+  },
+  {
+    "start": 1794044088.9061897,
+    "timestamp": 1794044094.1846988,
+    "dispatched_requests": 0,
+    "incoming_qps": 0.0
+  },
+  {
+    "start": 1794044094.1846988,
+    "timestamp": 1794044099.4691334,
+    "dispatched_requests": 3,
+    "incoming_qps": 0.5677050151086026
+  },
+  {
+    "start": 1794044099.4691334,
+    "timestamp": 1794044104.766232,
+    "dispatched_requests": 3,
+    "incoming_qps": 0.566347769938862
+  },
+  {
+    "start": 1794044104.766232,
+    "timestamp": 1794044110.0613422,
+    "dispatched_requests": 1,
+    "incoming_qps": 0.18885348130256413
+  },
+  {
+    "start": 1794044110.0613422,
+    "timestamp": 1794044115.3539927,
+    "dispatched_requests": 6,
+    "incoming_qps": 1.1336475068567324
+  },
+  {
+    "start": 1794044115.3539927,
+    "timestamp": 1794044120.6620383,
+    "dispatched_requests": 4,
+    "incoming_qps": 0.7535730251908983
+  },
+  {
+    "start": 1794044120.6620383,
+    "timestamp": 1794044125.9602323,
+    "dispatched_requests": 4,
+    "incoming_qps": 0.7549742519159638
+  },
+  {
+    "start": 1794044125.9602323,
+    "timestamp": 1794044131.2676547,
+    "dispatched_requests": 0,
+    "incoming_qps": 0.0
+  },
+  {
+    "start": 1794044131.2676547,
+    "timestamp": 1794044136.5808542,
+    "dispatched_requests": 2,
+    "incoming_qps": 0.37642102323275556
+  },
+  {
+    "start": 1794044136.5808542,
+    "timestamp": 1794044141.8992898,
+    "dispatched_requests": 2,
+    "incoming_qps": 0.37605042619545603
+  },
+  {
+    "start": 1794044141.8992898,
+    "timestamp": 1794044147.2216134,
+    "dispatched_requests": 5,
+    "incoming_qps": 0.9394393149838043
+  },
+  {
+    "start": 1794044147.2216134,
+    "timestamp": 1794044152.5428872,
+    "dispatched_requests": 4,
+    "incoming_qps": 0.7516997146830688
+  },
+  {
+    "start": 1794044152.5428872,
+    "timestamp": 1794044157.8743625,
+    "dispatched_requests": 1,
+    "incoming_qps": 0.18756534573112718
+  },
+  {
+    "start": 1794044157.8743625,
+    "timestamp": 1794044163.2039423,
+    "dispatched_requests": 1,
+    "incoming_qps": 0.18763205203141933
+  },
+  {
+    "start": 1794044163.2039423,
+    "timestamp": 1794044168.5405612,
+    "dispatched_requests": 2,
+    "incoming_qps": 0.37476912580134153
+  },
+  {
+    "start": 1794044168.5405612,
+    "timestamp": 1794044173.8936791,
+    "dispatched_requests": 8,
+    "incoming_qps": 1.4944561441514757
+  },
+  {
+    "start": 1794044173.8936791,
+    "timestamp": 1794044179.240362,
+    "dispatched_requests": 3,
+    "incoming_qps": 0.5610955651468702
+  },
+  {
+    "start": 1794044179.240362,
+    "timestamp": 1794044184.593978,
+    "dispatched_requests": 1,
+    "incoming_qps": 0.1867896390300237
+  },
+  {
+    "start": 1794044184.593978,
+    "timestamp": 1794044189.9541554,
+    "dispatched_requests": 2,
+    "incoming_qps": 0.3731219709944937
+  },
+  {
+    "start": 1794044189.9541554,
+    "timestamp": 1794044195.313355,
+    "dispatched_requests": 6,
+    "incoming_qps": 1.1195701845421893
+  },
+  {
+    "start": 1794044195.313355,
+    "timestamp": 1794044200.675318,
+    "dispatched_requests": 1,
+    "incoming_qps": 0.1864988612788706
+  },
+  {
+    "start": 1794044200.675318,
+    "timestamp": 1794044206.0491605,
+    "dispatched_requests": 1,
+    "incoming_qps": 0.18608658592644062
+  },
+  {
+    "start": 1794044206.0491605,
+    "timestamp": 1794044211.4199834,
+    "dispatched_requests": 4,
+    "incoming_qps": 0.7447648283400654
+  },
+  {
+    "start": 1794044211.4199834,
+    "timestamp": 1794044216.785982,
+    "dispatched_requests": 4,
+    "incoming_qps": 0.7454344228982492
+  },
+  {
+    "start": 1794044216.785982,
+    "timestamp": 1794044222.1688147,
+    "dispatched_requests": 0,
+    "incoming_qps": 0.0
+  },
+  {
+    "start": 1794044222.1688147,
+    "timestamp": 1794044227.5515904,
+    "dispatched_requests": 3,
+    "incoming_qps": 0.5573332645908017
+  },
+  {
+    "start": 1794044227.5515904,
+    "timestamp": 1794044232.9432297,
+    "dispatched_requests": 3,
+    "incoming_qps": 0.5564170506515074
+  },
+  {
+    "start": 1794044232.9432297,
+    "timestamp": 1794044238.3181996,
+    "dispatched_requests": 5,
+    "incoming_qps": 0.9302377572151632
+  },
+  {
+    "start": 1794044238.3181996,
+    "timestamp": 1794044243.706504,
+    "dispatched_requests": 4,
+    "incoming_qps": 0.7423485478239626
+  },
+  {
+    "start": 1794044243.706504,
+    "timestamp": 1794044249.106497,
+    "dispatched_requests": 3,
+    "incoming_qps": 0.5555562816048523
+  },
+  {
+    "start": 1794044249.106497,
+    "timestamp": 1794044254.5027761,
+    "dispatched_requests": 3,
+    "incoming_qps": 0.5559386285057615
+  },
+  {
+    "start": 1794044254.5027761,
+    "timestamp": 1794044259.8960168,
+    "dispatched_requests": 1,
+    "incoming_qps": 0.18541727644591896
+  },
+  {
+    "start": 1794044259.8960168,
+    "timestamp": 1794044265.343735,
+    "dispatched_requests": 2,
+    "incoming_qps": 0.3671261888612674
+  },
+  {
+    "start": 1794044265.343735,
+    "timestamp": 1794044270.7444997,
+    "dispatched_requests": 1,
+    "incoming_qps": 0.18515896448988806
+  },
+  {
+    "start": 1794044270.7444997,
+    "timestamp": 1794044276.159028,
+    "dispatched_requests": 0,
+    "incoming_qps": 0.0
+  },
+  {
+    "start": 1794044276.159028,
+    "timestamp": 1794044281.5667365,
+    "dispatched_requests": 4,
+    "incoming_qps": 0.7396848534270529
+  },
+  {
+    "start": 1794044281.5667365,
+    "timestamp": 1794044286.973044,
+    "dispatched_requests": 1,
+    "incoming_qps": 0.184969132371102
+  },
+  {
+    "start": 1794044286.973044,
+    "timestamp": 1794044292.3861814,
+    "dispatched_requests": 5,
+    "incoming_qps": 0.9236787462346413
+  },
+  {
+    "start": 1794044292.3861814,
+    "timestamp": 1794044297.8060327,
+    "dispatched_requests": 3,
+    "incoming_qps": 0.5535207208145658
+  },
+  {
+    "start": 1794044297.8060327,
+    "timestamp": 1794044303.234376,
+    "dispatched_requests": 6,
+    "incoming_qps": 1.1053096078807028
+  },
+  {
+    "start": 1794044303.234376,
+    "timestamp": 1794044308.656776,
+    "dispatched_requests": 5,
+    "incoming_qps": 0.9221009151133301
+  },
+  {
+    "start": 1794044308.656776,
+    "timestamp": 1794044314.0960898,
+    "dispatched_requests": 4,
+    "incoming_qps": 0.7353868671599048
+  },
+  {
+    "start": 1794044314.0960898,
+    "timestamp": 1794044319.552715,
+    "dispatched_requests": 1,
+    "incoming_qps": 0.18326345664269864
+  },
+  {
+    "start": 1794044319.552715,
+    "timestamp": 1794044324.9827323,
+    "dispatched_requests": 1,
+    "incoming_qps": 0.18416147815186057
+  },
+  {
+    "start": 1794044324.9827323,
+    "timestamp": 1794044330.4334354,
+    "dispatched_requests": 0,
+    "incoming_qps": 0.0
+  },
+  {
+    "start": 1794044330.4334354,
+    "timestamp": 1794044335.8791976,
+    "dispatched_requests": 1,
+    "incoming_qps": 0.1836290258533906
+  },
+  {
+    "start": 1794044335.8791976,
+    "timestamp": 1794044341.3334126,
+    "dispatched_requests": 0,
+    "incoming_qps": 0.0
+  },
+  {
+    "start": 1794044341.3334126,
+    "timestamp": 1794044346.7873209,
+    "dispatched_requests": 5,
+    "incoming_qps": 0.9167737725006949
+  },
+  {
+    "start": 1794044346.7873209,
+    "timestamp": 1794044352.250812,
+    "dispatched_requests": 1,
+    "incoming_qps": 0.18303314915993918
+  },
+  {
+    "start": 1794044352.250812,
+    "timestamp": 1794044357.70449,
+    "dispatched_requests": 1,
+    "incoming_qps": 0.18336249769010163
+  },
+  {
+    "start": 1794044357.70449,
+    "timestamp": 1794044363.16808,
+    "dispatched_requests": 0,
+    "incoming_qps": 0.0
+  },
+  {
+    "start": 1794044363.16808,
+    "timestamp": 1794044368.6251273,
+    "dispatched_requests": 4,
+    "incoming_qps": 0.7329971385212191
+  },
+  {
+    "start": 1794044368.6251273,
+    "timestamp": 1794044374.096695,
+    "dispatched_requests": 4,
+    "incoming_qps": 0.7310519160006584
+  },
+  {
+    "start": 1794044374.096695,
+    "timestamp": 1794044379.5624127,
+    "dispatched_requests": 4,
+    "incoming_qps": 0.7318343448834328
+  },
+  {
+    "start": 1794044379.5624127,
+    "timestamp": 1794044385.0337877,
+    "dispatched_requests": 5,
+    "incoming_qps": 0.9138470696046515
+  },
+  {
+    "start": 1794044385.0337877,
+    "timestamp": 1794044390.5189927,
+    "dispatched_requests": 2,
+    "incoming_qps": 0.3646171881767754
+  },
+  {
+    "start": 1794044390.5189927,
+    "timestamp": 1794044395.9989214,
+    "dispatched_requests": 3,
+    "incoming_qps": 0.5474523751606899
+  },
+  {
+    "start": 1794044395.9989214,
+    "timestamp": 1794044401.498032,
+    "dispatched_requests": 6,
+    "incoming_qps": 1.091085509774965
+  },
+  {
+    "start": 1794044401.498032,
+    "timestamp": 1794044406.9992282,
+    "dispatched_requests": 0,
+    "incoming_qps": 0.0
+  },
+  {
+    "start": 1794044406.9992282,
+    "timestamp": 1794044412.5084434,
+    "dispatched_requests": 4,
+    "incoming_qps": 0.7260562376697638
+  },
+  {
+    "start": 1794044412.5084434,
+    "timestamp": 1794044418.0108767,
+    "dispatched_requests": 1,
+    "incoming_qps": 0.18173777772039004
+  },
+  {
+    "start": 1794044418.0108767,
+    "timestamp": 1794044423.5247877,
+    "dispatched_requests": 2,
+    "incoming_qps": 0.36271894791109915
+  },
+  {
+    "start": 1794044423.5247877,
+    "timestamp": 1794044429.0620193,
+    "dispatched_requests": 4,
+    "incoming_qps": 0.7223826324176368
+  },
+  {
+    "start": 1794044429.0620193,
+    "timestamp": 1794044434.5699966,
+    "dispatched_requests": 2,
+    "incoming_qps": 0.36310970619983063
+  },
+  {
+    "start": 1794044434.5699966,
+    "timestamp": 1794044440.0955846,
+    "dispatched_requests": 4,
+    "incoming_qps": 0.7239048539704616
+  },
+  {
+    "start": 1794044440.0955846,
+    "timestamp": 1794044445.6243274,
+    "dispatched_requests": 1,
+    "incoming_qps": 0.1808729466974925
+  },
+  {
+    "start": 1794044445.6243274,
+    "timestamp": 1794044451.163056,
+    "dispatched_requests": 1,
+    "incoming_qps": 0.18054685374281065
+  },
+  {
+    "start": 1794044451.163056,
+    "timestamp": 1794044456.6916873,
+    "dispatched_requests": 3,
+    "incoming_qps": 0.5426297679293861
+  },
+  {
+    "start": 1794044456.6916873,
+    "timestamp": 1794044462.2319639,
+    "dispatched_requests": 1,
+    "incoming_qps": 0.18049640573959347
+  },
+  {
+    "start": 1794044462.2319639,
+    "timestamp": 1794044467.7585688,
+    "dispatched_requests": 4,
+    "incoming_qps": 0.723771660724614
+  },
+  {
+    "start": 1794044467.7585688,
+    "timestamp": 1794044473.30214,
+    "dispatched_requests": 3,
+    "incoming_qps": 0.5411673943568959
+  },
+  {
+    "start": 1794044473.30214,
+    "timestamp": 1794044478.865389,
+    "dispatched_requests": 3,
+    "incoming_qps": 0.5392532205637809
+  },
+  {
+    "start": 1794044478.865389,
+    "timestamp": 1794044484.39568,
+    "dispatched_requests": 0,
+    "incoming_qps": 0.0
+  },
+  {
+    "start": 1794044484.39568,
+    "timestamp": 1794044489.9953818,
+    "dispatched_requests": 3,
+    "incoming_qps": 0.5357428062304816
+  },
+  {
+    "start": 1794044489.9953818,
+    "timestamp": 1794044495.5688136,
+    "dispatched_requests": 3,
+    "incoming_qps": 0.5382680088654213
+  },
+  {
+    "start": 1794044495.5688136,
+    "timestamp": 1794044501.1386843,
+    "dispatched_requests": 3,
+    "incoming_qps": 0.5386121430813495
+  },
+  {
+    "start": 1794044501.1386843,
+    "timestamp": 1794044506.7156994,
+    "dispatched_requests": 2,
+    "incoming_qps": 0.3586147683086011
+  },
+  {
+    "start": 1794044506.7156994,
+    "timestamp": 1794044512.3019252,
+    "dispatched_requests": 6,
+    "incoming_qps": 1.0740704494589044
+  },
+  {
+    "start": 1794044512.3019252,
+    "timestamp": 1794044517.9070694,
+    "dispatched_requests": 1,
+    "incoming_qps": 0.17840754014548646
+  },
+  {
+    "start": 1794044517.9070694,
+    "timestamp": 1794044523.486587,
+    "dispatched_requests": 2,
+    "incoming_qps": 0.358453927800698
+  },
+  {
+    "start": 1794044523.486587,
+    "timestamp": 1794044529.085823,
+    "dispatched_requests": 2,
+    "incoming_qps": 0.357191587547027
+  },
+  {
+    "start": 1794044529.085823,
+    "timestamp": 1794044534.6655576,
+    "dispatched_requests": 3,
+    "incoming_qps": 0.5376599846610084
+  },
+  {
+    "start": 1794044534.6655576,
+    "timestamp": 1794044540.2702127,
+    "dispatched_requests": 0,
+    "incoming_qps": 0.0
+  },
+  {
+    "start": 1794044540.2702127,
+    "timestamp": 1794044545.862041,
+    "dispatched_requests": 8,
+    "incoming_qps": 1.430659080470787
+  },
+  {
+    "start": 1794044545.862041,
+    "timestamp": 1794044551.4317296,
+    "dispatched_requests": 3,
+    "incoming_qps": 0.5386297579205518
+  },
+  {
+    "start": 1794044551.4317296,
+    "timestamp": 1794044557.021513,
+    "dispatched_requests": 4,
+    "incoming_qps": 0.7155912299680648
+  },
+  {
+    "start": 1794044557.021513,
+    "timestamp": 1794044562.625626,
+    "dispatched_requests": 2,
+    "incoming_qps": 0.3568807344913844
+  },
+  {
+    "start": 1794044562.625626,
+    "timestamp": 1794044568.2234547,
+    "dispatched_requests": 3,
+    "incoming_qps": 0.535922086954744
+  },
+  {
+    "start": 1794044568.2234547,
+    "timestamp": 1794044573.837196,
+    "dispatched_requests": 1,
+    "incoming_qps": 0.17813431883086442
+  },
+  {
+    "start": 1794044573.837196,
+    "timestamp": 1794044579.4440744,
+    "dispatched_requests": 3,
+    "incoming_qps": 0.5350570941336276
+  },
+  {
+    "start": 1794044579.4440744,
+    "timestamp": 1794044585.0617707,
+    "dispatched_requests": 2,
+    "incoming_qps": 0.3560178226886429
+  },
+  {
+    "start": 1794044585.0617707,
+    "timestamp": 1794044590.6930375,
+    "dispatched_requests": 4,
+    "incoming_qps": 0.710319741380387
+  },
+  {
+    "start": 1794044590.6930375,
+    "timestamp": 1794044596.3489807,
+    "dispatched_requests": 2,
+    "incoming_qps": 0.3536103431537961
+  },
+  {
+    "start": 1794044596.3489807,
+    "timestamp": 1794044601.994578,
+    "dispatched_requests": 4,
+    "incoming_qps": 0.7085167156819459
+  },
+  {
+    "start": 1794044601.994578,
+    "timestamp": 1794044607.6150224,
+    "dispatched_requests": 2,
+    "incoming_qps": 0.3558437392478862
+  },
+  {
+    "start": 1794044607.6150224,
+    "timestamp": 1794044613.2417016,
+    "dispatched_requests": 1,
+    "incoming_qps": 0.17772472317058605
+  },
+  {
+    "start": 1794044613.2417016,
+    "timestamp": 1794044618.8786416,
+    "dispatched_requests": 3,
+    "incoming_qps": 0.5322036421712267
+  },
+  {
+    "start": 1794044618.8786416,
+    "timestamp": 1794044624.513516,
+    "dispatched_requests": 4,
+    "incoming_qps": 0.7098649864925565
+  },
+  {
+    "start": 1794044624.513516,
+    "timestamp": 1794044630.1465998,
+    "dispatched_requests": 2,
+    "incoming_qps": 0.35504531155338165
+  },
+  {
+    "start": 1794044630.1465998,
+    "timestamp": 1794044635.773658,
+    "dispatched_requests": 0,
+    "incoming_qps": 0.0
+  },
+  {
+    "start": 1794044635.773658,
+    "timestamp": 1794044641.4166067,
+    "dispatched_requests": 5,
+    "incoming_qps": 0.8860615841261045
+  },
+  {
+    "start": 1794044641.4166067,
+    "timestamp": 1794044647.0477889,
+    "dispatched_requests": 1,
+    "incoming_qps": 0.17758260443229973
+  },
+  {
+    "start": 1794044647.0477889,
+    "timestamp": 1794044652.6895514,
+    "dispatched_requests": 2,
+    "incoming_qps": 0.3544991484058393
+  },
+  {
+    "start": 1794044652.6895514,
+    "timestamp": 1794044658.3143477,
+    "dispatched_requests": 6,
+    "incoming_qps": 1.066705278452038
+  },
+  {
+    "start": 1794044658.3143477,
+    "timestamp": 1794044663.9404507,
+    "dispatched_requests": 1,
+    "incoming_qps": 0.17774292675530454
+  },
+  {
+    "start": 1794044663.9404507,
+    "timestamp": 1794044669.6103647,
+    "dispatched_requests": 5,
+    "incoming_qps": 0.8818475895158654
+  },
+  {
+    "start": 1794044669.6103647,
+    "timestamp": 1794044675.2695546,
+    "dispatched_requests": 0,
+    "incoming_qps": 0.0
+  },
+  {
+    "start": 1794044675.2695546,
+    "timestamp": 1794044680.9404879,
+    "dispatched_requests": 0,
+    "incoming_qps": 0.0
+  },
+  {
+    "start": 1794044680.9404879,
+    "timestamp": 1794044686.6171927,
+    "dispatched_requests": 0,
+    "incoming_qps": 0.0
+  },
+  {
+    "start": 1794044686.6171927,
+    "timestamp": 1794044687.475559,
+    "dispatched_requests": 0,
+    "incoming_qps": 0.0
+  }
+]

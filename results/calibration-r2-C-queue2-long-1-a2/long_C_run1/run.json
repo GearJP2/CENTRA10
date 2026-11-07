@@ -1,0 +1,42 @@
+{
+  "mode": "C",
+  "workload": "long",
+  "repeat": 1,
+  "status": "complete",
+  "phases": [
+    {
+      "start": 1794042848.168818,
+      "streams": [
+        {
+          "file": "bench_0_long.json",
+          "requests": 300,
+          "target_qps": 0.5,
+          "target_duration_seconds": 600,
+          "command": [
+            "kubectl",
+            "-n",
+            "centra10",
+            "exec",
+            "benchmark-client",
+            "--",
+            "python3",
+            "-c",
+            "import json,subprocess,sys; subprocess.run(json.loads(sys.argv[1]), check=True, timeout=float(sys.argv[2]))",
+            "[\"vllm\", \"bench\", \"serve\", \"--backend\", \"openai-chat\", \"--endpoint\", \"/v1/chat/completions\", \"--base-url\", \"http://vllm-proxy:8000\", \"--model\", \"Qwen/Qwen2.5-7B-Instruct\", \"--tokenizer\", \"/root/.cache/huggingface/hub/models--Qwen--Qwen2.5-7B-Instruct/snapshots/a09a35458c702b33eeacc393d103063234e8bc28\", \"--dataset-name\", \"random\", \"--random-input-len\", \"6000\", \"--random-output-len\", \"200\", \"--random-range-ratio\", \"0\", \"--request-rate\", \"0.5\", \"--num-prompts\", \"300\", \"--seed\", \"100\", \"--ignore-eos\", \"--temperature\", \"0\", \"--save-result\", \"--save-detailed\", \"--result-dir\", \"/tmp/centra10-bench-bq8b5009\", \"--result-filename\", \"bench_0_long.json\", \"--percentile-metrics\", \"ttft\", \"--metric-percentiles\", \"50,99\"]",
+            "3600"
+          ],
+          "first_request_at": 1794042869.9934876,
+          "last_request_at": 1794043468.5076644
+        }
+      ],
+      "end": 1794043522.043616,
+      "first_request_at": 1794042869.9934876
+    }
+  ],
+  "measurement_schema": 2,
+  "endpoint": "http://vllm-proxy:8000",
+  "start": 1794042848.1456606,
+  "clock_offset": 1794036885.1308641,
+  "clock_uncertainty_seconds": 0.041168928146362305,
+  "end": 1794043522.3099008
+}

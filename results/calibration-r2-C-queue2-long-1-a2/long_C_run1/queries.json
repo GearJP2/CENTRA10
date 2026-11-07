@@ -1,0 +1,8 @@
+{
+  "replicas": "sum(kube_pod_container_resource_requests{namespace=\"centra10\",container=\"vllm\",resource=\"nvidia_com_gpu\"} and on(namespace,pod) (kube_pod_status_scheduled{namespace=\"centra10\",condition=\"true\"} == 1) and on(namespace,pod) (kube_pod_status_phase{namespace=\"centra10\",phase=~\"Pending|Running\"} == 1))",
+  "ready": "sum(kube_deployment_status_replicas_available{namespace=\"centra10\",deployment=\"vllm\"})",
+  "queue": "sum(vllm:num_requests_waiting{namespace=\"centra10\",service=\"vllm\"})",
+  "running": "sum(vllm:num_requests_running{namespace=\"centra10\",service=\"vllm\"})",
+  "kv_cache": "max(vllm:kv_cache_usage_perc{namespace=\"centra10\",service=\"vllm\"})",
+  "qps": "sum(rate(vllm:request_success_total{namespace=\"centra10\",service=\"vllm\"}[1m]))"
+}

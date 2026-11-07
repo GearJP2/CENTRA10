@@ -1,0 +1,4069 @@
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:14:22Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "kind": "Pod",
+                "name": "benchmark-client",
+                "namespace": "centra10",
+                "resourceVersion": "10325",
+                "uid": "df84c64b-c863-461b-aaa7-587b53d5d93b"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:14:22Z",
+            "message": "Successfully assigned centra10/benchmark-client to ip-192-168-67-205.ec2.internal",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:14:22Z",
+                "name": "benchmark-client.18e5b5343b913eb1",
+                "namespace": "centra10",
+                "resourceVersion": "10327",
+                "uid": "49fd14df-c10c-4476-82e7-93084b145f3b"
+            },
+            "reason": "Scheduled",
+            "reportingComponent": "default-scheduler",
+            "reportingInstance": "",
+            "source": {
+                "component": "default-scheduler"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:14:23Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{benchmark-client}",
+                "kind": "Pod",
+                "name": "benchmark-client",
+                "namespace": "centra10",
+                "resourceVersion": "10326",
+                "uid": "df84c64b-c863-461b-aaa7-587b53d5d93b"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:14:23Z",
+            "message": "Container image \"vllm/vllm-openai:v0.32.0\" already present on machine and can be accessed by the pod",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:14:23Z",
+                "name": "benchmark-client.18e5b5345f1f7e9c",
+                "namespace": "centra10",
+                "resourceVersion": "10331",
+                "uid": "4fdb7d83-96a6-4660-bfce-e2b6321b11e9"
+            },
+            "reason": "Pulled",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-67-205.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-67-205.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:14:23Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{benchmark-client}",
+                "kind": "Pod",
+                "name": "benchmark-client",
+                "namespace": "centra10",
+                "resourceVersion": "10326",
+                "uid": "df84c64b-c863-461b-aaa7-587b53d5d93b"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:14:23Z",
+            "message": "Container created",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:14:23Z",
+                "name": "benchmark-client.18e5b5345fdd400d",
+                "namespace": "centra10",
+                "resourceVersion": "10333",
+                "uid": "935f9a99-f10b-4ce0-ace5-dabb82722968"
+            },
+            "reason": "Created",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-67-205.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-67-205.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:14:23Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{benchmark-client}",
+                "kind": "Pod",
+                "name": "benchmark-client",
+                "namespace": "centra10",
+                "resourceVersion": "10326",
+                "uid": "df84c64b-c863-461b-aaa7-587b53d5d93b"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:14:23Z",
+            "message": "Container started",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:14:23Z",
+                "name": "benchmark-client.18e5b53461bd0711",
+                "namespace": "centra10",
+                "resourceVersion": "10334",
+                "uid": "1a2612d8-a5f0-426f-925f-059178adc752"
+            },
+            "reason": "Started",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-67-205.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-67-205.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:15:48Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "kind": "Pod",
+                "name": "centra10-cal-r2-c1-a2-ll5jn",
+                "namespace": "centra10",
+                "resourceVersion": "10660",
+                "uid": "fd7c9b87-eee3-4c3d-967e-0f5f4368c2c3"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:15:48Z",
+            "message": "Successfully assigned centra10/centra10-cal-r2-c1-a2-ll5jn to ip-192-168-67-205.ec2.internal",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:15:48Z",
+                "name": "centra10-cal-r2-c1-a2-ll5jn.18e5b5482ed6d32a",
+                "namespace": "centra10",
+                "resourceVersion": "10664",
+                "uid": "4e12b6dd-05a0-4d8d-b5eb-a6c108996085"
+            },
+            "reason": "Scheduled",
+            "reportingComponent": "default-scheduler",
+            "reportingInstance": "",
+            "source": {
+                "component": "default-scheduler"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:15:49Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.initContainers{kubectl}",
+                "kind": "Pod",
+                "name": "centra10-cal-r2-c1-a2-ll5jn",
+                "namespace": "centra10",
+                "resourceVersion": "10662",
+                "uid": "fd7c9b87-eee3-4c3d-967e-0f5f4368c2c3"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:15:49Z",
+            "message": "Container image \"vllm/vllm-openai:v0.32.0\" already present on machine and can be accessed by the pod",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:15:49Z",
+                "name": "centra10-cal-r2-c1-a2-ll5jn.18e5b548622aca36",
+                "namespace": "centra10",
+                "resourceVersion": "10668",
+                "uid": "28342201-2878-4dd7-8d56-df3841f64abd"
+            },
+            "reason": "Pulled",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-67-205.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-67-205.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:15:49Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.initContainers{kubectl}",
+                "kind": "Pod",
+                "name": "centra10-cal-r2-c1-a2-ll5jn",
+                "namespace": "centra10",
+                "resourceVersion": "10662",
+                "uid": "fd7c9b87-eee3-4c3d-967e-0f5f4368c2c3"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:15:49Z",
+            "message": "Container created",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:15:49Z",
+                "name": "centra10-cal-r2-c1-a2-ll5jn.18e5b54862ebf337",
+                "namespace": "centra10",
+                "resourceVersion": "10671",
+                "uid": "c026a5b8-b3d1-4b1d-93d1-106e56abb7b4"
+            },
+            "reason": "Created",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-67-205.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-67-205.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:15:49Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.initContainers{kubectl}",
+                "kind": "Pod",
+                "name": "centra10-cal-r2-c1-a2-ll5jn",
+                "namespace": "centra10",
+                "resourceVersion": "10662",
+                "uid": "fd7c9b87-eee3-4c3d-967e-0f5f4368c2c3"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:15:49Z",
+            "message": "Container started",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:15:49Z",
+                "name": "centra10-cal-r2-c1-a2-ll5jn.18e5b54864bfa6ca",
+                "namespace": "centra10",
+                "resourceVersion": "10672",
+                "uid": "a99bc9eb-b9b1-41d5-b618-87ffa776e305"
+            },
+            "reason": "Started",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-67-205.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-67-205.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:15:50Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{runner}",
+                "kind": "Pod",
+                "name": "centra10-cal-r2-c1-a2-ll5jn",
+                "namespace": "centra10",
+                "resourceVersion": "10662",
+                "uid": "fd7c9b87-eee3-4c3d-967e-0f5f4368c2c3"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:15:50Z",
+            "message": "Container image \"vllm/vllm-openai:v0.32.0\" already present on machine and can be accessed by the pod",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:15:50Z",
+                "name": "centra10-cal-r2-c1-a2-ll5jn.18e5b548ace21fdc",
+                "namespace": "centra10",
+                "resourceVersion": "10680",
+                "uid": "adfd019a-431e-4369-9a23-a09bc2872d05"
+            },
+            "reason": "Pulled",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-67-205.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-67-205.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:15:50Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{runner}",
+                "kind": "Pod",
+                "name": "centra10-cal-r2-c1-a2-ll5jn",
+                "namespace": "centra10",
+                "resourceVersion": "10662",
+                "uid": "fd7c9b87-eee3-4c3d-967e-0f5f4368c2c3"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:15:50Z",
+            "message": "Container created",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:15:50Z",
+                "name": "centra10-cal-r2-c1-a2-ll5jn.18e5b548add125a4",
+                "namespace": "centra10",
+                "resourceVersion": "10682",
+                "uid": "9990bc7a-e913-4d8b-8302-f8e1d4a3e56f"
+            },
+            "reason": "Created",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-67-205.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-67-205.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:15:50Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{runner}",
+                "kind": "Pod",
+                "name": "centra10-cal-r2-c1-a2-ll5jn",
+                "namespace": "centra10",
+                "resourceVersion": "10662",
+                "uid": "fd7c9b87-eee3-4c3d-967e-0f5f4368c2c3"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:15:50Z",
+            "message": "Container started",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:15:50Z",
+                "name": "centra10-cal-r2-c1-a2-ll5jn.18e5b548b2cafd0a",
+                "namespace": "centra10",
+                "resourceVersion": "10683",
+                "uid": "226048c5-d72a-4be7-a7c5-f16c494ec8f2"
+            },
+            "reason": "Started",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-67-205.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-67-205.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:15:48Z",
+            "involvedObject": {
+                "apiVersion": "batch/v1",
+                "kind": "Job",
+                "name": "centra10-cal-r2-c1-a2",
+                "namespace": "centra10",
+                "resourceVersion": "10659",
+                "uid": "cfcfb63d-97e8-4d10-94b8-3776a092c89d"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:15:48Z",
+            "message": "Created pod: centra10-cal-r2-c1-a2-ll5jn",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:15:48Z",
+                "name": "centra10-cal-r2-c1-a2.18e5b5482e96bc5b",
+                "namespace": "centra10",
+                "resourceVersion": "10661",
+                "uid": "edb54094-13df-4ac6-b312-7b070179d583"
+            },
+            "reason": "SuccessfulCreate",
+            "reportingComponent": "job-controller",
+            "reportingInstance": "",
+            "source": {
+                "component": "job-controller"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:33:00Z",
+            "involvedObject": {
+                "apiVersion": "batch/v1",
+                "kind": "Job",
+                "name": "centra10-cal-r2-c1-a2",
+                "namespace": "centra10",
+                "resourceVersion": "14753",
+                "uid": "cfcfb63d-97e8-4d10-94b8-3776a092c89d"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:33:00Z",
+            "message": "Job completed",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:33:00Z",
+                "name": "centra10-cal-r2-c1-a2.18e5b638859f9770",
+                "namespace": "centra10",
+                "resourceVersion": "14756",
+                "uid": "18b4565f-35f2-492f-9f9d-a81ecbdd0840"
+            },
+            "reason": "Completed",
+            "reportingComponent": "job-controller",
+            "reportingInstance": "",
+            "source": {
+                "component": "job-controller"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:50:09Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "kind": "Pod",
+                "name": "centra10-cal-r2-c1-a3-4brn7",
+                "namespace": "centra10",
+                "resourceVersion": "18542",
+                "uid": "c0d84e66-92a4-4944-93d4-032199767a1a"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:50:09Z",
+            "message": "Successfully assigned centra10/centra10-cal-r2-c1-a3-4brn7 to ip-192-168-67-205.ec2.internal",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:50:09Z",
+                "name": "centra10-cal-r2-c1-a3-4brn7.18e5b728245a061b",
+                "namespace": "centra10",
+                "resourceVersion": "18546",
+                "uid": "fdd668d1-2efd-4ee8-86e5-b0e04c2b98bb"
+            },
+            "reason": "Scheduled",
+            "reportingComponent": "default-scheduler",
+            "reportingInstance": "",
+            "source": {
+                "component": "default-scheduler"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:50:10Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.initContainers{kubectl}",
+                "kind": "Pod",
+                "name": "centra10-cal-r2-c1-a3-4brn7",
+                "namespace": "centra10",
+                "resourceVersion": "18545",
+                "uid": "c0d84e66-92a4-4944-93d4-032199767a1a"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:50:10Z",
+            "message": "Container image \"vllm/vllm-openai:v0.32.0\" already present on machine and can be accessed by the pod",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:50:10Z",
+                "name": "centra10-cal-r2-c1-a3-4brn7.18e5b7285bf83e41",
+                "namespace": "centra10",
+                "resourceVersion": "18555",
+                "uid": "3e4559a1-3f66-4700-835f-0486a6db3997"
+            },
+            "reason": "Pulled",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-67-205.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-67-205.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:50:10Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.initContainers{kubectl}",
+                "kind": "Pod",
+                "name": "centra10-cal-r2-c1-a3-4brn7",
+                "namespace": "centra10",
+                "resourceVersion": "18545",
+                "uid": "c0d84e66-92a4-4944-93d4-032199767a1a"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:50:10Z",
+            "message": "Container created",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:50:10Z",
+                "name": "centra10-cal-r2-c1-a3-4brn7.18e5b7285d45ec0f",
+                "namespace": "centra10",
+                "resourceVersion": "18558",
+                "uid": "73518ba9-8105-4be8-b655-c3c3b4eb6769"
+            },
+            "reason": "Created",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-67-205.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-67-205.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:50:10Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.initContainers{kubectl}",
+                "kind": "Pod",
+                "name": "centra10-cal-r2-c1-a3-4brn7",
+                "namespace": "centra10",
+                "resourceVersion": "18545",
+                "uid": "c0d84e66-92a4-4944-93d4-032199767a1a"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:50:10Z",
+            "message": "Container started",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:50:10Z",
+                "name": "centra10-cal-r2-c1-a3-4brn7.18e5b7285f275016",
+                "namespace": "centra10",
+                "resourceVersion": "18559",
+                "uid": "d92047e5-2116-49cd-a9ff-57d484d7c2ed"
+            },
+            "reason": "Started",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-67-205.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-67-205.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:50:11Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{runner}",
+                "kind": "Pod",
+                "name": "centra10-cal-r2-c1-a3-4brn7",
+                "namespace": "centra10",
+                "resourceVersion": "18545",
+                "uid": "c0d84e66-92a4-4944-93d4-032199767a1a"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:50:11Z",
+            "message": "Container image \"vllm/vllm-openai:v0.32.0\" already present on machine and can be accessed by the pod",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:50:11Z",
+                "name": "centra10-cal-r2-c1-a3-4brn7.18e5b72894fab03e",
+                "namespace": "centra10",
+                "resourceVersion": "18563",
+                "uid": "54b16fc0-ff04-4480-a55f-d68aff5ff1a1"
+            },
+            "reason": "Pulled",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-67-205.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-67-205.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:50:11Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{runner}",
+                "kind": "Pod",
+                "name": "centra10-cal-r2-c1-a3-4brn7",
+                "namespace": "centra10",
+                "resourceVersion": "18545",
+                "uid": "c0d84e66-92a4-4944-93d4-032199767a1a"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:50:11Z",
+            "message": "Container created",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:50:11Z",
+                "name": "centra10-cal-r2-c1-a3-4brn7.18e5b72895bd60e7",
+                "namespace": "centra10",
+                "resourceVersion": "18565",
+                "uid": "7d6f4e44-a201-4167-b42b-f1fac03dd4ce"
+            },
+            "reason": "Created",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-67-205.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-67-205.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:50:11Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{runner}",
+                "kind": "Pod",
+                "name": "centra10-cal-r2-c1-a3-4brn7",
+                "namespace": "centra10",
+                "resourceVersion": "18545",
+                "uid": "c0d84e66-92a4-4944-93d4-032199767a1a"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:50:11Z",
+            "message": "Container started",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:50:11Z",
+                "name": "centra10-cal-r2-c1-a3-4brn7.18e5b7289bd3fb01",
+                "namespace": "centra10",
+                "resourceVersion": "18566",
+                "uid": "c3c7634a-6814-4a02-b70d-58843f1bcbc6"
+            },
+            "reason": "Started",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-67-205.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-67-205.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:50:09Z",
+            "involvedObject": {
+                "apiVersion": "batch/v1",
+                "kind": "Job",
+                "name": "centra10-cal-r2-c1-a3",
+                "namespace": "centra10",
+                "resourceVersion": "18541",
+                "uid": "3c99da12-847a-4383-b577-08ed7e3d6652"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:50:09Z",
+            "message": "Created pod: centra10-cal-r2-c1-a3-4brn7",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:50:09Z",
+                "name": "centra10-cal-r2-c1-a3.18e5b7282415feb0",
+                "namespace": "centra10",
+                "resourceVersion": "18543",
+                "uid": "0aa10295-9e27-4f09-ba96-c3300cd2e931"
+            },
+            "reason": "SuccessfulCreate",
+            "reportingComponent": "job-controller",
+            "reportingInstance": "",
+            "source": {
+                "component": "job-controller"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T09:07:17Z",
+            "involvedObject": {
+                "apiVersion": "batch/v1",
+                "kind": "Job",
+                "name": "centra10-cal-r2-c1-a3",
+                "namespace": "centra10",
+                "resourceVersion": "22726",
+                "uid": "3c99da12-847a-4383-b577-08ed7e3d6652"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T09:07:17Z",
+            "message": "Job completed",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T09:07:17Z",
+                "name": "centra10-cal-r2-c1-a3.18e5b81782774f34",
+                "namespace": "centra10",
+                "resourceVersion": "22729",
+                "uid": "aa1d4716-1aaf-46b6-b899-a9e7377830ee"
+            },
+            "reason": "Completed",
+            "reportingComponent": "job-controller",
+            "reportingInstance": "",
+            "source": {
+                "component": "job-controller"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:09:22Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "kind": "Pod",
+                "name": "experiment-results",
+                "namespace": "centra10",
+                "resourceVersion": "9203",
+                "uid": "bcc08d2e-1cf1-46c6-933d-4f14bbdba46f"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:09:22Z",
+            "message": "Successfully assigned centra10/experiment-results to ip-192-168-67-205.ec2.internal",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:09:22Z",
+                "name": "experiment-results.18e5b4ee4e043821",
+                "namespace": "centra10",
+                "resourceVersion": "9205",
+                "uid": "ef7dfdd3-320f-4f36-9342-337d16436fcc"
+            },
+            "reason": "Scheduled",
+            "reportingComponent": "default-scheduler",
+            "reportingInstance": "",
+            "source": {
+                "component": "default-scheduler"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:09:23Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{reader}",
+                "kind": "Pod",
+                "name": "experiment-results",
+                "namespace": "centra10",
+                "resourceVersion": "9204",
+                "uid": "bcc08d2e-1cf1-46c6-933d-4f14bbdba46f"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:09:23Z",
+            "message": "Pulling image \"vllm/vllm-openai:v0.32.0\"",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:09:23Z",
+                "name": "experiment-results.18e5b4eea31f258b",
+                "namespace": "centra10",
+                "resourceVersion": "9213",
+                "uid": "25a7d549-32e3-4fe6-befa-5e38033d290b"
+            },
+            "reason": "Pulling",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-67-205.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-67-205.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:13:23Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{reader}",
+                "kind": "Pod",
+                "name": "experiment-results",
+                "namespace": "centra10",
+                "resourceVersion": "9204",
+                "uid": "bcc08d2e-1cf1-46c6-933d-4f14bbdba46f"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:13:23Z",
+            "message": "Successfully pulled image \"vllm/vllm-openai:v0.32.0\" in 3m59.396s (3m59.396s including waiting). Image size: 9205781514 bytes.",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:13:23Z",
+                "name": "experiment-results.18e5b5266044ed34",
+                "namespace": "centra10",
+                "resourceVersion": "10103",
+                "uid": "e649145e-bad8-4ca9-8328-f6e09c83418e"
+            },
+            "reason": "Pulled",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-67-205.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-67-205.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:13:23Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{reader}",
+                "kind": "Pod",
+                "name": "experiment-results",
+                "namespace": "centra10",
+                "resourceVersion": "9204",
+                "uid": "bcc08d2e-1cf1-46c6-933d-4f14bbdba46f"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:13:23Z",
+            "message": "Container created",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:13:23Z",
+                "name": "experiment-results.18e5b52669731ab4",
+                "namespace": "centra10",
+                "resourceVersion": "10104",
+                "uid": "557bad3e-ef3a-43d4-87fa-6f9d629d30d6"
+            },
+            "reason": "Created",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-67-205.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-67-205.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:13:23Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{reader}",
+                "kind": "Pod",
+                "name": "experiment-results",
+                "namespace": "centra10",
+                "resourceVersion": "9204",
+                "uid": "bcc08d2e-1cf1-46c6-933d-4f14bbdba46f"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:13:23Z",
+            "message": "Container started",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:13:23Z",
+                "name": "experiment-results.18e5b5266fbc2f73",
+                "namespace": "centra10",
+                "resourceVersion": "10105",
+                "uid": "ea87deac-8ef5-42f8-8174-71a721ff13f0"
+            },
+            "reason": "Started",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-67-205.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-67-205.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:20:32Z",
+            "involvedObject": {
+                "apiVersion": "autoscaling/v2",
+                "kind": "HorizontalPodAutoscaler",
+                "name": "keda-hpa-vllm-autoscaler",
+                "namespace": "centra10",
+                "resourceVersion": "11659",
+                "uid": "12e1ee6f-05ba-48f3-9b4b-36a867603697"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:20:32Z",
+            "message": "New size: 2; reason: external metric s0-prometheus(\u0026LabelSelector{MatchLabels:map[string]string{scaledobject.keda.sh/name: vllm-autoscaler,},MatchExpressions:[]LabelSelectorRequirement{},}) above target",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:20:32Z",
+                "name": "keda-hpa-vllm-autoscaler.18e5b58a4a7ea878",
+                "namespace": "centra10",
+                "resourceVersion": "11774",
+                "uid": "8a78af55-5619-46ba-9e06-09c99f13a9de"
+            },
+            "reason": "SuccessfulRescale",
+            "reportingComponent": "horizontal-pod-autoscaler",
+            "reportingInstance": "",
+            "source": {
+                "component": "horizontal-pod-autoscaler"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:20:47Z",
+            "involvedObject": {
+                "apiVersion": "autoscaling/v2",
+                "kind": "HorizontalPodAutoscaler",
+                "name": "keda-hpa-vllm-autoscaler",
+                "namespace": "centra10",
+                "resourceVersion": "11772",
+                "uid": "12e1ee6f-05ba-48f3-9b4b-36a867603697"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:20:47Z",
+            "message": "New size: 3; reason: external metric s0-prometheus(\u0026LabelSelector{MatchLabels:map[string]string{scaledobject.keda.sh/name: vllm-autoscaler,},MatchExpressions:[]LabelSelectorRequirement{},}) above target",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:20:47Z",
+                "name": "keda-hpa-vllm-autoscaler.18e5b58dc9ea378d",
+                "namespace": "centra10",
+                "resourceVersion": "11843",
+                "uid": "5867d9e9-f90c-49b8-9019-bd8e536579a6"
+            },
+            "reason": "SuccessfulRescale",
+            "reportingComponent": "horizontal-pod-autoscaler",
+            "reportingInstance": "",
+            "source": {
+                "component": "horizontal-pod-autoscaler"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 2,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:54:12Z",
+            "involvedObject": {
+                "apiVersion": "autoscaling/v2",
+                "kind": "HorizontalPodAutoscaler",
+                "name": "keda-hpa-vllm-autoscaler",
+                "namespace": "centra10",
+                "resourceVersion": "19449",
+                "uid": "026fc48a-6279-438a-8f5f-ffa06aa0524c"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T09:02:42Z",
+            "message": "New size: 2; reason: external metric s0-prometheus(\u0026LabelSelector{MatchLabels:map[string]string{scaledobject.keda.sh/name: vllm-autoscaler,},MatchExpressions:[]LabelSelectorRequirement{},}) above target",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:54:12Z",
+                "name": "keda-hpa-vllm-autoscaler.18e5b760aa6ec9d2",
+                "namespace": "centra10",
+                "resourceVersion": "21564",
+                "uid": "e37cdbb6-5f38-41f9-9b03-2ca42599a74f"
+            },
+            "reason": "SuccessfulRescale",
+            "reportingComponent": "horizontal-pod-autoscaler",
+            "reportingInstance": "",
+            "source": {
+                "component": "horizontal-pod-autoscaler"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 2,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:54:27Z",
+            "involvedObject": {
+                "apiVersion": "autoscaling/v2",
+                "kind": "HorizontalPodAutoscaler",
+                "name": "keda-hpa-vllm-autoscaler",
+                "namespace": "centra10",
+                "resourceVersion": "19508",
+                "uid": "026fc48a-6279-438a-8f5f-ffa06aa0524c"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T09:02:57Z",
+            "message": "New size: 3; reason: external metric s0-prometheus(\u0026LabelSelector{MatchLabels:map[string]string{scaledobject.keda.sh/name: vllm-autoscaler,},MatchExpressions:[]LabelSelectorRequirement{},}) above target",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:54:27Z",
+                "name": "keda-hpa-vllm-autoscaler.18e5b76429c1ca01",
+                "namespace": "centra10",
+                "resourceVersion": "21646",
+                "uid": "77f0ab75-e074-4fdb-be82-39f3c9288b6a"
+            },
+            "reason": "SuccessfulRescale",
+            "reportingComponent": "horizontal-pod-autoscaler",
+            "reportingInstance": "",
+            "source": {
+                "component": "horizontal-pod-autoscaler"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T09:02:12Z",
+            "involvedObject": {
+                "apiVersion": "autoscaling/v2",
+                "kind": "HorizontalPodAutoscaler",
+                "name": "keda-hpa-vllm-autoscaler",
+                "namespace": "centra10",
+                "resourceVersion": "21030",
+                "uid": "026fc48a-6279-438a-8f5f-ffa06aa0524c"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T09:02:12Z",
+            "message": "New size: 1; reason: All metrics below target",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T09:02:12Z",
+                "name": "keda-hpa-vllm-autoscaler.18e5b7d08c6e6508",
+                "namespace": "centra10",
+                "resourceVersion": "21419",
+                "uid": "72ebcdc4-1e24-4b88-a31a-2c29a36debd7"
+            },
+            "reason": "SuccessfulRescale",
+            "reportingComponent": "horizontal-pod-autoscaler",
+            "reportingInstance": "",
+            "source": {
+                "component": "horizontal-pod-autoscaler"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T09:02:57Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "kind": "Pod",
+                "name": "vllm-566c4bcdd8-2gkbg",
+                "namespace": "centra10",
+                "resourceVersion": "21649",
+                "uid": "dd6b3545-156c-401e-84ed-99640d8e8266"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T09:02:57Z",
+            "message": "Successfully assigned centra10/vllm-566c4bcdd8-2gkbg to ip-192-168-76-39.ec2.internal",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T09:02:57Z",
+                "name": "vllm-566c4bcdd8-2gkbg.18e5b7db0b53b2cb",
+                "namespace": "centra10",
+                "resourceVersion": "21654",
+                "uid": "4f958a95-ae58-41eb-9c5e-828bdaf8f822"
+            },
+            "reason": "Scheduled",
+            "reportingComponent": "default-scheduler",
+            "reportingInstance": "",
+            "source": {
+                "component": "default-scheduler"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T09:02:58Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{vllm}",
+                "kind": "Pod",
+                "name": "vllm-566c4bcdd8-2gkbg",
+                "namespace": "centra10",
+                "resourceVersion": "21653",
+                "uid": "dd6b3545-156c-401e-84ed-99640d8e8266"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T09:02:58Z",
+            "message": "Container image \"vllm/vllm-openai:v0.32.0\" already present on machine and can be accessed by the pod",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T09:02:58Z",
+                "name": "vllm-566c4bcdd8-2gkbg.18e5b7db43e966bf",
+                "namespace": "centra10",
+                "resourceVersion": "21658",
+                "uid": "f1625a8e-623f-49b2-84bc-5df30da87b15"
+            },
+            "reason": "Pulled",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-76-39.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-76-39.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T09:02:58Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{vllm}",
+                "kind": "Pod",
+                "name": "vllm-566c4bcdd8-2gkbg",
+                "namespace": "centra10",
+                "resourceVersion": "21653",
+                "uid": "dd6b3545-156c-401e-84ed-99640d8e8266"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T09:02:58Z",
+            "message": "Container created",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T09:02:58Z",
+                "name": "vllm-566c4bcdd8-2gkbg.18e5b7db4552c5e8",
+                "namespace": "centra10",
+                "resourceVersion": "21660",
+                "uid": "135188db-5ebe-4230-b85e-f0460e132cae"
+            },
+            "reason": "Created",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-76-39.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-76-39.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T09:02:59Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{vllm}",
+                "kind": "Pod",
+                "name": "vllm-566c4bcdd8-2gkbg",
+                "namespace": "centra10",
+                "resourceVersion": "21653",
+                "uid": "dd6b3545-156c-401e-84ed-99640d8e8266"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T09:02:59Z",
+            "message": "Container started",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T09:02:59Z",
+                "name": "vllm-566c4bcdd8-2gkbg.18e5b7db70710b4b",
+                "namespace": "centra10",
+                "resourceVersion": "21665",
+                "uid": "3113efc0-97fa-4779-9cde-29db8c8799de"
+            },
+            "reason": "Started",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-76-39.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-76-39.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 25,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T09:02:59Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{vllm}",
+                "kind": "Pod",
+                "name": "vllm-566c4bcdd8-2gkbg",
+                "namespace": "centra10",
+                "resourceVersion": "21653",
+                "uid": "dd6b3545-156c-401e-84ed-99640d8e8266"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T09:04:48Z",
+            "message": "Readiness probe failed: Get \"http://192.168.65.46:8000/health\": dial tcp 192.168.65.46:8000: connect: connection refused",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T09:02:59Z",
+                "name": "vllm-566c4bcdd8-2gkbg.18e5b7db7f104bf5",
+                "namespace": "centra10",
+                "resourceVersion": "22161",
+                "uid": "31438dd3-3701-45cc-9e81-0e5277557006"
+            },
+            "reason": "Unhealthy",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-76-39.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-76-39.ec2.internal"
+            },
+            "type": "Warning"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T09:04:43Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{vllm}",
+                "kind": "Pod",
+                "name": "vllm-566c4bcdd8-2gkbg",
+                "namespace": "centra10",
+                "resourceVersion": "21653",
+                "uid": "dd6b3545-156c-401e-84ed-99640d8e8266"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T09:04:43Z",
+            "message": "Stopping container vllm",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T09:04:43Z",
+                "name": "vllm-566c4bcdd8-2gkbg.18e5b7f3afc34277",
+                "namespace": "centra10",
+                "resourceVersion": "22124",
+                "uid": "68e7b49a-3d73-415c-95f5-2ba39d54c271"
+            },
+            "reason": "Killing",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-76-39.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-76-39.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:54:12Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "kind": "Pod",
+                "name": "vllm-566c4bcdd8-8hdjd",
+                "namespace": "centra10",
+                "resourceVersion": "19514",
+                "uid": "5fe6217d-5e15-4ada-a9ab-394fe306d4d4"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:54:12Z",
+            "message": "Successfully assigned centra10/vllm-566c4bcdd8-8hdjd to ip-192-168-82-220.ec2.internal",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:54:12Z",
+                "name": "vllm-566c4bcdd8-8hdjd.18e5b760ac01a4c3",
+                "namespace": "centra10",
+                "resourceVersion": "19519",
+                "uid": "d1e731ab-04e9-4fe9-9105-7d26edfe5a71"
+            },
+            "reason": "Scheduled",
+            "reportingComponent": "default-scheduler",
+            "reportingInstance": "",
+            "source": {
+                "component": "default-scheduler"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:54:13Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{vllm}",
+                "kind": "Pod",
+                "name": "vllm-566c4bcdd8-8hdjd",
+                "namespace": "centra10",
+                "resourceVersion": "19517",
+                "uid": "5fe6217d-5e15-4ada-a9ab-394fe306d4d4"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:54:13Z",
+            "message": "Container image \"vllm/vllm-openai:v0.32.0\" already present on machine and can be accessed by the pod",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:54:13Z",
+                "name": "vllm-566c4bcdd8-8hdjd.18e5b760f5f21ca6",
+                "namespace": "centra10",
+                "resourceVersion": "19524",
+                "uid": "a60a99fd-490a-47f8-852e-50871bf89783"
+            },
+            "reason": "Pulled",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-82-220.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-82-220.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:54:13Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{vllm}",
+                "kind": "Pod",
+                "name": "vllm-566c4bcdd8-8hdjd",
+                "namespace": "centra10",
+                "resourceVersion": "19517",
+                "uid": "5fe6217d-5e15-4ada-a9ab-394fe306d4d4"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:54:13Z",
+            "message": "Container created",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:54:13Z",
+                "name": "vllm-566c4bcdd8-8hdjd.18e5b760f76aa51a",
+                "namespace": "centra10",
+                "resourceVersion": "19526",
+                "uid": "55b462c0-b204-4d46-a102-17284f2e3795"
+            },
+            "reason": "Created",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-82-220.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-82-220.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:54:14Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{vllm}",
+                "kind": "Pod",
+                "name": "vllm-566c4bcdd8-8hdjd",
+                "namespace": "centra10",
+                "resourceVersion": "19517",
+                "uid": "5fe6217d-5e15-4ada-a9ab-394fe306d4d4"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:54:14Z",
+            "message": "Container started",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:54:14Z",
+                "name": "vllm-566c4bcdd8-8hdjd.18e5b761227759fe",
+                "namespace": "centra10",
+                "resourceVersion": "19531",
+                "uid": "2af0366e-e945-4e90-a7ad-e5e9b49e315a"
+            },
+            "reason": "Started",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-82-220.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-82-220.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 25,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:54:15Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{vllm}",
+                "kind": "Pod",
+                "name": "vllm-566c4bcdd8-8hdjd",
+                "namespace": "centra10",
+                "resourceVersion": "19517",
+                "uid": "5fe6217d-5e15-4ada-a9ab-394fe306d4d4"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:56:10Z",
+            "message": "Readiness probe failed: Get \"http://192.168.68.85:8000/health\": dial tcp 192.168.68.85:8000: connect: connection refused",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:54:15Z",
+                "name": "vllm-566c4bcdd8-8hdjd.18e5b76158b236d8",
+                "namespace": "centra10",
+                "resourceVersion": "20043",
+                "uid": "9da559ad-5d61-4403-89ed-6cb2f59640f7"
+            },
+            "reason": "Unhealthy",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-82-220.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-82-220.ec2.internal"
+            },
+            "type": "Warning"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T09:02:12Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{vllm}",
+                "kind": "Pod",
+                "name": "vllm-566c4bcdd8-8hdjd",
+                "namespace": "centra10",
+                "resourceVersion": "19517",
+                "uid": "5fe6217d-5e15-4ada-a9ab-394fe306d4d4"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T09:02:12Z",
+            "message": "Stopping container vllm",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T09:02:12Z",
+                "name": "vllm-566c4bcdd8-8hdjd.18e5b7d08d24383a",
+                "namespace": "centra10",
+                "resourceVersion": "21427",
+                "uid": "ec32aaaf-476b-4421-b3ff-75ee9e89320b"
+            },
+            "reason": "Killing",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-82-220.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-82-220.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:20:32Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "kind": "Pod",
+                "name": "vllm-566c4bcdd8-b277n",
+                "namespace": "centra10",
+                "resourceVersion": "11778",
+                "uid": "02302878-46af-481a-9104-f863054a6ed5"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:20:32Z",
+            "message": "Successfully assigned centra10/vllm-566c4bcdd8-b277n to ip-192-168-82-220.ec2.internal",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:20:32Z",
+                "name": "vllm-566c4bcdd8-b277n.18e5b58a4bebbc59",
+                "namespace": "centra10",
+                "resourceVersion": "11783",
+                "uid": "2fd7b8c5-5c03-4531-87d7-0037db16dc13"
+            },
+            "reason": "Scheduled",
+            "reportingComponent": "default-scheduler",
+            "reportingInstance": "",
+            "source": {
+                "component": "default-scheduler"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:20:33Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{vllm}",
+                "kind": "Pod",
+                "name": "vllm-566c4bcdd8-b277n",
+                "namespace": "centra10",
+                "resourceVersion": "11781",
+                "uid": "02302878-46af-481a-9104-f863054a6ed5"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:20:33Z",
+            "message": "Pulling image \"vllm/vllm-openai:v0.32.0\"",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:20:33Z",
+                "name": "vllm-566c4bcdd8-b277n.18e5b58aa5b8997c",
+                "namespace": "centra10",
+                "resourceVersion": "11793",
+                "uid": "293e9644-53e9-4e9f-9580-6ac9dfa1fd91"
+            },
+            "reason": "Pulling",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-82-220.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-82-220.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:24:26Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{vllm}",
+                "kind": "Pod",
+                "name": "vllm-566c4bcdd8-b277n",
+                "namespace": "centra10",
+                "resourceVersion": "11781",
+                "uid": "02302878-46af-481a-9104-f863054a6ed5"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:24:26Z",
+            "message": "Successfully pulled image \"vllm/vllm-openai:v0.32.0\" in 3m53.269s (3m53.269s including waiting). Image size: 9205781514 bytes.",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:24:26Z",
+                "name": "vllm-566c4bcdd8-b277n.18e5b5c0f5a90a19",
+                "namespace": "centra10",
+                "resourceVersion": "12692",
+                "uid": "e2726d09-c560-4eb5-bf99-d291f25132a4"
+            },
+            "reason": "Pulled",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-82-220.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-82-220.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:24:27Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{vllm}",
+                "kind": "Pod",
+                "name": "vllm-566c4bcdd8-b277n",
+                "namespace": "centra10",
+                "resourceVersion": "11781",
+                "uid": "02302878-46af-481a-9104-f863054a6ed5"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:24:27Z",
+            "message": "Container created",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:24:27Z",
+                "name": "vllm-566c4bcdd8-b277n.18e5b5c0fc5c7c1e",
+                "namespace": "centra10",
+                "resourceVersion": "12693",
+                "uid": "491425fb-910d-42a9-89ad-dc0d49a59b66"
+            },
+            "reason": "Created",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-82-220.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-82-220.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:24:28Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{vllm}",
+                "kind": "Pod",
+                "name": "vllm-566c4bcdd8-b277n",
+                "namespace": "centra10",
+                "resourceVersion": "11781",
+                "uid": "02302878-46af-481a-9104-f863054a6ed5"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:24:28Z",
+            "message": "Container started",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:24:28Z",
+                "name": "vllm-566c4bcdd8-b277n.18e5b5c13e1e725d",
+                "namespace": "centra10",
+                "resourceVersion": "12702",
+                "uid": "65b56d81-8bf4-4bdc-975e-a194e6645b17"
+            },
+            "reason": "Started",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-82-220.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-82-220.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 25,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:24:28Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{vllm}",
+                "kind": "Pod",
+                "name": "vllm-566c4bcdd8-b277n",
+                "namespace": "centra10",
+                "resourceVersion": "11781",
+                "uid": "02302878-46af-481a-9104-f863054a6ed5"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:26:20Z",
+            "message": "Readiness probe failed: Get \"http://192.168.76.71:8000/health\": dial tcp 192.168.76.71:8000: connect: connection refused",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:24:28Z",
+                "name": "vllm-566c4bcdd8-b277n.18e5b5c1664772b7",
+                "namespace": "centra10",
+                "resourceVersion": "13183",
+                "uid": "d3683ecb-cc61-49a3-8f76-4377eb5297c4"
+            },
+            "reason": "Unhealthy",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-82-220.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-82-220.ec2.internal"
+            },
+            "type": "Warning"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:32:52Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{vllm}",
+                "kind": "Pod",
+                "name": "vllm-566c4bcdd8-b277n",
+                "namespace": "centra10",
+                "resourceVersion": "11781",
+                "uid": "02302878-46af-481a-9104-f863054a6ed5"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:32:52Z",
+            "message": "Stopping container vllm",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:32:52Z",
+                "name": "vllm-566c4bcdd8-b277n.18e5b636a62c1090",
+                "namespace": "centra10",
+                "resourceVersion": "14692",
+                "uid": "40c274ad-ffc7-4f2b-9edf-85481f2a1d5a"
+            },
+            "reason": "Killing",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-82-220.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-82-220.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:15:48Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "kind": "Pod",
+                "name": "vllm-566c4bcdd8-jf7n9",
+                "namespace": "centra10",
+                "resourceVersion": "10650",
+                "uid": "7c59cf03-9fa0-4aa0-8abe-435d64882144"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:15:48Z",
+            "message": "Successfully assigned centra10/vllm-566c4bcdd8-jf7n9 to ip-192-168-89-26.ec2.internal",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:15:48Z",
+                "name": "vllm-566c4bcdd8-jf7n9.18e5b5482a0a11ca",
+                "namespace": "centra10",
+                "resourceVersion": "10655",
+                "uid": "5d910d34-c489-43c0-ab59-ddfa4c0288e5"
+            },
+            "reason": "Scheduled",
+            "reportingComponent": "default-scheduler",
+            "reportingInstance": "",
+            "source": {
+                "component": "default-scheduler"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:15:49Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{vllm}",
+                "kind": "Pod",
+                "name": "vllm-566c4bcdd8-jf7n9",
+                "namespace": "centra10",
+                "resourceVersion": "10653",
+                "uid": "7c59cf03-9fa0-4aa0-8abe-435d64882144"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:15:49Z",
+            "message": "Container image \"vllm/vllm-openai:v0.32.0\" already present on machine and can be accessed by the pod",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:15:49Z",
+                "name": "vllm-566c4bcdd8-jf7n9.18e5b54874a502ae",
+                "namespace": "centra10",
+                "resourceVersion": "10674",
+                "uid": "3e0f2762-7281-4e4f-b06b-8cf50204edc0"
+            },
+            "reason": "Pulled",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-89-26.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-89-26.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:15:49Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{vllm}",
+                "kind": "Pod",
+                "name": "vllm-566c4bcdd8-jf7n9",
+                "namespace": "centra10",
+                "resourceVersion": "10653",
+                "uid": "7c59cf03-9fa0-4aa0-8abe-435d64882144"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:15:49Z",
+            "message": "Container created",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:15:49Z",
+                "name": "vllm-566c4bcdd8-jf7n9.18e5b548784d1d96",
+                "namespace": "centra10",
+                "resourceVersion": "10676",
+                "uid": "3e26c952-1c52-4868-9a00-4f9530cb6c3c"
+            },
+            "reason": "Created",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-89-26.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-89-26.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:15:50Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{vllm}",
+                "kind": "Pod",
+                "name": "vllm-566c4bcdd8-jf7n9",
+                "namespace": "centra10",
+                "resourceVersion": "10653",
+                "uid": "7c59cf03-9fa0-4aa0-8abe-435d64882144"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:15:50Z",
+            "message": "Container started",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:15:50Z",
+                "name": "vllm-566c4bcdd8-jf7n9.18e5b548abc3fab0",
+                "namespace": "centra10",
+                "resourceVersion": "10679",
+                "uid": "1018f6b3-76b7-4e4b-899c-bcb297b3c784"
+            },
+            "reason": "Started",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-89-26.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-89-26.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 25,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:15:51Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{vllm}",
+                "kind": "Pod",
+                "name": "vllm-566c4bcdd8-jf7n9",
+                "namespace": "centra10",
+                "resourceVersion": "10653",
+                "uid": "7c59cf03-9fa0-4aa0-8abe-435d64882144"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:17:45Z",
+            "message": "Readiness probe failed: Get \"http://192.168.72.30:8000/health\": dial tcp 192.168.72.30:8000: connect: connection refused",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:15:51Z",
+                "name": "vllm-566c4bcdd8-jf7n9.18e5b548e6bada25",
+                "namespace": "centra10",
+                "resourceVersion": "11137",
+                "uid": "49397a42-d4be-4c4a-a374-e56f8aa01996"
+            },
+            "reason": "Unhealthy",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-89-26.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-89-26.ec2.internal"
+            },
+            "type": "Warning"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:32:52Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{vllm}",
+                "kind": "Pod",
+                "name": "vllm-566c4bcdd8-jf7n9",
+                "namespace": "centra10",
+                "resourceVersion": "10653",
+                "uid": "7c59cf03-9fa0-4aa0-8abe-435d64882144"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:32:52Z",
+            "message": "Stopping container vllm",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:32:52Z",
+                "name": "vllm-566c4bcdd8-jf7n9.18e5b636a61c12b3",
+                "namespace": "centra10",
+                "resourceVersion": "14689",
+                "uid": "80f5da50-9fd9-45d0-af8b-a553e1130a95"
+            },
+            "reason": "Killing",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-89-26.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-89-26.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:20:47Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "kind": "Pod",
+                "name": "vllm-566c4bcdd8-mzj7p",
+                "namespace": "centra10",
+                "resourceVersion": "11848",
+                "uid": "6f2bb315-37c3-434d-b238-efd397b9d413"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:20:47Z",
+            "message": "Successfully assigned centra10/vllm-566c4bcdd8-mzj7p to ip-192-168-76-39.ec2.internal",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:20:47Z",
+                "name": "vllm-566c4bcdd8-mzj7p.18e5b58dcae33f3c",
+                "namespace": "centra10",
+                "resourceVersion": "11853",
+                "uid": "f5ca3184-4680-435c-8db1-ce21198b72b8"
+            },
+            "reason": "Scheduled",
+            "reportingComponent": "default-scheduler",
+            "reportingInstance": "",
+            "source": {
+                "component": "default-scheduler"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:20:48Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{vllm}",
+                "kind": "Pod",
+                "name": "vllm-566c4bcdd8-mzj7p",
+                "namespace": "centra10",
+                "resourceVersion": "11852",
+                "uid": "6f2bb315-37c3-434d-b238-efd397b9d413"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:20:48Z",
+            "message": "Pulling image \"vllm/vllm-openai:v0.32.0\"",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:20:48Z",
+                "name": "vllm-566c4bcdd8-mzj7p.18e5b58e1119a363",
+                "namespace": "centra10",
+                "resourceVersion": "11862",
+                "uid": "af2503a1-e5e6-425f-96d7-79643a233c01"
+            },
+            "reason": "Pulling",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-76-39.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-76-39.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:24:39Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{vllm}",
+                "kind": "Pod",
+                "name": "vllm-566c4bcdd8-mzj7p",
+                "namespace": "centra10",
+                "resourceVersion": "11852",
+                "uid": "6f2bb315-37c3-434d-b238-efd397b9d413"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:24:39Z",
+            "message": "Successfully pulled image \"vllm/vllm-openai:v0.32.0\" in 3m50.938s (3m50.938s including waiting). Image size: 9205781514 bytes.",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:24:39Z",
+                "name": "vllm-566c4bcdd8-mzj7p.18e5b5c3d61b8484",
+                "namespace": "centra10",
+                "resourceVersion": "12750",
+                "uid": "c3a31856-84e5-49b9-b7ea-2dd7630295ff"
+            },
+            "reason": "Pulled",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-76-39.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-76-39.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:24:39Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{vllm}",
+                "kind": "Pod",
+                "name": "vllm-566c4bcdd8-mzj7p",
+                "namespace": "centra10",
+                "resourceVersion": "11852",
+                "uid": "6f2bb315-37c3-434d-b238-efd397b9d413"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:24:39Z",
+            "message": "Container created",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:24:39Z",
+                "name": "vllm-566c4bcdd8-mzj7p.18e5b5c3dcda304a",
+                "namespace": "centra10",
+                "resourceVersion": "12751",
+                "uid": "f1dd5a59-0af3-486f-8b06-827ca931322c"
+            },
+            "reason": "Created",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-76-39.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-76-39.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:24:40Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{vllm}",
+                "kind": "Pod",
+                "name": "vllm-566c4bcdd8-mzj7p",
+                "namespace": "centra10",
+                "resourceVersion": "11852",
+                "uid": "6f2bb315-37c3-434d-b238-efd397b9d413"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:24:40Z",
+            "message": "Container started",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:24:40Z",
+                "name": "vllm-566c4bcdd8-mzj7p.18e5b5c41c02cfbb",
+                "namespace": "centra10",
+                "resourceVersion": "12756",
+                "uid": "698d1c44-736c-4b2a-9679-178176bcbeff"
+            },
+            "reason": "Started",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-76-39.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-76-39.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 25,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:24:40Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{vllm}",
+                "kind": "Pod",
+                "name": "vllm-566c4bcdd8-mzj7p",
+                "namespace": "centra10",
+                "resourceVersion": "11852",
+                "uid": "6f2bb315-37c3-434d-b238-efd397b9d413"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:26:28Z",
+            "message": "Readiness probe failed: Get \"http://192.168.84.222:8000/health\": dial tcp 192.168.84.222:8000: connect: connection refused",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:24:40Z",
+                "name": "vllm-566c4bcdd8-mzj7p.18e5b5c432722d6e",
+                "namespace": "centra10",
+                "resourceVersion": "13213",
+                "uid": "acf33757-1455-4876-a9f1-f8f0cbb86a36"
+            },
+            "reason": "Unhealthy",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-76-39.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-76-39.ec2.internal"
+            },
+            "type": "Warning"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:32:52Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{vllm}",
+                "kind": "Pod",
+                "name": "vllm-566c4bcdd8-mzj7p",
+                "namespace": "centra10",
+                "resourceVersion": "11852",
+                "uid": "6f2bb315-37c3-434d-b238-efd397b9d413"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:32:52Z",
+            "message": "Stopping container vllm",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:32:52Z",
+                "name": "vllm-566c4bcdd8-mzj7p.18e5b636a6242032",
+                "namespace": "centra10",
+                "resourceVersion": "14691",
+                "uid": "14c22903-7f34-42fd-b2e7-e02cd805bca3"
+            },
+            "reason": "Killing",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-76-39.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-76-39.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:50:09Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "kind": "Pod",
+                "name": "vllm-566c4bcdd8-qbwjt",
+                "namespace": "centra10",
+                "resourceVersion": "18533",
+                "uid": "0818981a-ebc0-4d42-8934-30011d808232"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:50:09Z",
+            "message": "Successfully assigned centra10/vllm-566c4bcdd8-qbwjt to ip-192-168-89-26.ec2.internal",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:50:09Z",
+                "name": "vllm-566c4bcdd8-qbwjt.18e5b7282130c907",
+                "namespace": "centra10",
+                "resourceVersion": "18538",
+                "uid": "1aad0b20-b291-4e6c-a827-a50996209eb6"
+            },
+            "reason": "Scheduled",
+            "reportingComponent": "default-scheduler",
+            "reportingInstance": "",
+            "source": {
+                "component": "default-scheduler"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:50:10Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{vllm}",
+                "kind": "Pod",
+                "name": "vllm-566c4bcdd8-qbwjt",
+                "namespace": "centra10",
+                "resourceVersion": "18536",
+                "uid": "0818981a-ebc0-4d42-8934-30011d808232"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:50:10Z",
+            "message": "Container image \"vllm/vllm-openai:v0.32.0\" already present on machine and can be accessed by the pod",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:50:10Z",
+                "name": "vllm-566c4bcdd8-qbwjt.18e5b7285b589778",
+                "namespace": "centra10",
+                "resourceVersion": "18553",
+                "uid": "a0514866-1342-48bb-8df7-01881388583f"
+            },
+            "reason": "Pulled",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-89-26.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-89-26.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:50:10Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{vllm}",
+                "kind": "Pod",
+                "name": "vllm-566c4bcdd8-qbwjt",
+                "namespace": "centra10",
+                "resourceVersion": "18536",
+                "uid": "0818981a-ebc0-4d42-8934-30011d808232"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:50:10Z",
+            "message": "Container created",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:50:10Z",
+                "name": "vllm-566c4bcdd8-qbwjt.18e5b7285cc2aa1d",
+                "namespace": "centra10",
+                "resourceVersion": "18557",
+                "uid": "422cdd9c-a935-46db-82b1-e9fca9854343"
+            },
+            "reason": "Created",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-89-26.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-89-26.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:50:11Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{vllm}",
+                "kind": "Pod",
+                "name": "vllm-566c4bcdd8-qbwjt",
+                "namespace": "centra10",
+                "resourceVersion": "18536",
+                "uid": "0818981a-ebc0-4d42-8934-30011d808232"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:50:11Z",
+            "message": "Container started",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:50:11Z",
+                "name": "vllm-566c4bcdd8-qbwjt.18e5b728880b5569",
+                "namespace": "centra10",
+                "resourceVersion": "18561",
+                "uid": "673e491b-3428-4240-a799-379a777346ae"
+            },
+            "reason": "Started",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-89-26.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-89-26.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 25,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:50:12Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{vllm}",
+                "kind": "Pod",
+                "name": "vllm-566c4bcdd8-qbwjt",
+                "namespace": "centra10",
+                "resourceVersion": "18536",
+                "uid": "0818981a-ebc0-4d42-8934-30011d808232"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:52:04Z",
+            "message": "Readiness probe failed: Get \"http://192.168.90.111:8000/health\": dial tcp 192.168.90.111:8000: connect: connection refused",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:50:12Z",
+                "name": "vllm-566c4bcdd8-qbwjt.18e5b728b65215fb",
+                "namespace": "centra10",
+                "resourceVersion": "19008",
+                "uid": "691200e0-7beb-475c-ad3a-19068534f6aa"
+            },
+            "reason": "Unhealthy",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-89-26.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-89-26.ec2.internal"
+            },
+            "type": "Warning"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T09:04:43Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{vllm}",
+                "kind": "Pod",
+                "name": "vllm-566c4bcdd8-qbwjt",
+                "namespace": "centra10",
+                "resourceVersion": "18536",
+                "uid": "0818981a-ebc0-4d42-8934-30011d808232"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T09:04:43Z",
+            "message": "Stopping container vllm",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T09:04:43Z",
+                "name": "vllm-566c4bcdd8-qbwjt.18e5b7f3afbe96f3",
+                "namespace": "centra10",
+                "resourceVersion": "22123",
+                "uid": "b008fe20-a92e-4656-8771-c9f3cbd28384"
+            },
+            "reason": "Killing",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-89-26.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-89-26.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:54:27Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "kind": "Pod",
+                "name": "vllm-566c4bcdd8-ss87h",
+                "namespace": "centra10",
+                "resourceVersion": "19594",
+                "uid": "966bdb20-dd74-4157-a010-c149d6cdf5ce"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:54:27Z",
+            "message": "Successfully assigned centra10/vllm-566c4bcdd8-ss87h to ip-192-168-76-39.ec2.internal",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:54:27Z",
+                "name": "vllm-566c4bcdd8-ss87h.18e5b7642ac23e22",
+                "namespace": "centra10",
+                "resourceVersion": "19599",
+                "uid": "06501637-3621-40a0-bad1-0f37f6810620"
+            },
+            "reason": "Scheduled",
+            "reportingComponent": "default-scheduler",
+            "reportingInstance": "",
+            "source": {
+                "component": "default-scheduler"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:54:28Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{vllm}",
+                "kind": "Pod",
+                "name": "vllm-566c4bcdd8-ss87h",
+                "namespace": "centra10",
+                "resourceVersion": "19597",
+                "uid": "966bdb20-dd74-4157-a010-c149d6cdf5ce"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:54:28Z",
+            "message": "Container image \"vllm/vllm-openai:v0.32.0\" already present on machine and can be accessed by the pod",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:54:28Z",
+                "name": "vllm-566c4bcdd8-ss87h.18e5b7647741a7c5",
+                "namespace": "centra10",
+                "resourceVersion": "19607",
+                "uid": "883628cc-560b-4a31-b71d-27bc32d28225"
+            },
+            "reason": "Pulled",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-76-39.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-76-39.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:54:28Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{vllm}",
+                "kind": "Pod",
+                "name": "vllm-566c4bcdd8-ss87h",
+                "namespace": "centra10",
+                "resourceVersion": "19597",
+                "uid": "966bdb20-dd74-4157-a010-c149d6cdf5ce"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:54:28Z",
+            "message": "Container created",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:54:28Z",
+                "name": "vllm-566c4bcdd8-ss87h.18e5b76478e62edb",
+                "namespace": "centra10",
+                "resourceVersion": "19609",
+                "uid": "1582e5ea-36cb-4a34-aaf0-c50f8bde91d3"
+            },
+            "reason": "Created",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-76-39.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-76-39.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:54:29Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{vllm}",
+                "kind": "Pod",
+                "name": "vllm-566c4bcdd8-ss87h",
+                "namespace": "centra10",
+                "resourceVersion": "19597",
+                "uid": "966bdb20-dd74-4157-a010-c149d6cdf5ce"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:54:29Z",
+            "message": "Container started",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:54:29Z",
+                "name": "vllm-566c4bcdd8-ss87h.18e5b764a54a9a9c",
+                "namespace": "centra10",
+                "resourceVersion": "19612",
+                "uid": "a30f18d9-9321-49a6-b62c-7b934299da1e"
+            },
+            "reason": "Started",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-76-39.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-76-39.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 25,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:54:30Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{vllm}",
+                "kind": "Pod",
+                "name": "vllm-566c4bcdd8-ss87h",
+                "namespace": "centra10",
+                "resourceVersion": "19597",
+                "uid": "966bdb20-dd74-4157-a010-c149d6cdf5ce"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:56:19Z",
+            "message": "Readiness probe failed: Get \"http://192.168.88.78:8000/health\": dial tcp 192.168.88.78:8000: connect: connection refused",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:54:30Z",
+                "name": "vllm-566c4bcdd8-ss87h.18e5b764c536ecb2",
+                "namespace": "centra10",
+                "resourceVersion": "20075",
+                "uid": "0df6ad01-560b-4866-8673-e3549735cdf4"
+            },
+            "reason": "Unhealthy",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-76-39.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-76-39.ec2.internal"
+            },
+            "type": "Warning"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T09:02:12Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{vllm}",
+                "kind": "Pod",
+                "name": "vllm-566c4bcdd8-ss87h",
+                "namespace": "centra10",
+                "resourceVersion": "19597",
+                "uid": "966bdb20-dd74-4157-a010-c149d6cdf5ce"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T09:02:12Z",
+            "message": "Stopping container vllm",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T09:02:12Z",
+                "name": "vllm-566c4bcdd8-ss87h.18e5b7d08d33f225",
+                "namespace": "centra10",
+                "resourceVersion": "21428",
+                "uid": "9b996ac9-49c5-4550-8a8c-5e04a8689405"
+            },
+            "reason": "Killing",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-76-39.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-76-39.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T09:02:42Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "kind": "Pod",
+                "name": "vllm-566c4bcdd8-z6h4t",
+                "namespace": "centra10",
+                "resourceVersion": "21568",
+                "uid": "b5446fbc-f6ca-44be-934c-925cc5816200"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T09:02:42Z",
+            "message": "Successfully assigned centra10/vllm-566c4bcdd8-z6h4t to ip-192-168-82-220.ec2.internal",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T09:02:42Z",
+                "name": "vllm-566c4bcdd8-z6h4t.18e5b7d78c49326e",
+                "namespace": "centra10",
+                "resourceVersion": "21573",
+                "uid": "ddfee956-6bc4-4f1d-a90c-c5d22c9590e3"
+            },
+            "reason": "Scheduled",
+            "reportingComponent": "default-scheduler",
+            "reportingInstance": "",
+            "source": {
+                "component": "default-scheduler"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T09:02:43Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{vllm}",
+                "kind": "Pod",
+                "name": "vllm-566c4bcdd8-z6h4t",
+                "namespace": "centra10",
+                "resourceVersion": "21571",
+                "uid": "b5446fbc-f6ca-44be-934c-925cc5816200"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T09:02:43Z",
+            "message": "Container image \"vllm/vllm-openai:v0.32.0\" already present on machine and can be accessed by the pod",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T09:02:43Z",
+                "name": "vllm-566c4bcdd8-z6h4t.18e5b7d7c29d67be",
+                "namespace": "centra10",
+                "resourceVersion": "21581",
+                "uid": "06da4959-3098-4eb6-9675-c9cf8bbec8b5"
+            },
+            "reason": "Pulled",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-82-220.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-82-220.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T09:02:43Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{vllm}",
+                "kind": "Pod",
+                "name": "vllm-566c4bcdd8-z6h4t",
+                "namespace": "centra10",
+                "resourceVersion": "21571",
+                "uid": "b5446fbc-f6ca-44be-934c-925cc5816200"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T09:02:43Z",
+            "message": "Container created",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T09:02:43Z",
+                "name": "vllm-566c4bcdd8-z6h4t.18e5b7d7c3fa0ef9",
+                "namespace": "centra10",
+                "resourceVersion": "21583",
+                "uid": "bdb0d965-0eb8-4c3e-b3c7-75f2aec9ce69"
+            },
+            "reason": "Created",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-82-220.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-82-220.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T09:02:44Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{vllm}",
+                "kind": "Pod",
+                "name": "vllm-566c4bcdd8-z6h4t",
+                "namespace": "centra10",
+                "resourceVersion": "21571",
+                "uid": "b5446fbc-f6ca-44be-934c-925cc5816200"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T09:02:44Z",
+            "message": "Container started",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T09:02:44Z",
+                "name": "vllm-566c4bcdd8-z6h4t.18e5b7d7ec93ad4c",
+                "namespace": "centra10",
+                "resourceVersion": "21585",
+                "uid": "01f24486-f1df-4be7-8075-3fb3687428da"
+            },
+            "reason": "Started",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-82-220.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-82-220.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 25,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T09:02:45Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{vllm}",
+                "kind": "Pod",
+                "name": "vllm-566c4bcdd8-z6h4t",
+                "namespace": "centra10",
+                "resourceVersion": "21571",
+                "uid": "b5446fbc-f6ca-44be-934c-925cc5816200"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T09:04:40Z",
+            "message": "Readiness probe failed: Get \"http://192.168.72.15:8000/health\": dial tcp 192.168.72.15:8000: connect: connection refused",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T09:02:45Z",
+                "name": "vllm-566c4bcdd8-z6h4t.18e5b7d816b7dedd",
+                "namespace": "centra10",
+                "resourceVersion": "22093",
+                "uid": "480f0da3-95f7-4996-a1bd-6801df64003b"
+            },
+            "reason": "Unhealthy",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-82-220.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-82-220.ec2.internal"
+            },
+            "type": "Warning"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T09:04:43Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{vllm}",
+                "kind": "Pod",
+                "name": "vllm-566c4bcdd8-z6h4t",
+                "namespace": "centra10",
+                "resourceVersion": "21571",
+                "uid": "b5446fbc-f6ca-44be-934c-925cc5816200"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T09:04:43Z",
+            "message": "Stopping container vllm",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T09:04:43Z",
+                "name": "vllm-566c4bcdd8-z6h4t.18e5b7f3afa7444a",
+                "namespace": "centra10",
+                "resourceVersion": "22120",
+                "uid": "3e68a764-d4fc-4e08-bd39-43659489e68e"
+            },
+            "reason": "Killing",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-82-220.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-82-220.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:15:48Z",
+            "involvedObject": {
+                "apiVersion": "apps/v1",
+                "kind": "ReplicaSet",
+                "name": "vllm-566c4bcdd8",
+                "namespace": "centra10",
+                "resourceVersion": "10646",
+                "uid": "c69085ed-ffab-4970-ace1-c72437752b9c"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:15:48Z",
+            "message": "Created pod: vllm-566c4bcdd8-jf7n9",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:15:48Z",
+                "name": "vllm-566c4bcdd8.18e5b54829c690c2",
+                "namespace": "centra10",
+                "resourceVersion": "10651",
+                "uid": "a660c201-f2a8-4f1c-ad13-56bf035141b1"
+            },
+            "reason": "SuccessfulCreate",
+            "reportingComponent": "replicaset-controller",
+            "reportingInstance": "",
+            "source": {
+                "component": "replicaset-controller"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:20:32Z",
+            "involvedObject": {
+                "apiVersion": "apps/v1",
+                "kind": "ReplicaSet",
+                "name": "vllm-566c4bcdd8",
+                "namespace": "centra10",
+                "resourceVersion": "11773",
+                "uid": "c69085ed-ffab-4970-ace1-c72437752b9c"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:20:32Z",
+            "message": "Created pod: vllm-566c4bcdd8-b277n",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:20:32Z",
+                "name": "vllm-566c4bcdd8.18e5b58a4ba1803b",
+                "namespace": "centra10",
+                "resourceVersion": "11779",
+                "uid": "100887ea-6215-4222-bf62-46737bcd686a"
+            },
+            "reason": "SuccessfulCreate",
+            "reportingComponent": "replicaset-controller",
+            "reportingInstance": "",
+            "source": {
+                "component": "replicaset-controller"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:20:47Z",
+            "involvedObject": {
+                "apiVersion": "apps/v1",
+                "kind": "ReplicaSet",
+                "name": "vllm-566c4bcdd8",
+                "namespace": "centra10",
+                "resourceVersion": "11845",
+                "uid": "c69085ed-ffab-4970-ace1-c72437752b9c"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:20:47Z",
+            "message": "Created pod: vllm-566c4bcdd8-mzj7p",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:20:47Z",
+                "name": "vllm-566c4bcdd8.18e5b58dca9f86fe",
+                "namespace": "centra10",
+                "resourceVersion": "11850",
+                "uid": "a0a6d768-22c4-4b5b-9462-54d7ac203f28"
+            },
+            "reason": "SuccessfulCreate",
+            "reportingComponent": "replicaset-controller",
+            "reportingInstance": "",
+            "source": {
+                "component": "replicaset-controller"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:32:52Z",
+            "involvedObject": {
+                "apiVersion": "apps/v1",
+                "kind": "ReplicaSet",
+                "name": "vllm-566c4bcdd8",
+                "namespace": "centra10",
+                "resourceVersion": "14679",
+                "uid": "c69085ed-ffab-4970-ace1-c72437752b9c"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:32:52Z",
+            "message": "Deleted pod: vllm-566c4bcdd8-mzj7p",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:32:52Z",
+                "name": "vllm-566c4bcdd8.18e5b636a60474d2",
+                "namespace": "centra10",
+                "resourceVersion": "14685",
+                "uid": "7611cda5-f6a2-460a-94c8-72fc86dbbae3"
+            },
+            "reason": "SuccessfulDelete",
+            "reportingComponent": "replicaset-controller",
+            "reportingInstance": "",
+            "source": {
+                "component": "replicaset-controller"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:32:52Z",
+            "involvedObject": {
+                "apiVersion": "apps/v1",
+                "kind": "ReplicaSet",
+                "name": "vllm-566c4bcdd8",
+                "namespace": "centra10",
+                "resourceVersion": "14679",
+                "uid": "c69085ed-ffab-4970-ace1-c72437752b9c"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:32:52Z",
+            "message": "Deleted pod: vllm-566c4bcdd8-jf7n9",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:32:52Z",
+                "name": "vllm-566c4bcdd8.18e5b636a60880a4",
+                "namespace": "centra10",
+                "resourceVersion": "14690",
+                "uid": "5ac6dab4-cbad-4584-af1d-6aa848a4b6ab"
+            },
+            "reason": "SuccessfulDelete",
+            "reportingComponent": "replicaset-controller",
+            "reportingInstance": "",
+            "source": {
+                "component": "replicaset-controller"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:32:52Z",
+            "involvedObject": {
+                "apiVersion": "apps/v1",
+                "kind": "ReplicaSet",
+                "name": "vllm-566c4bcdd8",
+                "namespace": "centra10",
+                "resourceVersion": "14679",
+                "uid": "c69085ed-ffab-4970-ace1-c72437752b9c"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:32:52Z",
+            "message": "Deleted pod: vllm-566c4bcdd8-b277n",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:32:52Z",
+                "name": "vllm-566c4bcdd8.18e5b636a60c0dbc",
+                "namespace": "centra10",
+                "resourceVersion": "14694",
+                "uid": "99a89746-a2f5-4837-bd1a-cea9a27d7105"
+            },
+            "reason": "SuccessfulDelete",
+            "reportingComponent": "replicaset-controller",
+            "reportingInstance": "",
+            "source": {
+                "component": "replicaset-controller"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:50:09Z",
+            "involvedObject": {
+                "apiVersion": "apps/v1",
+                "kind": "ReplicaSet",
+                "name": "vllm-566c4bcdd8",
+                "namespace": "centra10",
+                "resourceVersion": "18528",
+                "uid": "c69085ed-ffab-4970-ace1-c72437752b9c"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:50:09Z",
+            "message": "Created pod: vllm-566c4bcdd8-qbwjt",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:50:09Z",
+                "name": "vllm-566c4bcdd8.18e5b72820df609f",
+                "namespace": "centra10",
+                "resourceVersion": "18534",
+                "uid": "d92550c8-ebdd-4d84-b87c-983257937273"
+            },
+            "reason": "SuccessfulCreate",
+            "reportingComponent": "replicaset-controller",
+            "reportingInstance": "",
+            "source": {
+                "component": "replicaset-controller"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:54:12Z",
+            "involvedObject": {
+                "apiVersion": "apps/v1",
+                "kind": "ReplicaSet",
+                "name": "vllm-566c4bcdd8",
+                "namespace": "centra10",
+                "resourceVersion": "19509",
+                "uid": "c69085ed-ffab-4970-ace1-c72437752b9c"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:54:12Z",
+            "message": "Created pod: vllm-566c4bcdd8-8hdjd",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:54:12Z",
+                "name": "vllm-566c4bcdd8.18e5b760abae08a4",
+                "namespace": "centra10",
+                "resourceVersion": "19515",
+                "uid": "ba681377-510a-45e5-aec1-aed7cb9e6703"
+            },
+            "reason": "SuccessfulCreate",
+            "reportingComponent": "replicaset-controller",
+            "reportingInstance": "",
+            "source": {
+                "component": "replicaset-controller"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:54:27Z",
+            "involvedObject": {
+                "apiVersion": "apps/v1",
+                "kind": "ReplicaSet",
+                "name": "vllm-566c4bcdd8",
+                "namespace": "centra10",
+                "resourceVersion": "19591",
+                "uid": "c69085ed-ffab-4970-ace1-c72437752b9c"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:54:27Z",
+            "message": "Created pod: vllm-566c4bcdd8-ss87h",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:54:27Z",
+                "name": "vllm-566c4bcdd8.18e5b7642a88fc69",
+                "namespace": "centra10",
+                "resourceVersion": "19596",
+                "uid": "5dda2bd0-d4ee-4b16-9dbb-3e668ff18812"
+            },
+            "reason": "SuccessfulCreate",
+            "reportingComponent": "replicaset-controller",
+            "reportingInstance": "",
+            "source": {
+                "component": "replicaset-controller"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T09:02:12Z",
+            "involvedObject": {
+                "apiVersion": "apps/v1",
+                "kind": "ReplicaSet",
+                "name": "vllm-566c4bcdd8",
+                "namespace": "centra10",
+                "resourceVersion": "21418",
+                "uid": "c69085ed-ffab-4970-ace1-c72437752b9c"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T09:02:12Z",
+            "message": "Deleted pod: vllm-566c4bcdd8-8hdjd",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T09:02:12Z",
+                "name": "vllm-566c4bcdd8.18e5b7d08d10974c",
+                "namespace": "centra10",
+                "resourceVersion": "21424",
+                "uid": "aa63d76a-fb07-4b8d-857d-87a30293c72f"
+            },
+            "reason": "SuccessfulDelete",
+            "reportingComponent": "replicaset-controller",
+            "reportingInstance": "",
+            "source": {
+                "component": "replicaset-controller"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T09:02:12Z",
+            "involvedObject": {
+                "apiVersion": "apps/v1",
+                "kind": "ReplicaSet",
+                "name": "vllm-566c4bcdd8",
+                "namespace": "centra10",
+                "resourceVersion": "21418",
+                "uid": "c69085ed-ffab-4970-ace1-c72437752b9c"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T09:02:12Z",
+            "message": "Deleted pod: vllm-566c4bcdd8-ss87h",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T09:02:12Z",
+                "name": "vllm-566c4bcdd8.18e5b7d08d278c85",
+                "namespace": "centra10",
+                "resourceVersion": "21430",
+                "uid": "451db5af-aa9e-42a8-8dbb-5b1f192bab0c"
+            },
+            "reason": "SuccessfulDelete",
+            "reportingComponent": "replicaset-controller",
+            "reportingInstance": "",
+            "source": {
+                "component": "replicaset-controller"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T09:02:42Z",
+            "involvedObject": {
+                "apiVersion": "apps/v1",
+                "kind": "ReplicaSet",
+                "name": "vllm-566c4bcdd8",
+                "namespace": "centra10",
+                "resourceVersion": "21563",
+                "uid": "c69085ed-ffab-4970-ace1-c72437752b9c"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T09:02:42Z",
+            "message": "Created pod: vllm-566c4bcdd8-z6h4t",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T09:02:42Z",
+                "name": "vllm-566c4bcdd8.18e5b7d78bfcd966",
+                "namespace": "centra10",
+                "resourceVersion": "21569",
+                "uid": "d8f65dd0-adf6-4dc5-953d-79036d0f3b74"
+            },
+            "reason": "SuccessfulCreate",
+            "reportingComponent": "replicaset-controller",
+            "reportingInstance": "",
+            "source": {
+                "component": "replicaset-controller"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T09:02:57Z",
+            "involvedObject": {
+                "apiVersion": "apps/v1",
+                "kind": "ReplicaSet",
+                "name": "vllm-566c4bcdd8",
+                "namespace": "centra10",
+                "resourceVersion": "21645",
+                "uid": "c69085ed-ffab-4970-ace1-c72437752b9c"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T09:02:57Z",
+            "message": "Created pod: vllm-566c4bcdd8-2gkbg",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T09:02:57Z",
+                "name": "vllm-566c4bcdd8.18e5b7db0b136048",
+                "namespace": "centra10",
+                "resourceVersion": "21651",
+                "uid": "cdad5480-2785-420b-9fce-84681b686f08"
+            },
+            "reason": "SuccessfulCreate",
+            "reportingComponent": "replicaset-controller",
+            "reportingInstance": "",
+            "source": {
+                "component": "replicaset-controller"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T09:04:43Z",
+            "involvedObject": {
+                "apiVersion": "apps/v1",
+                "kind": "ReplicaSet",
+                "name": "vllm-566c4bcdd8",
+                "namespace": "centra10",
+                "resourceVersion": "22112",
+                "uid": "c69085ed-ffab-4970-ace1-c72437752b9c"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T09:04:43Z",
+            "message": "Deleted pod: vllm-566c4bcdd8-z6h4t",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T09:04:43Z",
+                "name": "vllm-566c4bcdd8.18e5b7f3af9f8078",
+                "namespace": "centra10",
+                "resourceVersion": "22119",
+                "uid": "20c6d1a5-cb35-45a3-9d9a-934e56278690"
+            },
+            "reason": "SuccessfulDelete",
+            "reportingComponent": "replicaset-controller",
+            "reportingInstance": "",
+            "source": {
+                "component": "replicaset-controller"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T09:04:43Z",
+            "involvedObject": {
+                "apiVersion": "apps/v1",
+                "kind": "ReplicaSet",
+                "name": "vllm-566c4bcdd8",
+                "namespace": "centra10",
+                "resourceVersion": "22112",
+                "uid": "c69085ed-ffab-4970-ace1-c72437752b9c"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T09:04:43Z",
+            "message": "Deleted pod: vllm-566c4bcdd8-qbwjt",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T09:04:43Z",
+                "name": "vllm-566c4bcdd8.18e5b7f3afbbe8d6",
+                "namespace": "centra10",
+                "resourceVersion": "22126",
+                "uid": "03f26163-6495-40d5-841f-d3b8d29d39f8"
+            },
+            "reason": "SuccessfulDelete",
+            "reportingComponent": "replicaset-controller",
+            "reportingInstance": "",
+            "source": {
+                "component": "replicaset-controller"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T09:04:43Z",
+            "involvedObject": {
+                "apiVersion": "apps/v1",
+                "kind": "ReplicaSet",
+                "name": "vllm-566c4bcdd8",
+                "namespace": "centra10",
+                "resourceVersion": "22112",
+                "uid": "c69085ed-ffab-4970-ace1-c72437752b9c"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T09:04:43Z",
+            "message": "Deleted pod: vllm-566c4bcdd8-2gkbg",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T09:04:43Z",
+                "name": "vllm-566c4bcdd8.18e5b7f3afbd93db",
+                "namespace": "centra10",
+                "resourceVersion": "22130",
+                "uid": "f6cadb45-5e1e-43a6-a9f3-f652237b4d37"
+            },
+            "reason": "SuccessfulDelete",
+            "reportingComponent": "replicaset-controller",
+            "reportingInstance": "",
+            "source": {
+                "component": "replicaset-controller"
+            },
+            "type": "Normal"
+        },
+        {
+            "action": "KEDAScalerInfo",
+            "apiVersion": "v1",
+            "eventTime": "2026-11-07T08:19:46.928768Z",
+            "firstTimestamp": null,
+            "involvedObject": {
+                "apiVersion": "keda.sh/v1alpha1",
+                "kind": "ScaledObject",
+                "name": "vllm-autoscaler",
+                "namespace": "centra10",
+                "uid": "91674112-31f9-489d-a2e5-4c8628e18b16"
+            },
+            "kind": "Event",
+            "lastTimestamp": null,
+            "message": "PollingInterval is configured but is not relevant for scaling. It only affects scaling when minReplicaCount = 0, idleReplicaCount is set, or useCachedMetrics is enabled, but it still controls how often KEDA refreshes the ScaledObject status conditions and events",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:19:46Z",
+                "name": "vllm-autoscaler.18e5b57fc3e0d5f9",
+                "namespace": "centra10",
+                "resourceVersion": "11584",
+                "uid": "9e4f491d-c927-44b0-bdf6-084179596770"
+            },
+            "reason": "KEDAScalerInfo",
+            "reportingComponent": "keda-admission",
+            "reportingInstance": "keda-admission-keda-admission-webhooks-78fb47bd97-rpxz4",
+            "source": {},
+            "type": "Normal"
+        },
+        {
+            "action": "KEDAScalerInfo",
+            "apiVersion": "v1",
+            "eventTime": "2026-11-07T08:19:46.936177Z",
+            "firstTimestamp": null,
+            "involvedObject": {
+                "apiVersion": "keda.sh/v1alpha1",
+                "kind": "ScaledObject",
+                "name": "vllm-autoscaler",
+                "namespace": "centra10",
+                "resourceVersion": "11583",
+                "uid": "91674112-31f9-489d-a2e5-4c8628e18b16"
+            },
+            "kind": "Event",
+            "lastTimestamp": null,
+            "message": "PollingInterval is configured but is not relevant for scaling. It only affects scaling when minReplicaCount = 0, idleReplicaCount is set, or useCachedMetrics is enabled, but it still controls how often KEDA refreshes the ScaledObject status conditions and events",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:19:46Z",
+                "name": "vllm-autoscaler.18e5b57fc451c65d",
+                "namespace": "centra10",
+                "resourceVersion": "11586",
+                "uid": "068aef10-b763-4b68-ab77-9b538ff87a34"
+            },
+            "reason": "KEDAScalerInfo",
+            "reportingComponent": "keda-admission",
+            "reportingInstance": "keda-admission-keda-admission-webhooks-78fb47bd97-rpxz4",
+            "source": {},
+            "type": "Normal"
+        },
+        {
+            "action": "KEDAScalerInfo",
+            "apiVersion": "v1",
+            "eventTime": "2026-11-07T08:19:46.950719Z",
+            "firstTimestamp": null,
+            "involvedObject": {
+                "apiVersion": "keda.sh/v1alpha1",
+                "kind": "ScaledObject",
+                "name": "vllm-autoscaler",
+                "namespace": "centra10",
+                "resourceVersion": "11587",
+                "uid": "91674112-31f9-489d-a2e5-4c8628e18b16"
+            },
+            "kind": "Event",
+            "lastTimestamp": null,
+            "message": "PollingInterval is configured but is not relevant for scaling. It only affects scaling when minReplicaCount = 0, idleReplicaCount is set, or useCachedMetrics is enabled, but it still controls how often KEDA refreshes the ScaledObject status conditions and events",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:19:46Z",
+                "name": "vllm-autoscaler.18e5b57fc52faded",
+                "namespace": "centra10",
+                "resourceVersion": "11589",
+                "uid": "94127dc2-a41e-4e00-844c-62a64836f8b2"
+            },
+            "reason": "KEDAScalerInfo",
+            "reportingComponent": "keda-admission",
+            "reportingInstance": "keda-admission-keda-admission-webhooks-78fb47bd97-rpxz4",
+            "source": {},
+            "type": "Normal"
+        },
+        {
+            "action": "KEDAScalersStarted",
+            "apiVersion": "v1",
+            "eventTime": "2026-11-07T08:19:47.068891Z",
+            "firstTimestamp": null,
+            "involvedObject": {
+                "apiVersion": "keda.sh/v1alpha1",
+                "kind": "ScaledObject",
+                "name": "vllm-autoscaler",
+                "namespace": "centra10",
+                "resourceVersion": "11591",
+                "uid": "91674112-31f9-489d-a2e5-4c8628e18b16"
+            },
+            "kind": "Event",
+            "lastTimestamp": null,
+            "message": "Scaler prometheus is built",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:19:47Z",
+                "name": "vllm-autoscaler.18e5b57fcc3afb9c",
+                "namespace": "centra10",
+                "resourceVersion": "11593",
+                "uid": "d16f7463-bd1d-471f-bf51-d3176d5c04f1"
+            },
+            "reason": "KEDAScalersStarted",
+            "reportingComponent": "keda-operator",
+            "reportingInstance": "keda-operator-keda-operator-5bb8bd6bc5-6zdvl",
+            "source": {},
+            "type": "Normal"
+        },
+        {
+            "action": "ScalersWatchStarted",
+            "apiVersion": "v1",
+            "eventTime": "2026-11-07T08:19:47.085526Z",
+            "firstTimestamp": null,
+            "involvedObject": {
+                "apiVersion": "keda.sh/v1alpha1",
+                "kind": "ScaledObject",
+                "name": "vllm-autoscaler",
+                "namespace": "centra10",
+                "resourceVersion": "11595",
+                "uid": "91674112-31f9-489d-a2e5-4c8628e18b16"
+            },
+            "kind": "Event",
+            "lastTimestamp": null,
+            "message": "Started scalers watch",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:19:47Z",
+                "name": "vllm-autoscaler.18e5b57fcd38ac18",
+                "namespace": "centra10",
+                "resourceVersion": "11596",
+                "uid": "907a5bb9-a2e6-4435-9bd8-07c37f8533d5"
+            },
+            "reason": "KEDAScalersStarted",
+            "reportingComponent": "keda-operator",
+            "reportingInstance": "keda-operator-keda-operator-5bb8bd6bc5-6zdvl",
+            "source": {},
+            "type": "Normal"
+        },
+        {
+            "action": "ScaledObject is ready for scaling",
+            "apiVersion": "v1",
+            "eventTime": "2026-11-07T08:19:47.085588Z",
+            "firstTimestamp": null,
+            "involvedObject": {
+                "apiVersion": "keda.sh/v1alpha1",
+                "kind": "ScaledObject",
+                "name": "vllm-autoscaler",
+                "namespace": "centra10",
+                "resourceVersion": "11595",
+                "uid": "91674112-31f9-489d-a2e5-4c8628e18b16"
+            },
+            "kind": "Event",
+            "lastTimestamp": null,
+            "message": "ScaledObject is ready for scaling",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:19:47Z",
+                "name": "vllm-autoscaler.18e5b57fcd39a805",
+                "namespace": "centra10",
+                "resourceVersion": "11597",
+                "uid": "b2a5305a-6985-4b1e-b99b-a513099a127d"
+            },
+            "reason": "ScaledObjectReady",
+            "reportingComponent": "keda-operator",
+            "reportingInstance": "keda-operator-keda-operator-5bb8bd6bc5-6zdvl",
+            "source": {},
+            "type": "Normal"
+        },
+        {
+            "action": "ScaledObject is ready for scaling",
+            "apiVersion": "v1",
+            "eventTime": "2026-11-07T08:19:47.129833Z",
+            "firstTimestamp": null,
+            "involvedObject": {
+                "apiVersion": "keda.sh/v1alpha1",
+                "kind": "ScaledObject",
+                "name": "vllm-autoscaler",
+                "namespace": "centra10",
+                "resourceVersion": "11599",
+                "uid": "91674112-31f9-489d-a2e5-4c8628e18b16"
+            },
+            "kind": "Event",
+            "lastTimestamp": null,
+            "message": "ScaledObject is ready for scaling",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:19:47Z",
+                "name": "vllm-autoscaler.18e5b57fcfdcc1c3",
+                "namespace": "centra10",
+                "resourceVersion": "11600",
+                "uid": "28879703-46b5-4388-8578-e06b8507b86c"
+            },
+            "reason": "ScaledObjectReady",
+            "reportingComponent": "keda-operator",
+            "reportingInstance": "keda-operator-keda-operator-5bb8bd6bc5-6zdvl",
+            "source": {},
+            "type": "Normal"
+        },
+        {
+            "action": "KEDAScalersStopped",
+            "apiVersion": "v1",
+            "eventTime": "2026-11-07T08:32:52.188688Z",
+            "firstTimestamp": null,
+            "involvedObject": {
+                "apiVersion": "keda.sh/v1alpha1",
+                "kind": "ScaledObject",
+                "name": "vllm-autoscaler",
+                "namespace": "centra10",
+                "resourceVersion": "14673",
+                "uid": "91674112-31f9-489d-a2e5-4c8628e18b16"
+            },
+            "kind": "Event",
+            "lastTimestamp": null,
+            "message": "Stopped scalers watch",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:32:52Z",
+                "name": "vllm-autoscaler.18e5b63699044a8b",
+                "namespace": "centra10",
+                "resourceVersion": "14674",
+                "uid": "f03dc74c-53ff-4fb9-861f-ae449a7c1b2c"
+            },
+            "reason": "KEDAScalersStopped",
+            "reportingComponent": "keda-operator",
+            "reportingInstance": "keda-operator-keda-operator-5bb8bd6bc5-6zdvl",
+            "source": {},
+            "type": "Normal"
+        },
+        {
+            "action": "ScaledObject was deleted",
+            "apiVersion": "v1",
+            "eventTime": "2026-11-07T08:32:52.202856Z",
+            "firstTimestamp": null,
+            "involvedObject": {
+                "apiVersion": "keda.sh/v1alpha1",
+                "kind": "ScaledObject",
+                "name": "vllm-autoscaler",
+                "namespace": "centra10",
+                "resourceVersion": "14673",
+                "uid": "91674112-31f9-489d-a2e5-4c8628e18b16"
+            },
+            "kind": "Event",
+            "lastTimestamp": null,
+            "message": "ScaledObject was deleted",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:32:52Z",
+                "name": "vllm-autoscaler.18e5b63699dc675e",
+                "namespace": "centra10",
+                "resourceVersion": "14676",
+                "uid": "34a576c0-5fc9-488c-b3fd-a41f135fee56"
+            },
+            "reason": "ScaledObjectDeleted",
+            "reportingComponent": "keda-operator",
+            "reportingInstance": "keda-operator-keda-operator-5bb8bd6bc5-6zdvl",
+            "source": {},
+            "type": "Warning"
+        },
+        {
+            "action": "KEDAScalerInfo",
+            "apiVersion": "v1",
+            "eventTime": "2026-11-07T08:53:27.262317Z",
+            "firstTimestamp": null,
+            "involvedObject": {
+                "apiVersion": "keda.sh/v1alpha1",
+                "kind": "ScaledObject",
+                "name": "vllm-autoscaler",
+                "namespace": "centra10",
+                "uid": "8fb8b2f5-1b91-42c1-b2a6-0c183021ab6b"
+            },
+            "kind": "Event",
+            "lastTimestamp": null,
+            "message": "PollingInterval is configured but is not relevant for scaling. It only affects scaling when minReplicaCount = 0, idleReplicaCount is set, or useCachedMetrics is enabled, but it still controls how often KEDA refreshes the ScaledObject status conditions and events",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:53:27Z",
+                "name": "vllm-autoscaler.18e5b75629244131",
+                "namespace": "centra10",
+                "resourceVersion": "19318",
+                "uid": "1afe056a-9f9a-4852-86db-8f8b1d84f40a"
+            },
+            "reason": "KEDAScalerInfo",
+            "reportingComponent": "keda-admission",
+            "reportingInstance": "keda-admission-keda-admission-webhooks-78fb47bd97-rpxz4",
+            "source": {},
+            "type": "Normal"
+        },
+        {
+            "action": "KEDAScalerInfo",
+            "apiVersion": "v1",
+            "eventTime": "2026-11-07T08:53:27.273375Z",
+            "firstTimestamp": null,
+            "involvedObject": {
+                "apiVersion": "keda.sh/v1alpha1",
+                "kind": "ScaledObject",
+                "name": "vllm-autoscaler",
+                "namespace": "centra10",
+                "resourceVersion": "19317",
+                "uid": "8fb8b2f5-1b91-42c1-b2a6-0c183021ab6b"
+            },
+            "kind": "Event",
+            "lastTimestamp": null,
+            "message": "PollingInterval is configured but is not relevant for scaling. It only affects scaling when minReplicaCount = 0, idleReplicaCount is set, or useCachedMetrics is enabled, but it still controls how often KEDA refreshes the ScaledObject status conditions and events",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:53:27Z",
+                "name": "vllm-autoscaler.18e5b75629ccef81",
+                "namespace": "centra10",
+                "resourceVersion": "19320",
+                "uid": "90744cdb-0bea-43a9-8535-98196e134917"
+            },
+            "reason": "KEDAScalerInfo",
+            "reportingComponent": "keda-admission",
+            "reportingInstance": "keda-admission-keda-admission-webhooks-78fb47bd97-rpxz4",
+            "source": {},
+            "type": "Normal"
+        },
+        {
+            "action": "KEDAScalerInfo",
+            "apiVersion": "v1",
+            "eventTime": "2026-11-07T08:53:27.286217Z",
+            "firstTimestamp": null,
+            "involvedObject": {
+                "apiVersion": "keda.sh/v1alpha1",
+                "kind": "ScaledObject",
+                "name": "vllm-autoscaler",
+                "namespace": "centra10",
+                "resourceVersion": "19321",
+                "uid": "8fb8b2f5-1b91-42c1-b2a6-0c183021ab6b"
+            },
+            "kind": "Event",
+            "lastTimestamp": null,
+            "message": "PollingInterval is configured but is not relevant for scaling. It only affects scaling when minReplicaCount = 0, idleReplicaCount is set, or useCachedMetrics is enabled, but it still controls how often KEDA refreshes the ScaledObject status conditions and events",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:53:27Z",
+                "name": "vllm-autoscaler.18e5b7562a90e112",
+                "namespace": "centra10",
+                "resourceVersion": "19323",
+                "uid": "fb72b4a6-02fe-419e-833e-9d82cbaf4b90"
+            },
+            "reason": "KEDAScalerInfo",
+            "reportingComponent": "keda-admission",
+            "reportingInstance": "keda-admission-keda-admission-webhooks-78fb47bd97-rpxz4",
+            "source": {},
+            "type": "Normal"
+        },
+        {
+            "action": "KEDAScalersStarted",
+            "apiVersion": "v1",
+            "eventTime": "2026-11-07T08:53:27.307400Z",
+            "firstTimestamp": null,
+            "involvedObject": {
+                "apiVersion": "keda.sh/v1alpha1",
+                "kind": "ScaledObject",
+                "name": "vllm-autoscaler",
+                "namespace": "centra10",
+                "resourceVersion": "19325",
+                "uid": "8fb8b2f5-1b91-42c1-b2a6-0c183021ab6b"
+            },
+            "kind": "Event",
+            "lastTimestamp": null,
+            "message": "Scaler prometheus is built",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:53:27Z",
+                "name": "vllm-autoscaler.18e5b7562bd4226e",
+                "namespace": "centra10",
+                "resourceVersion": "19327",
+                "uid": "3fa03daf-ea6b-4129-8ea4-87f3d2565c8e"
+            },
+            "reason": "KEDAScalersStarted",
+            "reportingComponent": "keda-operator",
+            "reportingInstance": "keda-operator-keda-operator-5bb8bd6bc5-6zdvl",
+            "source": {},
+            "type": "Normal"
+        },
+        {
+            "action": "ScalersWatchStarted",
+            "apiVersion": "v1",
+            "eventTime": "2026-11-07T08:53:27.321660Z",
+            "firstTimestamp": null,
+            "involvedObject": {
+                "apiVersion": "keda.sh/v1alpha1",
+                "kind": "ScaledObject",
+                "name": "vllm-autoscaler",
+                "namespace": "centra10",
+                "resourceVersion": "19329",
+                "uid": "8fb8b2f5-1b91-42c1-b2a6-0c183021ab6b"
+            },
+            "kind": "Event",
+            "lastTimestamp": null,
+            "message": "Started scalers watch",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:53:27Z",
+                "name": "vllm-autoscaler.18e5b7562cadb3ca",
+                "namespace": "centra10",
+                "resourceVersion": "19330",
+                "uid": "e15e0bb1-0592-40e5-b0b6-fdcfdcc19393"
+            },
+            "reason": "KEDAScalersStarted",
+            "reportingComponent": "keda-operator",
+            "reportingInstance": "keda-operator-keda-operator-5bb8bd6bc5-6zdvl",
+            "source": {},
+            "type": "Normal"
+        },
+        {
+            "action": "ScaledObject is ready for scaling",
+            "apiVersion": "v1",
+            "eventTime": "2026-11-07T08:53:27.321693Z",
+            "firstTimestamp": null,
+            "involvedObject": {
+                "apiVersion": "keda.sh/v1alpha1",
+                "kind": "ScaledObject",
+                "name": "vllm-autoscaler",
+                "namespace": "centra10",
+                "resourceVersion": "19329",
+                "uid": "8fb8b2f5-1b91-42c1-b2a6-0c183021ab6b"
+            },
+            "kind": "Event",
+            "lastTimestamp": null,
+            "message": "ScaledObject is ready for scaling",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:53:27Z",
+                "name": "vllm-autoscaler.18e5b7562cae35cb",
+                "namespace": "centra10",
+                "resourceVersion": "19331",
+                "uid": "b4f93f69-a6fc-4074-8e2f-baea500106f6"
+            },
+            "reason": "ScaledObjectReady",
+            "reportingComponent": "keda-operator",
+            "reportingInstance": "keda-operator-keda-operator-5bb8bd6bc5-6zdvl",
+            "source": {},
+            "type": "Normal"
+        },
+        {
+            "action": "ScaledObject is ready for scaling",
+            "apiVersion": "v1",
+            "eventTime": "2026-11-07T08:53:27.381575Z",
+            "firstTimestamp": null,
+            "involvedObject": {
+                "apiVersion": "keda.sh/v1alpha1",
+                "kind": "ScaledObject",
+                "name": "vllm-autoscaler",
+                "namespace": "centra10",
+                "resourceVersion": "19333",
+                "uid": "8fb8b2f5-1b91-42c1-b2a6-0c183021ab6b"
+            },
+            "kind": "Event",
+            "lastTimestamp": null,
+            "message": "ScaledObject is ready for scaling",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:53:27Z",
+                "name": "vllm-autoscaler.18e5b756303ff157",
+                "namespace": "centra10",
+                "resourceVersion": "19334",
+                "uid": "84154d69-c884-45a7-8b09-ace5c4c45804"
+            },
+            "reason": "ScaledObjectReady",
+            "reportingComponent": "keda-operator",
+            "reportingInstance": "keda-operator-keda-operator-5bb8bd6bc5-6zdvl",
+            "source": {},
+            "type": "Normal"
+        },
+        {
+            "action": "KEDAScalersStopped",
+            "apiVersion": "v1",
+            "eventTime": "2026-11-07T09:04:43.608125Z",
+            "firstTimestamp": null,
+            "involvedObject": {
+                "apiVersion": "keda.sh/v1alpha1",
+                "kind": "ScaledObject",
+                "name": "vllm-autoscaler",
+                "namespace": "centra10",
+                "resourceVersion": "22105",
+                "uid": "8fb8b2f5-1b91-42c1-b2a6-0c183021ab6b"
+            },
+            "kind": "Event",
+            "lastTimestamp": null,
+            "message": "Stopped scalers watch",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T09:04:43Z",
+                "name": "vllm-autoscaler.18e5b7f3a27e3dc7",
+                "namespace": "centra10",
+                "resourceVersion": "22106",
+                "uid": "0695474d-69e8-4b42-bee7-3c1a8bdc00f1"
+            },
+            "reason": "KEDAScalersStopped",
+            "reportingComponent": "keda-operator",
+            "reportingInstance": "keda-operator-keda-operator-5bb8bd6bc5-6zdvl",
+            "source": {},
+            "type": "Normal"
+        },
+        {
+            "action": "ScaledObject was deleted",
+            "apiVersion": "v1",
+            "eventTime": "2026-11-07T09:04:43.626595Z",
+            "firstTimestamp": null,
+            "involvedObject": {
+                "apiVersion": "keda.sh/v1alpha1",
+                "kind": "ScaledObject",
+                "name": "vllm-autoscaler",
+                "namespace": "centra10",
+                "resourceVersion": "22105",
+                "uid": "8fb8b2f5-1b91-42c1-b2a6-0c183021ab6b"
+            },
+            "kind": "Event",
+            "lastTimestamp": null,
+            "message": "ScaledObject was deleted",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T09:04:43Z",
+                "name": "vllm-autoscaler.18e5b7f3a398105c",
+                "namespace": "centra10",
+                "resourceVersion": "22108",
+                "uid": "e005bc7a-b8d4-45ba-b556-b527609023f7"
+            },
+            "reason": "ScaledObjectDeleted",
+            "reportingComponent": "keda-operator",
+            "reportingInstance": "keda-operator-keda-operator-5bb8bd6bc5-6zdvl",
+            "source": {},
+            "type": "Warning"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:09:22Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "kind": "Pod",
+                "name": "vllm-proxy-fbbbdfccc-9k289",
+                "namespace": "centra10",
+                "resourceVersion": "9189",
+                "uid": "d327695d-edab-42dd-99db-3d9a798e6fdb"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:09:22Z",
+            "message": "Successfully assigned centra10/vllm-proxy-fbbbdfccc-9k289 to ip-192-168-67-205.ec2.internal",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:09:22Z",
+                "name": "vllm-proxy-fbbbdfccc-9k289.18e5b4ee4ac14f06",
+                "namespace": "centra10",
+                "resourceVersion": "9195",
+                "uid": "8f6feaf1-c220-4598-a80c-f302d094a578"
+            },
+            "reason": "Scheduled",
+            "reportingComponent": "default-scheduler",
+            "reportingInstance": "",
+            "source": {
+                "component": "default-scheduler"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:09:22Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{proxy}",
+                "kind": "Pod",
+                "name": "vllm-proxy-fbbbdfccc-9k289",
+                "namespace": "centra10",
+                "resourceVersion": "9192",
+                "uid": "d327695d-edab-42dd-99db-3d9a798e6fdb"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:09:22Z",
+            "message": "Pulling image \"nginx:1.28-alpine\"",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:09:22Z",
+                "name": "vllm-proxy-fbbbdfccc-9k289.18e5b4ee6afd6d4e",
+                "namespace": "centra10",
+                "resourceVersion": "9208",
+                "uid": "94a0f11c-58f2-4683-83c4-d610bb658b16"
+            },
+            "reason": "Pulling",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-67-205.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-67-205.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:09:23Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{proxy}",
+                "kind": "Pod",
+                "name": "vllm-proxy-fbbbdfccc-9k289",
+                "namespace": "centra10",
+                "resourceVersion": "9192",
+                "uid": "d327695d-edab-42dd-99db-3d9a798e6fdb"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:09:23Z",
+            "message": "Successfully pulled image \"nginx:1.28-alpine\" in 1.076s (1.076s including waiting). Image size: 25976042 bytes.",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:09:23Z",
+                "name": "vllm-proxy-fbbbdfccc-9k289.18e5b4eeab25ead4",
+                "namespace": "centra10",
+                "resourceVersion": "9215",
+                "uid": "da728f34-74db-423e-bf78-7b82eed73d1e"
+            },
+            "reason": "Pulled",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-67-205.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-67-205.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:09:23Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{proxy}",
+                "kind": "Pod",
+                "name": "vllm-proxy-fbbbdfccc-9k289",
+                "namespace": "centra10",
+                "resourceVersion": "9192",
+                "uid": "d327695d-edab-42dd-99db-3d9a798e6fdb"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:09:23Z",
+            "message": "Container created",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:09:23Z",
+                "name": "vllm-proxy-fbbbdfccc-9k289.18e5b4eeabed52b6",
+                "namespace": "centra10",
+                "resourceVersion": "9216",
+                "uid": "c3076cd6-b077-4576-a0fd-2cbddb6a0525"
+            },
+            "reason": "Created",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-67-205.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-67-205.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:09:23Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{proxy}",
+                "kind": "Pod",
+                "name": "vllm-proxy-fbbbdfccc-9k289",
+                "namespace": "centra10",
+                "resourceVersion": "9192",
+                "uid": "d327695d-edab-42dd-99db-3d9a798e6fdb"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:09:23Z",
+            "message": "Container started",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:09:23Z",
+                "name": "vllm-proxy-fbbbdfccc-9k289.18e5b4eeb45118ec",
+                "namespace": "centra10",
+                "resourceVersion": "9218",
+                "uid": "092046ce-f9d9-4941-b2e0-a00ea8720638"
+            },
+            "reason": "Started",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-67-205.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-67-205.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:09:22Z",
+            "involvedObject": {
+                "apiVersion": "apps/v1",
+                "kind": "ReplicaSet",
+                "name": "vllm-proxy-fbbbdfccc",
+                "namespace": "centra10",
+                "resourceVersion": "9181",
+                "uid": "6ce1a1f1-9e6c-47c4-ada7-c25704be7f1d"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:09:22Z",
+            "message": "Created pod: vllm-proxy-fbbbdfccc-9k289",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:09:22Z",
+                "name": "vllm-proxy-fbbbdfccc.18e5b4ee4a798a3a",
+                "namespace": "centra10",
+                "resourceVersion": "9190",
+                "uid": "30e32a60-9697-4344-9e34-bd0a37fa004f"
+            },
+            "reason": "SuccessfulCreate",
+            "reportingComponent": "replicaset-controller",
+            "reportingInstance": "",
+            "source": {
+                "component": "replicaset-controller"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:09:22Z",
+            "involvedObject": {
+                "apiVersion": "apps/v1",
+                "kind": "Deployment",
+                "name": "vllm-proxy",
+                "namespace": "centra10",
+                "resourceVersion": "9180",
+                "uid": "b3887041-91de-451c-8c13-a12b00224fab"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:09:22Z",
+            "message": "Scaled up replica set vllm-proxy-fbbbdfccc from 0 to 1",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:09:22Z",
+                "name": "vllm-proxy.18e5b4ee49427446",
+                "namespace": "centra10",
+                "resourceVersion": "9183",
+                "uid": "b5d92619-edb6-4d0c-ad23-e09781e40617"
+            },
+            "reason": "ScalingReplicaSet",
+            "reportingComponent": "deployment-controller",
+            "reportingInstance": "",
+            "source": {
+                "component": "deployment-controller"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 2,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:15:48Z",
+            "involvedObject": {
+                "apiVersion": "apps/v1",
+                "kind": "Deployment",
+                "name": "vllm",
+                "namespace": "centra10",
+                "resourceVersion": "10645",
+                "uid": "faf22671-f92b-4c52-be61-06b44d043dfd"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T08:50:09Z",
+            "message": "Scaled up replica set vllm-566c4bcdd8 from 0 to 1",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:15:48Z",
+                "name": "vllm.18e5b548292c61f0",
+                "namespace": "centra10",
+                "resourceVersion": "18532",
+                "uid": "d4d02bba-708b-4627-b49c-fe4eac0de71b"
+            },
+            "reason": "ScalingReplicaSet",
+            "reportingComponent": "deployment-controller",
+            "reportingInstance": "",
+            "source": {
+                "component": "deployment-controller"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 3,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:20:32Z",
+            "involvedObject": {
+                "apiVersion": "apps/v1",
+                "kind": "Deployment",
+                "name": "vllm",
+                "namespace": "centra10",
+                "resourceVersion": "11771",
+                "uid": "faf22671-f92b-4c52-be61-06b44d043dfd"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T09:02:42Z",
+            "message": "Scaled up replica set vllm-566c4bcdd8 from 1 to 2",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:20:32Z",
+                "name": "vllm.18e5b58a4acdacb1",
+                "namespace": "centra10",
+                "resourceVersion": "21566",
+                "uid": "466de259-6722-44a9-89a5-92f1ff1a0f12"
+            },
+            "reason": "ScalingReplicaSet",
+            "reportingComponent": "deployment-controller",
+            "reportingInstance": "",
+            "source": {
+                "component": "deployment-controller"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 3,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:20:47Z",
+            "involvedObject": {
+                "apiVersion": "apps/v1",
+                "kind": "Deployment",
+                "name": "vllm",
+                "namespace": "centra10",
+                "resourceVersion": "11842",
+                "uid": "faf22671-f92b-4c52-be61-06b44d043dfd"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T09:02:57Z",
+            "message": "Scaled up replica set vllm-566c4bcdd8 from 2 to 3",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:20:47Z",
+                "name": "vllm.18e5b58dca33c03a",
+                "namespace": "centra10",
+                "resourceVersion": "21648",
+                "uid": "1ed920ea-8dde-45d8-bf02-8ad4d0f59d82"
+            },
+            "reason": "ScalingReplicaSet",
+            "reportingComponent": "deployment-controller",
+            "reportingInstance": "",
+            "source": {
+                "component": "deployment-controller"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 2,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T08:32:52Z",
+            "involvedObject": {
+                "apiVersion": "apps/v1",
+                "kind": "Deployment",
+                "name": "vllm",
+                "namespace": "centra10",
+                "resourceVersion": "14678",
+                "uid": "faf22671-f92b-4c52-be61-06b44d043dfd"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T09:04:43Z",
+            "message": "Scaled down replica set vllm-566c4bcdd8 from 3 to 0",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T08:32:52Z",
+                "name": "vllm.18e5b636a5a7f921",
+                "namespace": "centra10",
+                "resourceVersion": "22117",
+                "uid": "587e65d7-8bd5-4a40-a94d-6a1bcd617da0"
+            },
+            "reason": "ScalingReplicaSet",
+            "reportingComponent": "deployment-controller",
+            "reportingInstance": "",
+            "source": {
+                "component": "deployment-controller"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T09:02:12Z",
+            "involvedObject": {
+                "apiVersion": "apps/v1",
+                "kind": "Deployment",
+                "name": "vllm",
+                "namespace": "centra10",
+                "resourceVersion": "21416",
+                "uid": "faf22671-f92b-4c52-be61-06b44d043dfd"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T09:02:12Z",
+            "message": "Scaled down replica set vllm-566c4bcdd8 from 3 to 1",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T09:02:12Z",
+                "name": "vllm.18e5b7d08cb85852",
+                "namespace": "centra10",
+                "resourceVersion": "21420",
+                "uid": "4bf87828-9947-4806-aa58-9ee08f5b23b7"
+            },
+            "reason": "ScalingReplicaSet",
+            "reportingComponent": "deployment-controller",
+            "reportingInstance": "",
+            "source": {
+                "component": "deployment-controller"
+            },
+            "type": "Normal"
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}

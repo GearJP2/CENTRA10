@@ -1,0 +1,3 @@
+mode,workload,repeat,pod,start,ready,cold_start_seconds
+C,long,1,vllm-566c4bcdd8-8hdjd,1794041652.0,1794041812.0,160.0
+C,long,1,vllm-566c4bcdd8-ss87h,1794041667.0,1794041832.0,165.0
