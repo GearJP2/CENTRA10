@@ -59,6 +59,11 @@ SLO with successful-request p99. Capture load-balancer logs for measured D runs.
 
 ## Prepare all, launch one
 
+For unattended sequential execution after preparing the plan, use the
+[in-cluster batch controller](measured-batch.md). Do not combine manual launches
+with a running batch controller. The individual-Job instructions below remain
+useful for inspected manual runs.
+
 ```bash
 .venv/bin/python -m experiments.measured \
   --config config.resume-20261107.local.json \
