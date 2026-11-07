@@ -153,5 +153,7 @@ Machine-readable record: [frozen-calibration-r2.json](frozen-calibration-r2.json
 Its evidence commit is `dd32048`. Keep the cold-image C1 run, original-lifecycle
 runs, and setup failures outside this selection, with their reasons recorded.
 Do not change these thresholds in response to individual measured-run results.
-Workload-rate selection and SkyServe D validation remain pending; this freeze
+Workload-rate selection and SkyServe D threshold screening remain pending; D's
+collector has since passed live short validation. Follow the prospective
+[two-candidate D calibration](sky-calibration-protocol.md). This B/C freeze
 neither validates the full matrix nor specifies a calibrated D threshold.

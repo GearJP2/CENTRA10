@@ -14,7 +14,7 @@ import yaml
 from experiments import analyze, run, sky_control
 from experiments.config import load, queries
 from experiments.render import manifests
-from experiments.sky_runner import prepare
+from experiments.sky_runner import prepare, prepare_calibration
 
 
 class SkyRunnerTests(unittest.TestCase):
@@ -59,6 +59,42 @@ class SkyRunnerTests(unittest.TestCase):
         self.assertIn("/opt/sky/bin/sky", argv)
         self.assertEqual(argv[-1], "literal;name")
         self.assertNotIn("/bin/bash", argv)
+
+    def test_calibration_is_two_candidates_at_the_bc_long_operating_point(self):
+        with tempfile.TemporaryDirectory() as folder, patch("builtins.print"):
+            output = Path(folder) / "calibration"
+            prepare_calibration(self.config(), output)
+            plan = json.loads((output / "plan.json").read_text())
+            self.assertEqual([p["target_qps_per_replica"] for p in plan], [0.2, 0.1])
+            self.assertEqual(len({p["job"] for p in plan}), 2)
+            self.assertEqual(len({p["results"] for p in plan}), 2)
+            for trial in plan:
+                docs = list(yaml.safe_load_all((output / trial["bundle"]).read_text()))
+                settings = next(d["data"] for d in docs if d["kind"] == "ConfigMap" and "config.json" in d["data"])
+                c = json.loads(settings["config.json"])
+                self.assertEqual((c["request_rate"], c["duration_seconds"]), (0.5, 600))
+                self.assertEqual(c["shutdown_timeout_seconds"], 120)
+                self.assertEqual(c["qps_threshold"], trial["target_qps_per_replica"])
+                job = next(d for d in docs if d["kind"] == "Job")
+                self.assertIn("--modes D --workloads long --repeats 1", job["spec"]["template"]["spec"]["containers"][0]["args"][0])
+                self.assertEqual(trial["requests"], 300)
+                self.assertEqual(trial["seed"], 100)
+            retry = Path(folder) / "retry"
+            prepare_calibration(self.config(), retry, attempt=2)
+            retries = json.loads((retry / "plan.json").read_text())
+            self.assertTrue(set(p["job"] for p in plan).isdisjoint(p["job"] for p in retries))
+            self.assertTrue(set(p["results"] for p in plan).isdisjoint(p["results"] for p in retries))
+            with self.assertRaises(FileExistsError):
+                prepare_calibration(self.config(), output)
+
+    def test_calibration_rejects_extra_candidates_and_invalid_attempts(self):
+        with tempfile.TemporaryDirectory() as folder:
+            output = Path(folder) / "invalid"
+            with self.assertRaisesRegex(ValueError, "only screens"):
+                prepare(self.config(), output, calibration_threshold=0.05)
+            with self.assertRaisesRegex(ValueError, "attempt"):
+                prepare_calibration(self.config(), output, attempt=True)
+            self.assertFalse(output.exists())
 
     def test_gpu_count_excludes_unscheduled_and_finished_pods(self):
         def pod(phase, scheduled, gpu):

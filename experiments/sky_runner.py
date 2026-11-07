@@ -1,4 +1,4 @@
-"""Prepare one D-short collector validation Job; no cluster changes."""
+"""Prepare D collector validation or bounded two-candidate calibration; no cluster changes."""
 import argparse
 import json
 import re
@@ -10,19 +10,29 @@ import yaml
 from experiments.config import load
 
 
-def prepare(base, output, attempt=1):
+def prepare(base, output, attempt=1, calibration_threshold=None):
     if type(attempt) is not int or not 1 <= attempt <= 999:
         raise ValueError("attempt must be an integer between 1 and 999")
     if base["namespace"] != "centra10" or base["sky_namespace"] != "default":
         raise ValueError("D validation supports centra10 with SkyPilot replicas in default")
     if not re.fullmatch(r"https?://[^\s]+", base["prometheus_internal"]):
         raise ValueError("Configure prometheus_internal before preparing the Job")
+    if calibration_threshold is not None and calibration_threshold not in (0.2, 0.1):
+        raise ValueError("D calibration only screens thresholds 0.2 and 0.1")
     name, service = f"sky-collector-validation-{attempt}", f"centra10-d{attempt}"
+    tag, job_name = str(attempt), f"centra10-sky-collector-{attempt}"
+    workload, rate, duration, threshold = "short", 1, 300, 0.2
+    if calibration_threshold is not None:
+        target = "02" if calibration_threshold == 0.2 else "01"
+        name = f"calibration-r2-D-qps{target}-long-1-a{attempt}"
+        service = f"centra10-d{target}a{attempt}"
+        tag, job_name = f"cal-d{target}-a{attempt}", f"centra10-sky-cal-d{target}-a{attempt}"
+        workload, rate, duration, threshold = "long", 0.5, 600, calibration_threshold
     c = {**base, "kube_context": "", "sky_operator_pod": "sky-operator",
          "sky_service": service, "sky_pod_selector": f"centra10-sky-service={service}",
          "benchmark_pod": "benchmark-client", "fixed_replicas": 1,
-         "prometheus_url": base["prometheus_internal"], "request_rate": 1,
-         "duration_seconds": 300, "qps_threshold": 0.2,
+         "prometheus_url": base["prometheus_internal"], "request_rate": rate,
+         "duration_seconds": duration, "qps_threshold": threshold,
          "shutdown_timeout_seconds": 120, "sky_measurement_revision": 1,
          "lifecycle_revision": "bounded-drain-r2", "diagnostic_only": True,
          "ready_timeout_seconds": max(base["ready_timeout_seconds"], 1800)}
@@ -30,13 +40,13 @@ def prepare(base, output, attempt=1):
     c.pop("tokenizer_path", None)
     template = list(yaml.safe_load_all(Path("aws/runner.example.yaml").read_text()))
     job = deepcopy(next(d for d in template if d["kind"] == "Job"))
-    job["metadata"]["name"] = f"centra10-sky-collector-{attempt}"
+    job["metadata"]["name"] = job_name
     job["spec"]["activeDeadlineSeconds"] = 7200
     spec = job["spec"]["template"]["spec"]
     spec["containers"][0]["args"][0] = (
         spec["containers"][0]["args"][0].replace("full-validation-C-3", name)
-        .replace("--modes C --workloads long", "--modes D --workloads short"))
-    names = {"code": f"sky-collector-code-{attempt}", "settings": f"sky-collector-settings-{attempt}"}
+        .replace("--modes C --workloads long", f"--modes D --workloads {workload}"))
+    names = {"code": f"sky-collector-code-{tag}", "settings": f"sky-collector-settings-{tag}"}
     for volume in spec["volumes"]:
         if volume["name"] in names:
             volume["configMap"]["name"] = names[volume["name"]]
@@ -52,7 +62,7 @@ def prepare(base, output, attempt=1):
                "subjects": [{"kind": "ServiceAccount", "name": "experiment-runner", "namespace": "centra10"}],
                "roleRef": {"apiGroup": "rbac.authorization.k8s.io", "kind": "Role", "name": reader["metadata"]["name"]}}
     monitor = {"apiVersion": "monitoring.coreos.com/v1", "kind": "PodMonitor",
-               "metadata": {"name": f"centra10-sky-{attempt}", "namespace": "monitoring"},
+               "metadata": {"name": f"centra10-sky-{tag}", "namespace": "monitoring"},
                "spec": {"namespaceSelector": {"matchNames": ["default"]},
                         "selector": {"matchLabels": {"centra10-sky-service": service}},
                         "podMetricsEndpoints": [{"port": "http", "path": "/metrics", "interval": "5s",
@@ -61,9 +71,24 @@ def prepare(base, output, attempt=1):
     role = next(d for d in template if d["kind"] == "Role")
     (output / "bundle.yaml").write_text(yaml.safe_dump_all([role, reader, binding, monitor, *maps, job], sort_keys=False))
     plan = {"job": job["metadata"]["name"], "service": service, "results": name,
-            "requests": 300, "workload": "short", "diagnostic_only": True}
+            "requests": round(rate * duration), "workload": workload,
+            "request_rate": rate, "duration_seconds": duration,
+            "target_qps_per_replica": threshold, "seed": 100, "diagnostic_only": True}
     (output / "plan.json").write_text(json.dumps(plan, indent=2) + "\n")
     print(json.dumps(plan, indent=2))
+    return plan
+
+
+def prepare_calibration(base, output, attempt=1):
+    # Reject invalid attempt IDs before creating the parent directory.
+    if type(attempt) is not int or not 1 <= attempt <= 999:
+        raise ValueError("attempt must be an integer between 1 and 999")
+    output.mkdir(parents=True, exist_ok=False)
+    plan = []
+    for target, threshold in (("d02", 0.2), ("d01", 0.1)):
+        trial = prepare(base, output / target, attempt, calibration_threshold=threshold)
+        plan.append({"order": len(plan) + 1, "bundle": f"{target}/bundle.yaml", **trial})
+    (output / "plan.json").write_text(json.dumps(plan, indent=2) + "\n")
 
 
 def main():
@@ -71,8 +96,12 @@ def main():
     parser.add_argument("--config", required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--attempt", type=int, default=1)
+    parser.add_argument("--calibrate", action="store_true", help="Prepare D0.2 then D0.1 long calibration, applied one at a time")
     args = parser.parse_args()
-    prepare(load(args.config), args.output, args.attempt)
+    if args.calibrate:
+        prepare_calibration(load(args.config), args.output, args.attempt)
+    else:
+        prepare(load(args.config), args.output, args.attempt)
 
 
 if __name__ == "__main__":

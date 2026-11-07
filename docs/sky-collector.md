@@ -5,9 +5,13 @@ from one to three READY replicas and returned to one after idle. The saved
 files are under `results/sky-autoscale-validation`. They establish functionality,
 not a complete measurement timeline or a B/C/D comparison.
 
-The next step is one **diagnostic D-short run**, not the 48-run matrix. Prepare
-locally, inspect `plan.json`, and apply its bundle only when no other experiment
-or benchmark is active:
+The collector path passed live validation in `sky-collector-validation-2`:
+300/300 completed, no cleanup error, 25 samples, maximum gap 14.13 s and peak
+READY/allocated replicas three. The next step is the bounded
+[D threshold calibration](sky-calibration-protocol.md), not the 48-run matrix.
+For another diagnostic D-short run, prepare locally, inspect `plan.json`, and
+apply its bundle only when no other experiment or benchmark is active. Use a
+fresh attempt ID if the example directory or Job already exists:
 
 ```bash
 python3 -m experiments.sky_runner \
