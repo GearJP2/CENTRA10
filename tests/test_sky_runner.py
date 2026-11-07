@@ -1,6 +1,11 @@
 import json
+import io
+import subprocess
+import sys
 import tempfile
+import types
 import unittest
+from contextlib import redirect_stdout
 from pathlib import Path
 from unittest.mock import Mock, patch
 
@@ -103,3 +108,31 @@ class SkyRunnerTests(unittest.TestCase):
             meta = json.loads((Path(folder) / "short_D_run1/run.json").read_text())
             self.assertEqual(meta["status"], "failed")
             self.assertEqual(meta["error"], "partial launch")
+
+    def test_status_script_handles_only_the_expected_no_services_exception(self):
+        class ClusterNotUpError(Exception):
+            pass
+
+        def execute(args, **kwargs):
+            script = args[args.index("/opt/sky/bin/python") + 2]
+            output = io.StringIO()
+            with redirect_stdout(output), patch.object(sys, "argv", ["status", "centra10-d1"]):
+                exec(script, {})
+            return Mock(stdout=output.getvalue())
+
+        sky = types.ModuleType("sky")
+        sky.get = lambda value: value
+        sky.exceptions = types.SimpleNamespace(ClusterNotUpError=ClusterNotUpError)
+        sky.serve = types.SimpleNamespace(status=Mock())
+        with patch.dict(sys.modules, {"sky": sky}):
+            sky.serve.status.side_effect = ClusterNotUpError("No live services.")
+            self.assertIsNone(sky_control.status(self.config(), execute))
+            for exc in (ClusterNotUpError("Controller failed"), PermissionError("Forbidden")):
+                sky.serve.status.side_effect = exc
+                with self.assertRaises(type(exc)):
+                    sky_control.status(self.config(), execute)
+
+    def test_status_command_failure_preserves_original_stderr(self):
+        command = Mock(side_effect=subprocess.CalledProcessError(1, ["kubectl"], stderr="Forbidden: missing exec permission"))
+        with self.assertRaisesRegex(RuntimeError, "Forbidden: missing exec permission"):
+            sky_control.status(self.config(), command)

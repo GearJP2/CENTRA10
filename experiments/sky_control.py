@@ -1,5 +1,6 @@
 """SkyPilot commands through the existing operator, with machine-readable status."""
 import json
+import subprocess
 import sys
 
 
@@ -15,7 +16,13 @@ def argv(c, args, python=False):
 
 def status(c, command):
     script = """import json, sys, sky
-records = sky.get(sky.serve.status(sys.argv[1]))
+from sky import serve
+try:
+    records = sky.get(serve.status(sys.argv[1]))
+except sky.exceptions.ClusterNotUpError as exc:
+    if str(exc).strip() != 'No live services.':
+        raise
+    records = []
 def name(value):
     return value.name if hasattr(value, 'name') else str(value)
 print(json.dumps([{
@@ -26,8 +33,11 @@ print(json.dumps([{
         for r in s['replica_info']]
 } for s in records]))
 """
-    records = json.loads(command(argv(c, ["-c", script, c["sky_service"]], python=True),
-                                 capture_output=True).stdout)
+    try:
+        result = command(argv(c, ["-c", script, c["sky_service"]], python=True), capture_output=True)
+    except subprocess.CalledProcessError as exc:
+        raise RuntimeError(f"SkyServe status failed:\n{exc.stderr or exc.stdout or str(exc)}") from exc
+    records = json.loads(result.stdout)
     if len(records) > 1 or any(s["name"] != c["sky_service"] for s in records):
         raise ValueError("SkyPilot returned unexpected services")
     return records[0] if records else None

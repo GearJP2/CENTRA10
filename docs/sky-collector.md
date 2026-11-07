@@ -56,6 +56,12 @@ stop the Job. Loss of the operator pod, CPU node, benchmark pod, EFS or cluster
 can still interrupt it. Operator SkyPilot state is currently ephemeral; do not
 delete/recreate that pod while services or controller resources remain.
 
+Attempt 1 stopped before creating its service because the SkyPilot SDK reports
+`ClusterNotUpError: No live services.` instead of an empty list when no controller
+is live. The collector now treats only that exact SDK condition as an empty
+service inventory; other errors remain failures with their stderr retained.
+Keep attempt 1 as failed evidence and prepare attempt 2 in a new directory.
+
 ## Measurements
 
 Replica pods carry `centra10-sky-service=<service>`. The PodMonitor scrapes
