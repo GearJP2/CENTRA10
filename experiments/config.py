@@ -22,6 +22,16 @@ def load(path):
 
 def queries(config, mode):
     if mode == "D":
+        if config.get("sky_operator_pod"):
+            selector = f'namespace="{config["sky_namespace"]}",centra10_service="{config["sky_service"]}"'
+            return {
+                "replicas": None,  # Scheduled GPU requests from the Kubernetes API.
+                "ready": None,  # SkyServe READY, not pod readiness (which only covers SSH).
+                "queue": f'sum(vllm:num_requests_waiting{{{selector}}})',
+                "running": f'sum(vllm:num_requests_running{{{selector}}})',
+                "kv_cache": f'max(vllm:kv_cache_usage_perc{{{selector}}})',
+                "qps": f'sum(rate(vllm:request_success_total{{{selector}}}[1m]))',
+            }
         result = dict(config["sky_queries"])
         if not result.get("running"):
             raise ValueError("Configure sky_queries.running for the revised brief")

@@ -6,6 +6,7 @@ import math
 import statistics
 from datetime import datetime
 from pathlib import Path
+from urllib.parse import urlparse
 
 
 def percentile(values, p):
@@ -74,7 +75,7 @@ def gpu_hours(samples, start, end, interval):
     return area / 3600
 
 
-def cold_starts(snapshots, start):
+def cold_starts(snapshots, start, scaling=None):
     found = {}
     for snapshot in snapshots:
         for pod in snapshot["pods"]["items"]:
@@ -84,6 +85,19 @@ def cold_starts(snapshots, start):
                 continue
             began = datetime.fromisoformat(began.replace("Z", "+00:00")).timestamp()
             if began < start:
+                continue
+            if scaling is not None:
+                # Sky pod Ready only covers SSH. Use first observed router READY instead.
+                observations = [s["timestamp"] for s in scaling
+                    if s.get("sky_status") and any(
+                        r["status"] == "READY" and r.get("endpoint") and
+                        urlparse(r["endpoint"]).hostname == status.get("podIP")
+                        for r in s["sky_status"]["replica_info"])]
+                if observations:
+                    ready = min(observations)
+                    found.setdefault(pod["metadata"]["uid"], {
+                        "pod": pod["metadata"]["name"], "start": began, "ready": ready,
+                        "cold_start_seconds": ready - began})
                 continue
             for condition in status.get("conditions", []):
                 if condition["type"] == "Ready" and condition["status"] == "True":
@@ -139,7 +153,9 @@ def summarize(folder):
         "burst_start": high if meta["workload"] == "bursty" else None,
     }
     snapshots = json.loads((folder / "pods.json").read_text())
-    return row, samples, cold_starts(snapshots, meta["start"])
+    scaling = (json.loads((folder / "scaling.json").read_text())
+               if meta["mode"] == "D" and config.get("sky_operator_pod") else None)
+    return row, samples, cold_starts(snapshots, meta["start"], scaling)
 
 
 def write_csv(path, rows):

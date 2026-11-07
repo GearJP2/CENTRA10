@@ -13,6 +13,7 @@ import yaml
 
 from experiments.config import load, queries
 from experiments.render import manifests
+from experiments import sky_control
 
 
 def save(path, value):
@@ -124,7 +125,7 @@ def release_k8s(c):
 
 def reset(c, mode, folder):
     if mode == "D":
-        command(["sky", "serve", "up", "-y", "-n", c["sky_service"], str(folder / "sky-fixed-one.yaml")])
+        command(sky_control.argv(c, ["serve", "up", "-y", "-n", c["sky_service"], str(folder / "sky-fixed-one.yaml")]))
     else:
         remove_scaler(c)
         replicas = c.get("fixed_replicas", 1) if mode == "A" else 1
@@ -135,7 +136,19 @@ def activate(c, mode, folder):
     if mode in ("B", "C"):
         kubectl(c, "apply", "-f", str(folder / f"{mode}.yaml"))
     elif mode == "D":
-        command(["sky", "serve", "update", c["sky_service"], str(folder / "sky-autoscale.yaml")])
+        previous = sky_control.status(c, command) if c.get("sky_operator_pod") else None
+        command(sky_control.argv(c, ["serve", "update", "-y", c["sky_service"], str(folder / "sky-autoscale.yaml")]))
+        if c.get("sky_operator_pod"):
+            target = max(previous["active_versions"]) + 1
+            deadline = time.monotonic() + c["ready_timeout_seconds"]
+            while time.monotonic() < deadline:
+                state = sky_control.status(c, command)
+                replicas = state["replica_info"] if state else []
+                if (state and state["active_versions"] == [target] and len(replicas) == 1
+                        and replicas[0]["version"] == target and replicas[0]["status"] == "READY"):
+                    return
+                time.sleep(c["sample_seconds"])
+            raise TimeoutError("SkyServe rolling update did not settle to one READY replica")
 
 
 def warm(c, mode, url):
@@ -145,8 +158,12 @@ def warm(c, mode, url):
     stable_since = None
     while time.monotonic() < deadline:
         try:
-            ready = metric(c, qs["ready"])
-            allocated = metric(c, qs["replicas"])
+            if mode == "D" and c.get("sky_operator_pod"):
+                ready = sky_control.ready(sky_control.status(c, command))
+                allocated = sky_control.allocated(pod_snapshot(c, mode))
+            else:
+                ready = metric(c, qs["ready"])
+                allocated = metric(c, qs["replicas"])
             queue = metric(c, qs["queue"])
         except (ValueError, URLError, TimeoutError):
             stable_since = None
@@ -167,8 +184,12 @@ def warm(c, mode, url):
     raise TimeoutError(f"Did not reach {baseline} warm replicas with an empty queue")
 
 
-def sample(c, mode):
-    values = {key: metric(c, query, optional=key == "kv_cache") for key, query in queries(c, mode).items()}
+def sample(c, mode, pods=None, sky_state=None):
+    values = {key: metric(c, query, optional=key == "kv_cache") for key, query in queries(c, mode).items()
+              if not (mode == "D" and c.get("sky_operator_pod") and key in ("ready", "replicas"))}
+    if mode == "D" and c.get("sky_operator_pod"):
+        values.update(replicas=sky_control.allocated(pods if pods is not None else pod_snapshot(c, mode)),
+                      ready=sky_control.ready(sky_state if sky_state is not None else sky_control.status(c, command)))
     values["timestamp"] = time.time()
     return values
 
@@ -191,7 +212,8 @@ def scaling_snapshot(c, mode, pods):
          ("HorizontalPodAutoscaler", "ScaledObject", "Deployment", "ReplicaSet"))]
     state = {"timestamp": time.time(), "events": events}
     if mode == "D":
-        state["sky_status"] = command(["sky", "serve", "status", c["sky_service"]], capture_output=True).stdout
+        state["sky_status"] = (sky_control.status(c, command) if c.get("sky_operator_pod") else
+            command(sky_control.argv(c, ["serve", "status", c["sky_service"]]), capture_output=True).stdout)
     else:
         state["controllers"] = json.loads(kubectl(c, "get", "hpa,scaledobject", "-o", "json",
                                                   capture_output=True).stdout)
@@ -215,11 +237,14 @@ def run_one(c, mode, workload, repeat, root):
     remote_folder = None
     try:
         if mode == "D":
+            if c.get("sky_operator_pod") and sky_control.status(c, command) is not None:
+                raise RuntimeError("SkyServe service already exists; inspect it before starting a run")
             release_k8s(c)
+            sky_created = bool(c.get("sky_operator_pod"))  # Clean up partial launches, after the ownership check.
         reset(c, mode, manifest_dir)
         if mode == "D":
             sky_created = True
-            url = command(["sky", "serve", "status", c["sky_service"], "--endpoint"], capture_output=True).stdout.strip()
+            url = command(sky_control.argv(c, ["serve", "status", c["sky_service"], "--endpoint"]), capture_output=True).stdout.strip()
             if not url.startswith(("http://", "https://")):
                 url = "http://" + url
         meta["endpoint"] = url
@@ -245,7 +270,7 @@ def run_one(c, mode, workload, repeat, root):
             processes = []
             for stream_index, (kind, rate, duration) in enumerate(streams):
                 filename = f"bench_{index}_{kind}.json"
-                argv = bench(c, c.get("benchmark_url", url), kind, rate, duration,
+                argv = bench(c, url if mode == "D" else c.get("benchmark_url", url), kind, rate, duration,
                              repeat * 100 + index * 10 + stream_index, remote_folder or folder, filename)
                 if remote_folder:
                     # Bound remote execution even if the kubectl connection is interrupted.
@@ -258,11 +283,17 @@ def run_one(c, mode, workload, repeat, root):
                     processes.append(subprocess.Popen(argv, stdout=log, stderr=subprocess.STDOUT))
             save(folder / "run.json", meta)
             while True:
-                samples.append(sample(c, mode))
+                if mode == "D" and c.get("sky_operator_pod"):
+                    snapshot = pod_snapshot(c, mode)
+                    state = scaling_snapshot(c, mode, snapshot)
+                    samples.append(sample(c, mode, snapshot, state["sky_status"]))
+                else:
+                    snapshot = None
+                    samples.append(sample(c, mode))
                 save(folder / "metrics.json", samples)
-                pods.append({"timestamp": time.time(), "pods": pod_snapshot(c, mode)})
+                pods.append({"timestamp": time.time(), "pods": snapshot or pod_snapshot(c, mode)})
                 save(folder / "pods.json", pods)
-                scaling.append(scaling_snapshot(c, mode, pods[-1]["pods"]))
+                scaling.append(state if snapshot is not None else scaling_snapshot(c, mode, pods[-1]["pods"]))
                 save(folder / "scaling.json", scaling)
                 codes = [p.poll() for p in processes]
                 if any(code not in (None, 0) for code in codes):
@@ -295,7 +326,7 @@ def run_one(c, mode, workload, repeat, root):
         meta.update(status="complete", end=time.time())
         if mode == "D":
             with (folder / "sky-controller.log").open("w") as log:
-                command(["sky", "serve", "logs", c["sky_service"], "--controller", "--no-follow"],
+                command(sky_control.argv(c, ["serve", "logs", c["sky_service"], "--controller", "--no-follow"]),
                         stdout=log, stderr=subprocess.STDOUT)
     except BaseException as exc:
         meta.update(status="failed", error=str(exc), end=time.time())
@@ -314,11 +345,17 @@ def run_one(c, mode, workload, repeat, root):
         try:
             if mode == "D":
                 if sky_created:
-                    command(["sky", "serve", "down", "-y", c["sky_service"]])
+                    command(sky_control.argv(c, ["serve", "down", "-y", c["sky_service"]]))
+                    if c.get("sky_operator_pod"):
+                        deadline = time.monotonic() + c["ready_timeout_seconds"]
+                        while sky_control.status(c, command) is not None:
+                            if time.monotonic() > deadline:
+                                raise TimeoutError("SkyServe teardown did not finish")
+                            time.sleep(c["sample_seconds"])
                     kubectl(c, "wait", "--for=delete", "pod", "-l", c["sky_pod_selector"],
                             "--timeout=300s", namespace=c["sky_namespace"])
                 else:
-                    print("SkyServe launch did not finish; inspect sky serve status for partial provisioning.")
+                    print("No SkyServe service owned by this run; inspect sky serve status before retrying.")
             else:
                 release_k8s(c)
         except Exception as exc:
@@ -360,11 +397,14 @@ def main():
     needed += [c.get("kube_context", "")]
     if "D" in args.modes:
         queries(c, "D")
-        needed += [c["sky_pod_selector"], *c["sky_queries"].values()]
+        needed += [c["sky_pod_selector"], *queries(c, "D").values()]
     if any("SET_" in str(value) for value in needed):
         parser.error("Replace configuration placeholders before executing")
-    if c.get("benchmark_pod") and ("D" in args.modes or not c.get("benchmark_url")):
-        parser.error("benchmark_pod requires benchmark_url and supports only A/B/C")
+    if c.get("benchmark_pod") and any(m != "D" for m in args.modes) and not c.get("benchmark_url"):
+        parser.error("benchmark_pod requires benchmark_url for A/B/C")
+    if ("D" in args.modes and c.get("sky_operator_pod")
+            and not Path(args.output).resolve().is_relative_to("/models/experiment-results")):
+        parser.error("Sky operator requires output under /models/experiment-results, shared through EFS")
     version = client_version(c)
     if c["vllm_version"] not in version.split():
         parser.error(f"Benchmark vLLM version differs from server configuration: {version}")
@@ -382,7 +422,7 @@ def main():
     versions["kubernetes"] = kubectl(c, "version", "-o", "json", capture_output=True).stdout
     versions["keda"] = kubectl(c, "get", "deployments", "-A", "-l", "app=keda-operator", "-o", "json", capture_output=True).stdout
     if "D" in args.modes:
-        versions["skypilot"] = command(["sky", "--version"], capture_output=True).stdout
+        versions["skypilot"] = command(sky_control.argv(c, ["--version"]), capture_output=True).stdout
     save(root / "versions.json", versions)
     for mode, workload, repeat in plan:
         folder = root / f"{workload}_{mode}_run{repeat}"

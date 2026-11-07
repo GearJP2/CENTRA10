@@ -111,6 +111,16 @@ http {
         "run": 'HF_HUB_OFFLINE=1 /usr/local/bin/vllm serve "$MODEL_NAME" --revision "$MODEL_REVISION" '
                '--port 8000 --max-model-len 8192 --no-enable-prefix-caching\n',
     }
+    if c.get("sky_operator_pod"):
+        sky["config"] = {"kubernetes": {"pod_config": {
+            "metadata": {"labels": {"centra10-sky-service": c["sky_service"]}},
+            "spec": {"enableServiceLinks": False, "nodeSelector": c["node_selector"],
+                     "containers": [{"name": "ray-node", "ports": [{"name": "http", "containerPort": 8000}]}]},
+        }}}
+    if c.get("shutdown_timeout_seconds") is not None:
+        sky["run"] = sky["run"].rstrip() + f' --shutdown-timeout {c["shutdown_timeout_seconds"]}\n'
+        sky.setdefault("config", {}).setdefault("kubernetes", {}).setdefault("pod_config", {}).setdefault("spec", {})[
+            "terminationGracePeriodSeconds"] = c["shutdown_timeout_seconds"] + 30
     out["sky-hello.yaml"] = [{"resources": sky["resources"], "run": "nvidia-smi"}]
     out["sky-single.yaml"] = [deepcopy(sky)]
     sky["service"] = {"readiness_probe": {"path": "/v1/models", "initial_delay_seconds": 600}, "replicas": 2}

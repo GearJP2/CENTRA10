@@ -152,6 +152,36 @@ class RunnerIntegrationTests(unittest.TestCase):
         self.assertEqual(row["completed"], 0)
         self.assertEqual(row["slo_attainment"], 0)
 
+    def test_d_remote_operator_and_client_use_discovered_endpoint_and_cleanup(self):
+        self.config.update(sky_operator_pod="sky-operator", benchmark_pod="benchmark-client",
+                           benchmark_url="http://wrong-abc-proxy.invalid")
+        run.save(self.config_path, self.config)
+        # The local fixture shares its temp directory in place of the EFS mount.
+        with patch.object(run.Path, "resolve") as resolve:
+            resolve.return_value.is_relative_to.return_value = True
+            self.invoke("--modes", "D", "--workloads", "short", "--repeats", "1")
+        folder = self.results / "short_D_run1"
+        row, _, _ = summarize(folder)
+        self.assertEqual(row["completed"], 10)
+        self.assertEqual(row["failed"], 0)
+        self.assertFalse((self.folder / "sky-present").exists())
+        commands = self.commands()
+        self.assertTrue(any("/opt/sky/bin/sky" in c and "update" in c and "-y" in c for c in commands))
+        benches = [c for c in commands if c[:3] == ["vllm", "bench", "serve"]]
+        self.assertTrue(benches)
+        self.assertTrue(all(c[c.index("--base-url") + 1] == self.url for c in benches))
+        scaling = json.loads((folder / "scaling.json").read_text())
+        self.assertEqual(scaling[0]["sky_status"]["active_versions"], [2])
+
+    def test_d_preexisting_service_is_not_deleted(self):
+        self.config["sky_operator_pod"] = "sky-operator"
+        run.save(self.config_path, self.config)
+        (self.folder / "sky-present").write_text("1")
+        with patch.object(run.Path, "resolve") as resolve, self.assertRaisesRegex(RuntimeError, "already exists"):
+            resolve.return_value.is_relative_to.return_value = True
+            self.invoke("--modes", "D", "--workloads", "short", "--repeats", "1")
+        self.assertEqual((self.folder / "sky-present").read_text(), "1")
+
     def assert_failed_and_released(self):
         meta = json.loads((self.results / "short_B_run1/run.json").read_text())
         self.assertEqual(meta["status"], "failed")

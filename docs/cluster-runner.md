@@ -6,7 +6,8 @@ executes the benchmark in `benchmark-client`, and writes results under
 `/models/experiment-results/full-validation-C-3` on the existing EFS PVC.
 It creates no additional AWS instances. CPU/memory contention and EFS writes
 are part of this collector placement and must be considered in measurements.
-SkyServe D is not supported by this setup.
+For SkyServe D, use the separate [D collector validation](sky-collector.md),
+which reuses the existing SkyPilot operator and keeps its state in that pod.
 
 Before launch, archive evidence for interrupted runs, verify that no other
 runner or benchmark process is active, remove its ScaledObject, wait for the

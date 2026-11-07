@@ -1,6 +1,7 @@
 """Subprocess fixtures for runner integration tests; never contacts cloud services."""
 import json
 import os
+import subprocess
 import sys
 import time
 from pathlib import Path
@@ -14,12 +15,50 @@ def main():
     with (folder / "commands.jsonl").open("a") as log:
         log.write(json.dumps([name, *args]) + "\n")
     if name == "kubectl":
-        if "scale" in args and "--replicas=0" in args and scenario == "cleanup_fail":
+        if "exec" in args:
+            inner = args[args.index("--") + 1:]
+            if "/opt/sky/bin/python" in inner:
+                present = folder / "sky-present"
+                version = int(present.read_text()) if present.exists() else 0
+                print(json.dumps([{"name": inner[-1], "active_versions": [version], "status": "READY",
+                    "endpoint": os.environ["CENTRA_SIM_URL"], "replica_info": [{"replica_id": 1,
+                        "name": "test-replica", "version": version, "status": "READY",
+                        "endpoint": os.environ["CENTRA_SIM_URL"]}]}] if version else []))
+                return
+            if "/opt/sky/bin/sky" in inner:
+                name, args = "sky", inner[inner.index("/opt/sky/bin/sky") + 1:]
+            elif "importlib.metadata" in " ".join(inner):
+                print("0.32.0")
+                return
+            elif "snapshot_download" in " ".join(inner):
+                print("/synthetic/tokenizer")
+                return
+            else:
+                subprocess.run(inner, check=True)
+                return
+        if name == "sky":
+            pass
+        elif "get" in args and "pods" in args:
+            print(json.dumps({"items": [{"metadata": {"uid": "test-pod", "name": "test-pod"},
+                "spec": {"containers": [{"resources": {"requests": {"nvidia.com/gpu": "1"}}}]},
+                "status": {"phase": "Running", "podIP": "127.0.0.1",
+                    "conditions": [{"type": "PodScheduled", "status": "True"}]}}]}))
+            return
+        elif "scale" in args and "--replicas=0" in args and scenario == "cleanup_fail":
             sys.exit(7)
-        if "get" in args or "version" in args:
+        elif "get" in args or "version" in args:
             print(json.dumps({"items": []}))
-        return
+            return
+        else:
+            return
     if name == "sky":
+        if args[:2] == ["serve", "up"]:
+            (folder / "sky-present").write_text("1")
+        elif args[:2] == ["serve", "update"]:
+            assert "-y" in args
+            (folder / "sky-present").write_text("2")
+        elif args[:2] == ["serve", "down"]:
+            (folder / "sky-present").unlink(missing_ok=True)
         if "--version" in args:
             print("skypilot, version 0.14.1")
         elif "--endpoint" in args:
