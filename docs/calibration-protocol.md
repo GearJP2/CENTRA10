@@ -124,3 +124,13 @@ and a new local directory. This suffixes Job, ConfigMap and result names with
 `-a2`, avoiding immutable ConfigMap replacement and result overwrites. The
 candidate settings and four-trial order remain unchanged. Before-workload
 packaging recovery is not an additional threshold candidate.
+
+### November 7 cold-image amendment
+
+The resumed C1 attempt 2 spent approximately 231–233 seconds pulling images on
+new GPU nodes. Before comparing its threshold with C2 on cached nodes, retain
+it as a cold-image case and perform one C1 warm-image attempt 3 with identical
+policy/workload settings. This adds one run, not another threshold candidate.
+The evidence, selection boundary and stop condition are recorded in
+[the resumed C1 startup note](resumed-c1-startup.md). Subsequent screening must
+record node replacement and image-pull state; do not extend trials silently.
