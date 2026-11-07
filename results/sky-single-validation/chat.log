@@ -1,0 +1,44 @@
+[33mTailing logs of job 4 on cluster 'centra10-single'...[0m
+[2m├── [0m[2mWaiting for task resources on 1 node.[0m
+[2m└── [0mJob started. Streaming logs... [2m(Ctrl-C to exit log streaming; job will not be killed)[0m
+[36m(sky-cmd, pid=2335)[0m {
+[36m(sky-cmd, pid=2335)[0m   "id": "chatcmpl-b8feb68bc75ee6cc",
+[36m(sky-cmd, pid=2335)[0m   "object": "chat.completion",
+[36m(sky-cmd, pid=2335)[0m   "created": 1794049082,
+[36m(sky-cmd, pid=2335)[0m   "model": "Qwen/Qwen2.5-7B-Instruct",
+[36m(sky-cmd, pid=2335)[0m   "choices": [
+[36m(sky-cmd, pid=2335)[0m     {
+[36m(sky-cmd, pid=2335)[0m       "index": 0,
+[36m(sky-cmd, pid=2335)[0m       "message": {
+[36m(sky-cmd, pid=2335)[0m         "role": "assistant",
+[36m(sky-cmd, pid=2335)[0m         "content": "Hello there!",
+[36m(sky-cmd, pid=2335)[0m         "refusal": null,
+[36m(sky-cmd, pid=2335)[0m         "annotations": null,
+[36m(sky-cmd, pid=2335)[0m         "audio": null,
+[36m(sky-cmd, pid=2335)[0m         "function_call": null,
+[36m(sky-cmd, pid=2335)[0m         "reasoning": null
+[36m(sky-cmd, pid=2335)[0m       },
+[36m(sky-cmd, pid=2335)[0m       "logprobs": null,
+[36m(sky-cmd, pid=2335)[0m       "finish_reason": "stop",
+[36m(sky-cmd, pid=2335)[0m       "stop_reason": null,
+[36m(sky-cmd, pid=2335)[0m       "token_ids": null,
+[36m(sky-cmd, pid=2335)[0m       "routed_experts": null
+[36m(sky-cmd, pid=2335)[0m     }
+[36m(sky-cmd, pid=2335)[0m   ],
+[36m(sky-cmd, pid=2335)[0m   "service_tier": null,
+[36m(sky-cmd, pid=2335)[0m   "system_fingerprint": "vllm-0.32.0-a066cbf7",
+[36m(sky-cmd, pid=2335)[0m   "usage": {
+[36m(sky-cmd, pid=2335)[0m     "prompt_tokens": 35,
+[36m(sky-cmd, pid=2335)[0m     "total_tokens": 39,
+[36m(sky-cmd, pid=2335)[0m     "completion_tokens": 4,
+[36m(sky-cmd, pid=2335)[0m     "prompt_tokens_details": null,
+[36m(sky-cmd, pid=2335)[0m     "completion_tokens_details": null
+[36m(sky-cmd, pid=2335)[0m   },
+[36m(sky-cmd, pid=2335)[0m   "prompt_logprobs": null,
+[36m(sky-cmd, pid=2335)[0m   "prompt_token_ids": null,
+[36m(sky-cmd, pid=2335)[0m   "prompt_text": null,
+[36m(sky-cmd, pid=2335)[0m   "kv_transfer_params": null,
+[36m(sky-cmd, pid=2335)[0m   "ec_transfer_params": null,
+[36m(sky-cmd, pid=2335)[0m   "metrics": null
+[36m(sky-cmd, pid=2335)[0m }
+[0m[32m✓ Job finished (status: SUCCEEDED).[0m[0m
