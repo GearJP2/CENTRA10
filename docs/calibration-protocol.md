@@ -134,3 +134,24 @@ policy/workload settings. This adds one run, not another threshold candidate.
 The evidence, selection boundary and stop condition are recorded in
 [the resumed C1 startup note](resumed-c1-startup.md). Subsequent screening must
 record node replacement and image-pull state; do not extend trials silently.
+
+## Frozen selection after revision-2 screening
+
+The saved candidates were verified with the current analysis validator: all
+300 requests completed without failures, required metric series were present,
+cleanup succeeded, and all runs reached three ready replicas. Maximum sample
+gaps were approximately 5.68–6.04 seconds with a nominal five-second interval.
+Configs and manifests confirm timeout=120 seconds / grace=150 seconds.
+
+Freeze B completed-QPS threshold **0.1** and C waiting threshold **2**.
+B's SLO successes are 119/300 versus 81/300, outside the tie band. C's are
+87/300 versus 81/300: exactly six requests, or two percentage points, within
+the prescribed tie band; queue=2 uses lower allocated GPU-hours. Integer
+success counts avoid floating-point ambiguity at the tie boundary.
+
+Machine-readable record: [frozen-calibration-r2.json](frozen-calibration-r2.json).
+Its evidence commit is `dd32048`. Keep the cold-image C1 run, original-lifecycle
+runs, and setup failures outside this selection, with their reasons recorded.
+Do not change these thresholds in response to individual measured-run results.
+Workload-rate selection and SkyServe D validation remain pending; this freeze
+neither validates the full matrix nor specifies a calibrated D threshold.

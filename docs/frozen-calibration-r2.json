@@ -1,0 +1,67 @@
+{
+  "status": "frozen_after_bounded_screening",
+  "evidence_commit": "dd32048",
+  "qps_threshold": 0.1,
+  "queue_threshold": 2,
+  "shutdown_timeout_seconds": 120,
+  "termination_grace_seconds": 150,
+  "lifecycle_revision": "bounded-drain-r2",
+  "calibration_workload": {
+    "kind": "long",
+    "request_rate": 0.5,
+    "duration_seconds": 600,
+    "requests": 300,
+    "seed": 100
+  },
+  "candidates": [
+    {
+      "mode": "B",
+      "threshold": 0.2,
+      "slo_attainment": 0.27,
+      "slo_successes": 81,
+      "requests": 300,
+      "gpu_hours": 0.4265704917245441,
+      "ttft_p99_seconds": 111.36480555025999,
+      "result_directory": "results/calibration-r2-B-qps02-long-1-a2"
+    },
+    {
+      "mode": "B",
+      "threshold": 0.1,
+      "slo_attainment": 0.39666666666666667,
+      "slo_successes": 119,
+      "requests": 300,
+      "gpu_hours": 0.48555365913444093,
+      "ttft_p99_seconds": 109.20866300824026,
+      "result_directory": "results/calibration-r2-B-qps01-long-1-a2"
+    },
+    {
+      "mode": "C",
+      "threshold": 1,
+      "slo_attainment": 0.27,
+      "slo_successes": 81,
+      "requests": 300,
+      "gpu_hours": 0.5185682897435294,
+      "ttft_p99_seconds": 104.12824135952013,
+      "result_directory": "results/calibration-r2-C-queue1-long-1-a3"
+    },
+    {
+      "mode": "C",
+      "threshold": 2,
+      "slo_attainment": 0.29,
+      "slo_successes": 87,
+      "requests": 300,
+      "gpu_hours": 0.5048115543524424,
+      "ttft_p99_seconds": 107.45610939494924,
+      "result_directory": "results/calibration-r2-C-queue2-long-1-a2"
+    }
+  ],
+  "excluded_from_selection": [
+    "calibration-r2-C-queue1-long-1-a2 (cold-image case)",
+    "original-lifecycle calibration runs"
+  ],
+  "limits": [
+    "One run per candidate; not optimality or significance evidence.",
+    "B and C span sessions and have different observed startup times.",
+    "Freeze applies to B/C thresholds and lifecycle, not workload rates or SkyServe D."
+  ]
+}
