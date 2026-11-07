@@ -1,0 +1,8 @@
+{
+  "replicas": null,
+  "ready": null,
+  "queue": "sum(vllm:num_requests_waiting{namespace=\"default\",centra10_service=\"centra10-d01a1\"})",
+  "running": "sum(vllm:num_requests_running{namespace=\"default\",centra10_service=\"centra10-d01a1\"})",
+  "kv_cache": "max(vllm:kv_cache_usage_perc{namespace=\"default\",centra10_service=\"centra10-d01a1\"})",
+  "qps": "sum(rate(vllm:request_success_total{namespace=\"default\",centra10_service=\"centra10-d01a1\"}[1m]))"
+}

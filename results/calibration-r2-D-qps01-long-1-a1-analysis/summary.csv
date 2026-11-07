@@ -1,0 +1,2 @@
+mode,workload,repeats,slo_attainment_mean,slo_attainment_std,gpu_hours_mean,gpu_hours_std,ttft_p99_seconds_mean,ttft_p99_seconds_std
+D,long,1,0.46,,0.4995607042974896,,117.29504767304141,

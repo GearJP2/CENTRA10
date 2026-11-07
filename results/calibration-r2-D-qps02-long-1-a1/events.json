@@ -1,0 +1,1577 @@
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T12:18:29Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "kind": "Pod",
+                "name": "centra10-d02a1-1-91c47a84-head",
+                "namespace": "default",
+                "resourceVersion": "65919",
+                "uid": "82402a24-d921-4bf5-9317-2e6755788d62"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T12:18:29Z",
+            "message": "Successfully assigned default/centra10-d02a1-1-91c47a84-head to ip-192-168-89-26.ec2.internal",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T12:18:29Z",
+                "name": "centra10-d02a1-1-91c47a84-head.18e5c2866b929ca5",
+                "namespace": "default",
+                "resourceVersion": "65921",
+                "uid": "6f375dd2-db91-4ac9-89b2-30bbe8ee030f"
+            },
+            "reason": "Scheduled",
+            "reportingComponent": "default-scheduler",
+            "reportingInstance": "",
+            "source": {
+                "component": "default-scheduler"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T12:18:29Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{ray-node}",
+                "kind": "Pod",
+                "name": "centra10-d02a1-1-91c47a84-head",
+                "namespace": "default",
+                "resourceVersion": "65920",
+                "uid": "82402a24-d921-4bf5-9317-2e6755788d62"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T12:18:29Z",
+            "message": "Pulling image \"vllm/vllm-openai:v0.32.0\"",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T12:18:29Z",
+                "name": "centra10-d02a1-1-91c47a84-head.18e5c2869281a618",
+                "namespace": "default",
+                "resourceVersion": "65924",
+                "uid": "7f7267fb-564c-426d-b72d-a9d883fceae3"
+            },
+            "reason": "Pulling",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-89-26.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-89-26.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T12:18:30Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{ray-node}",
+                "kind": "Pod",
+                "name": "centra10-d02a1-1-91c47a84-head",
+                "namespace": "default",
+                "resourceVersion": "65920",
+                "uid": "82402a24-d921-4bf5-9317-2e6755788d62"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T12:18:30Z",
+            "message": "Successfully pulled image \"vllm/vllm-openai:v0.32.0\" in 214ms (214ms including waiting). Image size: 9205781514 bytes.",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T12:18:30Z",
+                "name": "centra10-d02a1-1-91c47a84-head.18e5c2869f4f7f30",
+                "namespace": "default",
+                "resourceVersion": "65926",
+                "uid": "851d1369-f30d-43ad-b12b-106a921eea99"
+            },
+            "reason": "Pulled",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-89-26.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-89-26.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T12:18:30Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{ray-node}",
+                "kind": "Pod",
+                "name": "centra10-d02a1-1-91c47a84-head",
+                "namespace": "default",
+                "resourceVersion": "65920",
+                "uid": "82402a24-d921-4bf5-9317-2e6755788d62"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T12:18:30Z",
+            "message": "Container created",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T12:18:30Z",
+                "name": "centra10-d02a1-1-91c47a84-head.18e5c286a0ff3c5e",
+                "namespace": "default",
+                "resourceVersion": "65927",
+                "uid": "52a5ee53-d7a5-4ac0-afb0-34edc65d64f4"
+            },
+            "reason": "Created",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-89-26.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-89-26.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T12:18:30Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{ray-node}",
+                "kind": "Pod",
+                "name": "centra10-d02a1-1-91c47a84-head",
+                "namespace": "default",
+                "resourceVersion": "65920",
+                "uid": "82402a24-d921-4bf5-9317-2e6755788d62"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T12:18:30Z",
+            "message": "Container started",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T12:18:30Z",
+                "name": "centra10-d02a1-1-91c47a84-head.18e5c286c366489c",
+                "namespace": "default",
+                "resourceVersion": "65931",
+                "uid": "c4a0c9e5-006e-436e-9a93-d15346cc09dc"
+            },
+            "reason": "Started",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-89-26.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-89-26.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T12:36:42Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{ray-node}",
+                "kind": "Pod",
+                "name": "centra10-d02a1-1-91c47a84-head",
+                "namespace": "default",
+                "resourceVersion": "65920",
+                "uid": "82402a24-d921-4bf5-9317-2e6755788d62"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T12:36:42Z",
+            "message": "Stopping container ray-node",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T12:36:42Z",
+                "name": "centra10-d02a1-1-91c47a84-head.18e5c384fceabbbe",
+                "namespace": "default",
+                "resourceVersion": "69993",
+                "uid": "e129e8a7-6fee-4d88-abd6-b275a2f6c08c"
+            },
+            "reason": "Killing",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-89-26.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-89-26.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T12:26:37Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "kind": "Pod",
+                "name": "centra10-d02a1-2-91c47a84-head",
+                "namespace": "default",
+                "resourceVersion": "67718",
+                "uid": "c1a7923a-8916-424c-90a0-7528799ff19f"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T12:26:37Z",
+            "message": "Successfully assigned default/centra10-d02a1-2-91c47a84-head to ip-192-168-76-39.ec2.internal",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T12:26:37Z",
+                "name": "centra10-d02a1-2-91c47a84-head.18e5c2f815b8b0ce",
+                "namespace": "default",
+                "resourceVersion": "67720",
+                "uid": "37c7dafa-a38c-4c84-9b3e-47044b5504ac"
+            },
+            "reason": "Scheduled",
+            "reportingComponent": "default-scheduler",
+            "reportingInstance": "",
+            "source": {
+                "component": "default-scheduler"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T12:26:37Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{ray-node}",
+                "kind": "Pod",
+                "name": "centra10-d02a1-2-91c47a84-head",
+                "namespace": "default",
+                "resourceVersion": "67719",
+                "uid": "c1a7923a-8916-424c-90a0-7528799ff19f"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T12:26:37Z",
+            "message": "Pulling image \"vllm/vllm-openai:v0.32.0\"",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T12:26:37Z",
+                "name": "centra10-d02a1-2-91c47a84-head.18e5c2f836b9f4eb",
+                "namespace": "default",
+                "resourceVersion": "67724",
+                "uid": "4911d34c-9c6d-4a49-9fe9-77f0f5b4a917"
+            },
+            "reason": "Pulling",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-76-39.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-76-39.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T12:26:38Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{ray-node}",
+                "kind": "Pod",
+                "name": "centra10-d02a1-2-91c47a84-head",
+                "namespace": "default",
+                "resourceVersion": "67719",
+                "uid": "c1a7923a-8916-424c-90a0-7528799ff19f"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T12:26:38Z",
+            "message": "Successfully pulled image \"vllm/vllm-openai:v0.32.0\" in 219ms (219ms including waiting). Image size: 9205781514 bytes.",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T12:26:38Z",
+                "name": "centra10-d02a1-2-91c47a84-head.18e5c2f843ce805e",
+                "namespace": "default",
+                "resourceVersion": "67726",
+                "uid": "bd4822fb-0e55-41fd-b6d3-b6f6b2808dfd"
+            },
+            "reason": "Pulled",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-76-39.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-76-39.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T12:26:38Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{ray-node}",
+                "kind": "Pod",
+                "name": "centra10-d02a1-2-91c47a84-head",
+                "namespace": "default",
+                "resourceVersion": "67719",
+                "uid": "c1a7923a-8916-424c-90a0-7528799ff19f"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T12:26:38Z",
+            "message": "Container created",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T12:26:38Z",
+                "name": "centra10-d02a1-2-91c47a84-head.18e5c2f84577ac7f",
+                "namespace": "default",
+                "resourceVersion": "67727",
+                "uid": "b58efba5-1644-417c-b4c8-cb193bd9b192"
+            },
+            "reason": "Created",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-76-39.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-76-39.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T12:26:38Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{ray-node}",
+                "kind": "Pod",
+                "name": "centra10-d02a1-2-91c47a84-head",
+                "namespace": "default",
+                "resourceVersion": "67719",
+                "uid": "c1a7923a-8916-424c-90a0-7528799ff19f"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T12:26:38Z",
+            "message": "Container started",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T12:26:38Z",
+                "name": "centra10-d02a1-2-91c47a84-head.18e5c2f85c61e9b1",
+                "namespace": "default",
+                "resourceVersion": "67731",
+                "uid": "e0a31b10-2335-4dd1-b510-efcacffeeaaa"
+            },
+            "reason": "Started",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-76-39.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-76-39.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T12:36:42Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{ray-node}",
+                "kind": "Pod",
+                "name": "centra10-d02a1-2-91c47a84-head",
+                "namespace": "default",
+                "resourceVersion": "67719",
+                "uid": "c1a7923a-8916-424c-90a0-7528799ff19f"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T12:36:42Z",
+            "message": "Stopping container ray-node",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T12:36:42Z",
+                "name": "centra10-d02a1-2-91c47a84-head.18e5c384f3ee8f49",
+                "namespace": "default",
+                "resourceVersion": "69973",
+                "uid": "0ef701b4-0e61-4063-8007-8fbadcf7f690"
+            },
+            "reason": "Killing",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-76-39.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-76-39.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T12:27:18Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "kind": "Pod",
+                "name": "centra10-d02a1-3-91c47a84-head",
+                "namespace": "default",
+                "resourceVersion": "67890",
+                "uid": "8f9228ac-7e57-41c4-a767-59bb833a14a5"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T12:27:18Z",
+            "message": "Successfully assigned default/centra10-d02a1-3-91c47a84-head to ip-192-168-82-220.ec2.internal",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T12:27:18Z",
+                "name": "centra10-d02a1-3-91c47a84-head.18e5c301aecbc5ec",
+                "namespace": "default",
+                "resourceVersion": "67892",
+                "uid": "6e476d6d-b914-4b9c-a12c-3cfad933ae5e"
+            },
+            "reason": "Scheduled",
+            "reportingComponent": "default-scheduler",
+            "reportingInstance": "",
+            "source": {
+                "component": "default-scheduler"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T12:27:19Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{ray-node}",
+                "kind": "Pod",
+                "name": "centra10-d02a1-3-91c47a84-head",
+                "namespace": "default",
+                "resourceVersion": "67891",
+                "uid": "8f9228ac-7e57-41c4-a767-59bb833a14a5"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T12:27:19Z",
+            "message": "Pulling image \"vllm/vllm-openai:v0.32.0\"",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T12:27:19Z",
+                "name": "centra10-d02a1-3-91c47a84-head.18e5c301d38b8012",
+                "namespace": "default",
+                "resourceVersion": "67896",
+                "uid": "0c9c8cb5-e086-4616-840f-a1a4b797594b"
+            },
+            "reason": "Pulling",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-82-220.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-82-220.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T12:27:19Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{ray-node}",
+                "kind": "Pod",
+                "name": "centra10-d02a1-3-91c47a84-head",
+                "namespace": "default",
+                "resourceVersion": "67891",
+                "uid": "8f9228ac-7e57-41c4-a767-59bb833a14a5"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T12:27:19Z",
+            "message": "Successfully pulled image \"vllm/vllm-openai:v0.32.0\" in 209ms (209ms including waiting). Image size: 9205781514 bytes.",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T12:27:19Z",
+                "name": "centra10-d02a1-3-91c47a84-head.18e5c301e00d577f",
+                "namespace": "default",
+                "resourceVersion": "67898",
+                "uid": "760e373c-c917-4f58-84e7-68c20a7c136b"
+            },
+            "reason": "Pulled",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-82-220.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-82-220.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T12:27:19Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{ray-node}",
+                "kind": "Pod",
+                "name": "centra10-d02a1-3-91c47a84-head",
+                "namespace": "default",
+                "resourceVersion": "67891",
+                "uid": "8f9228ac-7e57-41c4-a767-59bb833a14a5"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T12:27:19Z",
+            "message": "Container created",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T12:27:19Z",
+                "name": "centra10-d02a1-3-91c47a84-head.18e5c301e19d66e1",
+                "namespace": "default",
+                "resourceVersion": "67899",
+                "uid": "8aa4f94b-8c75-46b1-967d-4ec021400e75"
+            },
+            "reason": "Created",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-82-220.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-82-220.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T12:27:19Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{ray-node}",
+                "kind": "Pod",
+                "name": "centra10-d02a1-3-91c47a84-head",
+                "namespace": "default",
+                "resourceVersion": "67891",
+                "uid": "8f9228ac-7e57-41c4-a767-59bb833a14a5"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T12:27:19Z",
+            "message": "Container started",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T12:27:19Z",
+                "name": "centra10-d02a1-3-91c47a84-head.18e5c301f8164d6b",
+                "namespace": "default",
+                "resourceVersion": "67900",
+                "uid": "c154f5d6-071b-461b-98d6-a8dca0377ba1"
+            },
+            "reason": "Started",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-82-220.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-82-220.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T12:36:42Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{ray-node}",
+                "kind": "Pod",
+                "name": "centra10-d02a1-3-91c47a84-head",
+                "namespace": "default",
+                "resourceVersion": "67891",
+                "uid": "8f9228ac-7e57-41c4-a767-59bb833a14a5"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T12:36:42Z",
+            "message": "Stopping container ray-node",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T12:36:42Z",
+                "name": "centra10-d02a1-3-91c47a84-head.18e5c384f8f5d3ef",
+                "namespace": "default",
+                "resourceVersion": "69984",
+                "uid": "b664915f-c9ba-4d84-9e96-1afaac3d5db4"
+            },
+            "reason": "Killing",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-82-220.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-82-220.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T11:53:56Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "kind": "Pod",
+                "name": "centra10-d2-1-91c47a84-head",
+                "namespace": "default",
+                "resourceVersion": "60380",
+                "uid": "5c14d6f8-bde2-4a45-8251-de97c97b8991"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T11:53:56Z",
+            "message": "Successfully assigned default/centra10-d2-1-91c47a84-head to ip-192-168-89-26.ec2.internal",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T11:53:56Z",
+                "name": "centra10-d2-1-91c47a84-head.18e5c12f6d927b00",
+                "namespace": "default",
+                "resourceVersion": "60382",
+                "uid": "9a89fbbb-2718-4d3c-97e2-1e9dd869689b"
+            },
+            "reason": "Scheduled",
+            "reportingComponent": "default-scheduler",
+            "reportingInstance": "",
+            "source": {
+                "component": "default-scheduler"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T11:53:56Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{ray-node}",
+                "kind": "Pod",
+                "name": "centra10-d2-1-91c47a84-head",
+                "namespace": "default",
+                "resourceVersion": "60381",
+                "uid": "5c14d6f8-bde2-4a45-8251-de97c97b8991"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T11:53:56Z",
+            "message": "Pulling image \"vllm/vllm-openai:v0.32.0\"",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T11:53:56Z",
+                "name": "centra10-d2-1-91c47a84-head.18e5c12f94ffde48",
+                "namespace": "default",
+                "resourceVersion": "60386",
+                "uid": "a44374a3-95d8-4f90-9106-e2e191479710"
+            },
+            "reason": "Pulling",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-89-26.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-89-26.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T11:53:56Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{ray-node}",
+                "kind": "Pod",
+                "name": "centra10-d2-1-91c47a84-head",
+                "namespace": "default",
+                "resourceVersion": "60381",
+                "uid": "5c14d6f8-bde2-4a45-8251-de97c97b8991"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T11:53:56Z",
+            "message": "Successfully pulled image \"vllm/vllm-openai:v0.32.0\" in 251ms (251ms including waiting). Image size: 9205781514 bytes.",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T11:53:56Z",
+                "name": "centra10-d2-1-91c47a84-head.18e5c12fa3f814f2",
+                "namespace": "default",
+                "resourceVersion": "60391",
+                "uid": "06a59b49-eb24-47f7-ac21-d070ab82c8d6"
+            },
+            "reason": "Pulled",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-89-26.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-89-26.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T11:53:56Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{ray-node}",
+                "kind": "Pod",
+                "name": "centra10-d2-1-91c47a84-head",
+                "namespace": "default",
+                "resourceVersion": "60381",
+                "uid": "5c14d6f8-bde2-4a45-8251-de97c97b8991"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T11:53:56Z",
+            "message": "Container created",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T11:53:56Z",
+                "name": "centra10-d2-1-91c47a84-head.18e5c12fa5975932",
+                "namespace": "default",
+                "resourceVersion": "60392",
+                "uid": "69677330-be31-4c23-84be-0879906a3470"
+            },
+            "reason": "Created",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-89-26.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-89-26.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T11:53:57Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{ray-node}",
+                "kind": "Pod",
+                "name": "centra10-d2-1-91c47a84-head",
+                "namespace": "default",
+                "resourceVersion": "60381",
+                "uid": "5c14d6f8-bde2-4a45-8251-de97c97b8991"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T11:53:57Z",
+            "message": "Container started",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T11:53:57Z",
+                "name": "centra10-d2-1-91c47a84-head.18e5c12fc56b68cd",
+                "namespace": "default",
+                "resourceVersion": "60395",
+                "uid": "b1af0d3f-7072-4ddc-a1cd-b9f25d3aaf48"
+            },
+            "reason": "Started",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-89-26.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-89-26.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T12:06:39Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{ray-node}",
+                "kind": "Pod",
+                "name": "centra10-d2-1-91c47a84-head",
+                "namespace": "default",
+                "resourceVersion": "60381",
+                "uid": "5c14d6f8-bde2-4a45-8251-de97c97b8991"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T12:06:39Z",
+            "message": "Stopping container ray-node",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T12:06:39Z",
+                "name": "centra10-d2-1-91c47a84-head.18e5c1e1278da724",
+                "namespace": "default",
+                "resourceVersion": "63234",
+                "uid": "ee660436-8359-4fc6-921c-08b2fc32ef7e"
+            },
+            "reason": "Killing",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-89-26.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-89-26.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T12:01:44Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "kind": "Pod",
+                "name": "centra10-d2-2-91c47a84-head",
+                "namespace": "default",
+                "resourceVersion": "62110",
+                "uid": "1657c27f-fc7d-4b25-8346-b2de1a957838"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T12:01:44Z",
+            "message": "Successfully assigned default/centra10-d2-2-91c47a84-head to ip-192-168-76-39.ec2.internal",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T12:01:44Z",
+                "name": "centra10-d2-2-91c47a84-head.18e5c19c9a1dc9f9",
+                "namespace": "default",
+                "resourceVersion": "62112",
+                "uid": "c3de079e-c541-46e0-9807-15de45c92461"
+            },
+            "reason": "Scheduled",
+            "reportingComponent": "default-scheduler",
+            "reportingInstance": "",
+            "source": {
+                "component": "default-scheduler"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T12:01:45Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{ray-node}",
+                "kind": "Pod",
+                "name": "centra10-d2-2-91c47a84-head",
+                "namespace": "default",
+                "resourceVersion": "62111",
+                "uid": "1657c27f-fc7d-4b25-8346-b2de1a957838"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T12:01:45Z",
+            "message": "Pulling image \"vllm/vllm-openai:v0.32.0\"",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T12:01:45Z",
+                "name": "centra10-d2-2-91c47a84-head.18e5c19cc21ee298",
+                "namespace": "default",
+                "resourceVersion": "62116",
+                "uid": "605eb7f8-4e91-4f0f-8acf-b2a55550ce0c"
+            },
+            "reason": "Pulling",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-76-39.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-76-39.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T12:01:45Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{ray-node}",
+                "kind": "Pod",
+                "name": "centra10-d2-2-91c47a84-head",
+                "namespace": "default",
+                "resourceVersion": "62111",
+                "uid": "1657c27f-fc7d-4b25-8346-b2de1a957838"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T12:01:45Z",
+            "message": "Successfully pulled image \"vllm/vllm-openai:v0.32.0\" in 222ms (222ms including waiting). Image size: 9205781514 bytes.",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T12:01:45Z",
+                "name": "centra10-d2-2-91c47a84-head.18e5c19ccf64066a",
+                "namespace": "default",
+                "resourceVersion": "62119",
+                "uid": "5f45830a-a08c-4e83-ad92-d18b9de95e88"
+            },
+            "reason": "Pulled",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-76-39.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-76-39.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T12:01:45Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{ray-node}",
+                "kind": "Pod",
+                "name": "centra10-d2-2-91c47a84-head",
+                "namespace": "default",
+                "resourceVersion": "62111",
+                "uid": "1657c27f-fc7d-4b25-8346-b2de1a957838"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T12:01:45Z",
+            "message": "Container created",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T12:01:45Z",
+                "name": "centra10-d2-2-91c47a84-head.18e5c19cd1176037",
+                "namespace": "default",
+                "resourceVersion": "62120",
+                "uid": "8727975b-e6c8-489e-81a3-31d939d1e3b8"
+            },
+            "reason": "Created",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-76-39.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-76-39.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T12:01:46Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{ray-node}",
+                "kind": "Pod",
+                "name": "centra10-d2-2-91c47a84-head",
+                "namespace": "default",
+                "resourceVersion": "62111",
+                "uid": "1657c27f-fc7d-4b25-8346-b2de1a957838"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T12:01:46Z",
+            "message": "Container started",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T12:01:46Z",
+                "name": "centra10-d2-2-91c47a84-head.18e5c19ce70c43a1",
+                "namespace": "default",
+                "resourceVersion": "62124",
+                "uid": "2c010eba-b575-4aad-8884-d9df8e68af98"
+            },
+            "reason": "Started",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-76-39.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-76-39.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T12:06:39Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{ray-node}",
+                "kind": "Pod",
+                "name": "centra10-d2-2-91c47a84-head",
+                "namespace": "default",
+                "resourceVersion": "62111",
+                "uid": "1657c27f-fc7d-4b25-8346-b2de1a957838"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T12:06:39Z",
+            "message": "Stopping container ray-node",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T12:06:39Z",
+                "name": "centra10-d2-2-91c47a84-head.18e5c1e134a2bda5",
+                "namespace": "default",
+                "resourceVersion": "63255",
+                "uid": "0c20b47d-373e-42e5-a2fa-67cc0b329187"
+            },
+            "reason": "Killing",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-76-39.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-76-39.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T12:02:07Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "kind": "Pod",
+                "name": "centra10-d2-3-91c47a84-head",
+                "namespace": "default",
+                "resourceVersion": "62216",
+                "uid": "89d41935-a837-42eb-88c1-33b4f87c4583"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T12:02:07Z",
+            "message": "Successfully assigned default/centra10-d2-3-91c47a84-head to ip-192-168-82-220.ec2.internal",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T12:02:07Z",
+                "name": "centra10-d2-3-91c47a84-head.18e5c1a1bf219b6a",
+                "namespace": "default",
+                "resourceVersion": "62218",
+                "uid": "a24565cf-6834-49e8-8f9c-1f774d3f995e"
+            },
+            "reason": "Scheduled",
+            "reportingComponent": "default-scheduler",
+            "reportingInstance": "",
+            "source": {
+                "component": "default-scheduler"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T12:02:07Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{ray-node}",
+                "kind": "Pod",
+                "name": "centra10-d2-3-91c47a84-head",
+                "namespace": "default",
+                "resourceVersion": "62217",
+                "uid": "89d41935-a837-42eb-88c1-33b4f87c4583"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T12:02:07Z",
+            "message": "Pulling image \"vllm/vllm-openai:v0.32.0\"",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T12:02:07Z",
+                "name": "centra10-d2-3-91c47a84-head.18e5c1a1e4217f9f",
+                "namespace": "default",
+                "resourceVersion": "62221",
+                "uid": "4bc6d822-9802-435d-bfff-d1e6373ff942"
+            },
+            "reason": "Pulling",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-82-220.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-82-220.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T12:02:07Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{ray-node}",
+                "kind": "Pod",
+                "name": "centra10-d2-3-91c47a84-head",
+                "namespace": "default",
+                "resourceVersion": "62217",
+                "uid": "89d41935-a837-42eb-88c1-33b4f87c4583"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T12:02:07Z",
+            "message": "Successfully pulled image \"vllm/vllm-openai:v0.32.0\" in 216ms (216ms including waiting). Image size: 9205781514 bytes.",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T12:02:07Z",
+                "name": "centra10-d2-3-91c47a84-head.18e5c1a1f1066919",
+                "namespace": "default",
+                "resourceVersion": "62223",
+                "uid": "19c19bc3-2cd8-4930-8f8b-7777cf544386"
+            },
+            "reason": "Pulled",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-82-220.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-82-220.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T12:02:07Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{ray-node}",
+                "kind": "Pod",
+                "name": "centra10-d2-3-91c47a84-head",
+                "namespace": "default",
+                "resourceVersion": "62217",
+                "uid": "89d41935-a837-42eb-88c1-33b4f87c4583"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T12:02:07Z",
+            "message": "Container created",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T12:02:07Z",
+                "name": "centra10-d2-3-91c47a84-head.18e5c1a1f29fb811",
+                "namespace": "default",
+                "resourceVersion": "62224",
+                "uid": "19a90f60-ade9-45de-b34b-6604f847b74e"
+            },
+            "reason": "Created",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-82-220.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-82-220.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T12:02:08Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{ray-node}",
+                "kind": "Pod",
+                "name": "centra10-d2-3-91c47a84-head",
+                "namespace": "default",
+                "resourceVersion": "62217",
+                "uid": "89d41935-a837-42eb-88c1-33b4f87c4583"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T12:02:08Z",
+            "message": "Container started",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T12:02:08Z",
+                "name": "centra10-d2-3-91c47a84-head.18e5c1a209f4bf86",
+                "namespace": "default",
+                "resourceVersion": "62227",
+                "uid": "b77d98e2-7820-4155-99e5-c7862fa9a078"
+            },
+            "reason": "Started",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-82-220.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-82-220.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T12:06:39Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{ray-node}",
+                "kind": "Pod",
+                "name": "centra10-d2-3-91c47a84-head",
+                "namespace": "default",
+                "resourceVersion": "62217",
+                "uid": "89d41935-a837-42eb-88c1-33b4f87c4583"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T12:06:39Z",
+            "message": "Stopping container ray-node",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T12:06:39Z",
+                "name": "centra10-d2-3-91c47a84-head.18e5c1e133194296",
+                "namespace": "default",
+                "resourceVersion": "63250",
+                "uid": "d813ccf8-28b4-4c8a-8ad2-106e057cf538"
+            },
+            "reason": "Killing",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-82-220.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-82-220.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T11:52:53Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "kind": "Pod",
+                "name": "sky-serve-controller-91c47a84-91c47a84-head",
+                "namespace": "default",
+                "resourceVersion": "60131",
+                "uid": "e481273e-d04e-4540-b415-b7c8ca357f5a"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T11:52:53Z",
+            "message": "Successfully assigned default/sky-serve-controller-91c47a84-91c47a84-head to ip-192-168-67-205.ec2.internal",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T11:52:53Z",
+                "name": "sky-serve-controller-91c47a84-91c47a84-head.18e5c120e194899d",
+                "namespace": "default",
+                "resourceVersion": "60133",
+                "uid": "3ef83959-dc82-4df7-b2c1-339dbb0d74e8"
+            },
+            "reason": "Scheduled",
+            "reportingComponent": "default-scheduler",
+            "reportingInstance": "",
+            "source": {
+                "component": "default-scheduler"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T11:52:54Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{ray-node}",
+                "kind": "Pod",
+                "name": "sky-serve-controller-91c47a84-91c47a84-head",
+                "namespace": "default",
+                "resourceVersion": "60132",
+                "uid": "e481273e-d04e-4540-b415-b7c8ca357f5a"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T11:52:54Z",
+            "message": "Pulling image \"us-docker.pkg.dev/sky-dev-465/skypilotk8s/skypilot:202607240748\"",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T11:52:54Z",
+                "name": "sky-serve-controller-91c47a84-91c47a84-head.18e5c12101fa4769",
+                "namespace": "default",
+                "resourceVersion": "60136",
+                "uid": "5609d9f5-b2e8-48d4-b9eb-16ff2ca358cb"
+            },
+            "reason": "Pulling",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-67-205.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-67-205.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T11:52:54Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{ray-node}",
+                "kind": "Pod",
+                "name": "sky-serve-controller-91c47a84-91c47a84-head",
+                "namespace": "default",
+                "resourceVersion": "60132",
+                "uid": "e481273e-d04e-4540-b415-b7c8ca357f5a"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T11:52:54Z",
+            "message": "Successfully pulled image \"us-docker.pkg.dev/sky-dev-465/skypilotk8s/skypilot:202607240748\" in 267ms (267ms including waiting). Image size: 408963925 bytes.",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T11:52:54Z",
+                "name": "sky-serve-controller-91c47a84-91c47a84-head.18e5c12111e91bc2",
+                "namespace": "default",
+                "resourceVersion": "60138",
+                "uid": "61c63401-ad2d-4f94-ae66-46e962883f72"
+            },
+            "reason": "Pulled",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-67-205.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-67-205.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T11:52:54Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{ray-node}",
+                "kind": "Pod",
+                "name": "sky-serve-controller-91c47a84-91c47a84-head",
+                "namespace": "default",
+                "resourceVersion": "60132",
+                "uid": "e481273e-d04e-4540-b415-b7c8ca357f5a"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T11:52:54Z",
+            "message": "Container created",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T11:52:54Z",
+                "name": "sky-serve-controller-91c47a84-91c47a84-head.18e5c12112b98747",
+                "namespace": "default",
+                "resourceVersion": "60139",
+                "uid": "bb440d0e-a8ff-4b9b-b4fd-9107498e6fc2"
+            },
+            "reason": "Created",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-67-205.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-67-205.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T11:52:54Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{ray-node}",
+                "kind": "Pod",
+                "name": "sky-serve-controller-91c47a84-91c47a84-head",
+                "namespace": "default",
+                "resourceVersion": "60132",
+                "uid": "e481273e-d04e-4540-b415-b7c8ca357f5a"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T11:52:54Z",
+            "message": "Container started",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T11:52:54Z",
+                "name": "sky-serve-controller-91c47a84-91c47a84-head.18e5c121197d8bcc",
+                "namespace": "default",
+                "resourceVersion": "60140",
+                "uid": "d3383dcb-7034-439d-ad65-7feb38d8736f"
+            },
+            "reason": "Started",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-67-205.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-67-205.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T12:16:14Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{ray-node}",
+                "kind": "Pod",
+                "name": "sky-serve-controller-91c47a84-91c47a84-head",
+                "namespace": "default",
+                "resourceVersion": "60132",
+                "uid": "e481273e-d04e-4540-b415-b7c8ca357f5a"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T12:16:14Z",
+            "message": "Stopping container ray-node",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T12:16:14Z",
+                "name": "sky-serve-controller-91c47a84-91c47a84-head.18e5c2671afe9ec2",
+                "namespace": "default",
+                "resourceVersion": "65371",
+                "uid": "32593e08-6c9d-4951-9460-d0f80f9b38f3"
+            },
+            "reason": "Killing",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-67-205.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-67-205.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T12:17:23Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "kind": "Pod",
+                "name": "sky-serve-controller-91c47a84-91c47a84-head",
+                "namespace": "default",
+                "resourceVersion": "65653",
+                "uid": "fdf640d4-7caf-4439-8de2-2a3338089fc3"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T12:17:23Z",
+            "message": "Successfully assigned default/sky-serve-controller-91c47a84-91c47a84-head to ip-192-168-67-205.ec2.internal",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T12:17:23Z",
+                "name": "sky-serve-controller-91c47a84-91c47a84-head.18e5c277300ae65a",
+                "namespace": "default",
+                "resourceVersion": "65655",
+                "uid": "5325aeed-11b8-473c-9468-40203d81eec3"
+            },
+            "reason": "Scheduled",
+            "reportingComponent": "default-scheduler",
+            "reportingInstance": "",
+            "source": {
+                "component": "default-scheduler"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T12:17:24Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{ray-node}",
+                "kind": "Pod",
+                "name": "sky-serve-controller-91c47a84-91c47a84-head",
+                "namespace": "default",
+                "resourceVersion": "65654",
+                "uid": "fdf640d4-7caf-4439-8de2-2a3338089fc3"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T12:17:24Z",
+            "message": "Pulling image \"us-docker.pkg.dev/sky-dev-465/skypilotk8s/skypilot:202607240748\"",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T12:17:24Z",
+                "name": "sky-serve-controller-91c47a84-91c47a84-head.18e5c27751c58aa9",
+                "namespace": "default",
+                "resourceVersion": "65658",
+                "uid": "207d6ae4-28aa-4f4c-b78c-d12f3d8ae745"
+            },
+            "reason": "Pulling",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-67-205.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-67-205.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T12:17:24Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{ray-node}",
+                "kind": "Pod",
+                "name": "sky-serve-controller-91c47a84-91c47a84-head",
+                "namespace": "default",
+                "resourceVersion": "65654",
+                "uid": "fdf640d4-7caf-4439-8de2-2a3338089fc3"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T12:17:24Z",
+            "message": "Successfully pulled image \"us-docker.pkg.dev/sky-dev-465/skypilotk8s/skypilot:202607240748\" in 340ms (340ms including waiting). Image size: 408963925 bytes.",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T12:17:24Z",
+                "name": "sky-serve-controller-91c47a84-91c47a84-head.18e5c2776617607a",
+                "namespace": "default",
+                "resourceVersion": "65660",
+                "uid": "8f6e73fd-c327-4c10-963e-b4609801a288"
+            },
+            "reason": "Pulled",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-67-205.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-67-205.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T12:17:24Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{ray-node}",
+                "kind": "Pod",
+                "name": "sky-serve-controller-91c47a84-91c47a84-head",
+                "namespace": "default",
+                "resourceVersion": "65654",
+                "uid": "fdf640d4-7caf-4439-8de2-2a3338089fc3"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T12:17:24Z",
+            "message": "Container created",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T12:17:24Z",
+                "name": "sky-serve-controller-91c47a84-91c47a84-head.18e5c27766f45114",
+                "namespace": "default",
+                "resourceVersion": "65661",
+                "uid": "21747e33-674b-40f9-9976-d3cdb7b3864b"
+            },
+            "reason": "Created",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-67-205.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-67-205.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T12:17:24Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{ray-node}",
+                "kind": "Pod",
+                "name": "sky-serve-controller-91c47a84-91c47a84-head",
+                "namespace": "default",
+                "resourceVersion": "65654",
+                "uid": "fdf640d4-7caf-4439-8de2-2a3338089fc3"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T12:17:24Z",
+            "message": "Container started",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T12:17:24Z",
+                "name": "sky-serve-controller-91c47a84-91c47a84-head.18e5c2776bed659e",
+                "namespace": "default",
+                "resourceVersion": "65662",
+                "uid": "32819118-4521-44c4-88bf-e026053d1604"
+            },
+            "reason": "Started",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-67-205.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-67-205.ec2.internal"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-07T12:46:46Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{ray-node}",
+                "kind": "Pod",
+                "name": "sky-serve-controller-91c47a84-91c47a84-head",
+                "namespace": "default",
+                "resourceVersion": "65654",
+                "uid": "fdf640d4-7caf-4439-8de2-2a3338089fc3"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-07T12:46:46Z",
+            "message": "Stopping container ray-node",
+            "metadata": {
+                "creationTimestamp": "2026-11-07T12:46:46Z",
+                "name": "sky-serve-controller-91c47a84-91c47a84-head.18e5c411a2e225fa",
+                "namespace": "default",
+                "resourceVersion": "72216",
+                "uid": "66459504-032b-4450-93b4-2c81275612af"
+            },
+            "reason": "Killing",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "ip-192-168-67-205.ec2.internal",
+            "source": {
+                "component": "kubelet",
+                "host": "ip-192-168-67-205.ec2.internal"
+            },
+            "type": "Normal"
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}

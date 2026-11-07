@@ -1,0 +1,6 @@
+resources:
+  infra: k8s
+  accelerators: L4:1
+  ports: 8000
+  image_id: docker:vllm/vllm-openai:v0.32.0
+run: nvidia-smi
