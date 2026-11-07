@@ -1,0 +1,39 @@
+resources:
+  infra: k8s
+  accelerators: L4:1
+  ports: 8000
+  image_id: docker:vllm/vllm-openai:v0.32.0
+envs:
+  MODEL_NAME: Qwen/Qwen2.5-7B-Instruct
+  MODEL_REVISION: a09a35458c702b33eeacc393d103063234e8bc28
+  VLLM_VERSION: 0.32.0
+setup: 'set -e
+
+  /usr/local/bin/hf download "$MODEL_NAME" --revision "$MODEL_REVISION"
+
+  '
+run: 'HF_HUB_OFFLINE=1 /usr/local/bin/vllm serve "$MODEL_NAME" --revision "$MODEL_REVISION"
+  --port 8000 --max-model-len 8192 --no-enable-prefix-caching --shutdown-timeout 120
+
+  '
+config:
+  kubernetes:
+    pod_config:
+      metadata:
+        labels:
+          centra10-sky-service: centra10-d2
+      spec:
+        enableServiceLinks: false
+        nodeSelector:
+          centra10-role: gpu
+        containers:
+        - name: ray-node
+          ports:
+          - name: http
+            containerPort: 8000
+        terminationGracePeriodSeconds: 150
+service:
+  readiness_probe:
+    path: /v1/models
+    initial_delay_seconds: 600
+  replicas: 2

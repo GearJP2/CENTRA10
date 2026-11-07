@@ -1,0 +1,615 @@
+Starting service...
+It is a first run
+Readiness probe path: /v1/models
+Initial delay seconds: 600
+Endpoint probe interval seconds: 10
+Post data: None
+Readiness header keys: None
+Starting autoscaler.
+SkyServe Controller started on http://0.0.0.0:20001. PID: 1818
+All replica info for autoscaler: []
+Old target number of replicas: 1. Current target number of replicas: 1. Final target number of replicas: 1. Num overprovision: None. Upscale counter: 0/15. Downscale counter: 0/60. 
+Number of replicas to scale up: 1
+Scaling option received: AutoscalerDecision(AutoscalerDecisionOperator.SCALE_UP, None)
+Replicas to probe: 
+Launching replica 1...
+INFO:     Started server process [1818]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:20001 (Press CTRL+C to quit)
+Received 0 inflight requests.
+Num of requests in the last 60 seconds: 0
+I 11-07 11:53:28.075 PID=1818 httptools_impl.py:476] 127.0.0.1:47198 - "POST /controller/load_balancer_sync HTTP/1.1" 200
+Replicas to probe: 
+All replica info for autoscaler: [ReplicaInfo(replica_id=1, cluster_name=centra10-d2-1, version=1, replica_port=8000, is_spot=False, location=None, status=ReplicaStatus.PROVISIONING, launched_at=None)]
+Check replica unrecorverable: first_ready_time None, user_app_failed False, status ReplicaStatus.PROVISIONING
+Old target number of replicas: 1. Current target number of replicas: 1. Final target number of replicas: 1. Num overprovision: None. Upscale counter: 0/15. Downscale counter: 0/60. 
+No scaling needed.
+Replicas to probe: 
+Received 0 inflight requests.
+Num of requests in the last 60 seconds: 0
+I 11-07 11:53:48.083 PID=1818 httptools_impl.py:476] 127.0.0.1:52842 - "POST /controller/load_balancer_sync HTTP/1.1" 200
+Replicas to probe: 
+All replica info for autoscaler: [ReplicaInfo(replica_id=1, cluster_name=centra10-d2-1, version=1, replica_port=8000, is_spot=False, location=None, status=ReplicaStatus.PROVISIONING, launched_at=1794052435)]
+Check replica unrecorverable: first_ready_time None, user_app_failed False, status ReplicaStatus.PROVISIONING
+Old target number of replicas: 1. Current target number of replicas: 1. Final target number of replicas: 1. Num overprovision: None. Upscale counter: 0/15. Downscale counter: 0/60. 
+No scaling needed.
+Replicas to probe: 
+Received 0 inflight requests.
+Num of requests in the last 60 seconds: 0
+I 11-07 11:54:08.097 PID=1818 httptools_impl.py:476] 127.0.0.1:53702 - "POST /controller/load_balancer_sync HTTP/1.1" 200
+Replicas to probe: 
+All replica info for autoscaler: [ReplicaInfo(replica_id=1, cluster_name=centra10-d2-1, version=1, replica_port=8000, is_spot=False, location=None, status=ReplicaStatus.PROVISIONING, launched_at=1794052435)]
+Check replica unrecorverable: first_ready_time None, user_app_failed False, status ReplicaStatus.PROVISIONING
+Old target number of replicas: 1. Current target number of replicas: 1. Final target number of replicas: 1. Num overprovision: None. Upscale counter: 0/15. Downscale counter: 0/60. 
+No scaling needed.
+Replicas to probe: 
+Received 0 inflight requests.
+Num of requests in the last 60 seconds: 0
+I 11-07 11:54:28.106 PID=1818 httptools_impl.py:476] 127.0.0.1:50568 - "POST /controller/load_balancer_sync HTTP/1.1" 200
+Replicas to probe: 
+Launch thread for replica 1 finished.
+All replica info for autoscaler: [ReplicaInfo(replica_id=1, cluster_name=centra10-d2-1, version=1, replica_port=8000, is_spot=False, location=None, status=ReplicaStatus.STARTING, launched_at=1794052470)]
+Check replica unrecorverable: first_ready_time None, user_app_failed False, status ReplicaStatus.STARTING
+Old target number of replicas: 1. Current target number of replicas: 1. Final target number of replicas: 1. Num overprovision: None. Upscale counter: 0/15. Downscale counter: 0/60. 
+No scaling needed.
+Replicas to probe: replica_1(url=http://192.168.72.30:8000)
+Probing replica 1 with url http://192.168.72.30:8000 with http://192.168.72.30:8000/v1/models.
+[33mError when probing replica 1 with url http://192.168.72.30:8000: requests.exceptions.ConnectionError: HTTPConnectionPool(host='192.168.72.30', port=8000): Max retries exceeded with url: /v1/models (Caused by NewConnectionError("HTTPConnection(host='192.168.72.30', port=8000): Failed to establish a new connection: [Errno 111] Connection refused")).[0m
+Received 0 inflight requests.
+Num of requests in the last 60 seconds: 0
+I 11-07 11:54:48.133 PID=1818 httptools_impl.py:476] 127.0.0.1:54092 - "POST /controller/load_balancer_sync HTTP/1.1" 200
+Replica 1 is not ready but within initial delay seconds (0s / 600s). Skipping.
+Replicas to probe: replica_1(url=http://192.168.72.30:8000)
+Probing replica 1 with url http://192.168.72.30:8000 with http://192.168.72.30:8000/v1/models.
+[33mError when probing replica 1 with url http://192.168.72.30:8000: requests.exceptions.ConnectionError: HTTPConnectionPool(host='192.168.72.30', port=8000): Max retries exceeded with url: /v1/models (Caused by NewConnectionError("HTTPConnection(host='192.168.72.30', port=8000): Failed to establish a new connection: [Errno 111] Connection refused")).[0m
+Replica 1 is not ready but within initial delay seconds (16s / 600s). Skipping.
+All replica info for autoscaler: [ReplicaInfo(replica_id=1, cluster_name=centra10-d2-1, version=1, replica_port=8000, is_spot=False, location=None, status=ReplicaStatus.STARTING, launched_at=1794052470)]
+Check replica unrecorverable: first_ready_time None, user_app_failed False, status ReplicaStatus.STARTING
+Old target number of replicas: 1. Current target number of replicas: 1. Final target number of replicas: 1. Num overprovision: None. Upscale counter: 0/15. Downscale counter: 0/60. 
+No scaling needed.
+Received 0 inflight requests.
+Num of requests in the last 60 seconds: 0
+I 11-07 11:55:08.159 PID=1818 httptools_impl.py:476] 127.0.0.1:49160 - "POST /controller/load_balancer_sync HTTP/1.1" 200
+Replicas to probe: replica_1(url=http://192.168.72.30:8000)
+Probing replica 1 with url http://192.168.72.30:8000 with http://192.168.72.30:8000/v1/models.
+[33mError when probing replica 1 with url http://192.168.72.30:8000: requests.exceptions.ConnectionError: HTTPConnectionPool(host='192.168.72.30', port=8000): Max retries exceeded with url: /v1/models (Caused by NewConnectionError("HTTPConnection(host='192.168.72.30', port=8000): Failed to establish a new connection: [Errno 111] Connection refused")).[0m
+Replica 1 is not ready but within initial delay seconds (26s / 600s). Skipping.
+Replicas to probe: replica_1(url=http://192.168.72.30:8000)
+Probing replica 1 with url http://192.168.72.30:8000 with http://192.168.72.30:8000/v1/models.
+[33mError when probing replica 1 with url http://192.168.72.30:8000: requests.exceptions.ConnectionError: HTTPConnectionPool(host='192.168.72.30', port=8000): Max retries exceeded with url: /v1/models (Caused by NewConnectionError("HTTPConnection(host='192.168.72.30', port=8000): Failed to establish a new connection: [Errno 111] Connection refused")).[0m
+Replica 1 is not ready but within initial delay seconds (36s / 600s). Skipping.
+All replica info for autoscaler: [ReplicaInfo(replica_id=1, cluster_name=centra10-d2-1, version=1, replica_port=8000, is_spot=False, location=None, status=ReplicaStatus.STARTING, launched_at=1794052470)]
+Check replica unrecorverable: first_ready_time None, user_app_failed False, status ReplicaStatus.STARTING
+Old target number of replicas: 1. Current target number of replicas: 1. Final target number of replicas: 1. Num overprovision: None. Upscale counter: 0/15. Downscale counter: 0/60. 
+No scaling needed.
+Received 0 inflight requests.
+Num of requests in the last 60 seconds: 0
+I 11-07 11:55:28.184 PID=1818 httptools_impl.py:476] 127.0.0.1:60540 - "POST /controller/load_balancer_sync HTTP/1.1" 200
+Replicas to probe: replica_1(url=http://192.168.72.30:8000)
+Probing replica 1 with url http://192.168.72.30:8000 with http://192.168.72.30:8000/v1/models.
+[33mError when probing replica 1 with url http://192.168.72.30:8000: requests.exceptions.ConnectionError: HTTPConnectionPool(host='192.168.72.30', port=8000): Max retries exceeded with url: /v1/models (Caused by NewConnectionError("HTTPConnection(host='192.168.72.30', port=8000): Failed to establish a new connection: [Errno 111] Connection refused")).[0m
+Replica 1 is not ready but within initial delay seconds (46s / 600s). Skipping.
+Replicas to probe: replica_1(url=http://192.168.72.30:8000)
+Probing replica 1 with url http://192.168.72.30:8000 with http://192.168.72.30:8000/v1/models.
+[33mError when probing replica 1 with url http://192.168.72.30:8000: requests.exceptions.ConnectionError: HTTPConnectionPool(host='192.168.72.30', port=8000): Max retries exceeded with url: /v1/models (Caused by NewConnectionError("HTTPConnection(host='192.168.72.30', port=8000): Failed to establish a new connection: [Errno 111] Connection refused")).[0m
+Replica 1 is not ready but within initial delay seconds (57s / 600s). Skipping.
+All replica info for autoscaler: [ReplicaInfo(replica_id=1, cluster_name=centra10-d2-1, version=1, replica_port=8000, is_spot=False, location=None, status=ReplicaStatus.STARTING, launched_at=1794052470)]
+Check replica unrecorverable: first_ready_time None, user_app_failed False, status ReplicaStatus.STARTING
+Old target number of replicas: 1. Current target number of replicas: 1. Final target number of replicas: 1. Num overprovision: None. Upscale counter: 0/15. Downscale counter: 0/60. 
+No scaling needed.
+Received 0 inflight requests.
+Num of requests in the last 60 seconds: 0
+I 11-07 11:55:48.210 PID=1818 httptools_impl.py:476] 127.0.0.1:40034 - "POST /controller/load_balancer_sync HTTP/1.1" 200
+Replicas to probe: replica_1(url=http://192.168.72.30:8000)
+Probing replica 1 with url http://192.168.72.30:8000 with http://192.168.72.30:8000/v1/models.
+[33mError when probing replica 1 with url http://192.168.72.30:8000: requests.exceptions.ConnectionError: HTTPConnectionPool(host='192.168.72.30', port=8000): Max retries exceeded with url: /v1/models (Caused by NewConnectionError("HTTPConnection(host='192.168.72.30', port=8000): Failed to establish a new connection: [Errno 111] Connection refused")).[0m
+Replica 1 is not ready but within initial delay seconds (67s / 600s). Skipping.
+All replica info for autoscaler: [ReplicaInfo(replica_id=1, cluster_name=centra10-d2-1, version=1, replica_port=8000, is_spot=False, location=None, status=ReplicaStatus.STARTING, launched_at=1794052470)]
+Check replica unrecorverable: first_ready_time None, user_app_failed False, status ReplicaStatus.STARTING
+Old target number of replicas: 1. Current target number of replicas: 1. Final target number of replicas: 1. Num overprovision: None. Upscale counter: 0/15. Downscale counter: 0/60. 
+No scaling needed.
+Replicas to probe: replica_1(url=http://192.168.72.30:8000)
+Probing replica 1 with url http://192.168.72.30:8000 with http://192.168.72.30:8000/v1/models.
+[33mError when probing replica 1 with url http://192.168.72.30:8000: requests.exceptions.ConnectionError: HTTPConnectionPool(host='192.168.72.30', port=8000): Max retries exceeded with url: /v1/models (Caused by NewConnectionError("HTTPConnection(host='192.168.72.30', port=8000): Failed to establish a new connection: [Errno 111] Connection refused")).[0m
+Replica 1 is not ready but within initial delay seconds (82s / 600s). Skipping.
+Received 0 inflight requests.
+Num of requests in the last 60 seconds: 0
+I 11-07 11:56:08.234 PID=1818 httptools_impl.py:476] 127.0.0.1:59216 - "POST /controller/load_balancer_sync HTTP/1.1" 200
+Replicas to probe: replica_1(url=http://192.168.72.30:8000)
+Probing replica 1 with url http://192.168.72.30:8000 with http://192.168.72.30:8000/v1/models.
+[33mError when probing replica 1 with url http://192.168.72.30:8000: requests.exceptions.ConnectionError: HTTPConnectionPool(host='192.168.72.30', port=8000): Max retries exceeded with url: /v1/models (Caused by NewConnectionError("HTTPConnection(host='192.168.72.30', port=8000): Failed to establish a new connection: [Errno 111] Connection refused")).[0m
+Replica 1 is not ready but within initial delay seconds (92s / 600s). Skipping.
+All replica info for autoscaler: [ReplicaInfo(replica_id=1, cluster_name=centra10-d2-1, version=1, replica_port=8000, is_spot=False, location=None, status=ReplicaStatus.STARTING, launched_at=1794052470)]
+Check replica unrecorverable: first_ready_time None, user_app_failed False, status ReplicaStatus.STARTING
+Old target number of replicas: 1. Current target number of replicas: 1. Final target number of replicas: 1. Num overprovision: None. Upscale counter: 0/15. Downscale counter: 0/60. 
+No scaling needed.
+Replicas to probe: replica_1(url=http://192.168.72.30:8000)
+Probing replica 1 with url http://192.168.72.30:8000 with http://192.168.72.30:8000/v1/models.
+[33mError when probing replica 1 with url http://192.168.72.30:8000: requests.exceptions.ConnectionError: HTTPConnectionPool(host='192.168.72.30', port=8000): Max retries exceeded with url: /v1/models (Caused by NewConnectionError("HTTPConnection(host='192.168.72.30', port=8000): Failed to establish a new connection: [Errno 111] Connection refused")).[0m
+Replica 1 is not ready but within initial delay seconds (102s / 600s). Skipping.
+Received 0 inflight requests.
+Num of requests in the last 60 seconds: 0
+I 11-07 11:56:28.273 PID=1818 httptools_impl.py:476] 127.0.0.1:49918 - "POST /controller/load_balancer_sync HTTP/1.1" 200
+Replicas to probe: replica_1(url=http://192.168.72.30:8000)
+Probing replica 1 with url http://192.168.72.30:8000 with http://192.168.72.30:8000/v1/models.
+[33mError when probing replica 1 with url http://192.168.72.30:8000: requests.exceptions.ConnectionError: HTTPConnectionPool(host='192.168.72.30', port=8000): Max retries exceeded with url: /v1/models (Caused by NewConnectionError("HTTPConnection(host='192.168.72.30', port=8000): Failed to establish a new connection: [Errno 111] Connection refused")).[0m
+Replica 1 is not ready but within initial delay seconds (112s / 600s). Skipping.
+All replica info for autoscaler: [ReplicaInfo(replica_id=1, cluster_name=centra10-d2-1, version=1, replica_port=8000, is_spot=False, location=None, status=ReplicaStatus.STARTING, launched_at=1794052470)]
+Check replica unrecorverable: first_ready_time None, user_app_failed False, status ReplicaStatus.STARTING
+Old target number of replicas: 1. Current target number of replicas: 1. Final target number of replicas: 1. Num overprovision: None. Upscale counter: 0/15. Downscale counter: 0/60. 
+No scaling needed.
+Replicas to probe: replica_1(url=http://192.168.72.30:8000)
+Probing replica 1 with url http://192.168.72.30:8000 with http://192.168.72.30:8000/v1/models.
+[33mError when probing replica 1 with url http://192.168.72.30:8000: requests.exceptions.ConnectionError: HTTPConnectionPool(host='192.168.72.30', port=8000): Max retries exceeded with url: /v1/models (Caused by NewConnectionError("HTTPConnection(host='192.168.72.30', port=8000): Failed to establish a new connection: [Errno 111] Connection refused")).[0m
+Replica 1 is not ready but within initial delay seconds (122s / 600s). Skipping.
+Received 0 inflight requests.
+Num of requests in the last 60 seconds: 0
+I 11-07 11:56:48.298 PID=1818 httptools_impl.py:476] 127.0.0.1:51422 - "POST /controller/load_balancer_sync HTTP/1.1" 200
+Replicas to probe: replica_1(url=http://192.168.72.30:8000)
+Probing replica 1 with url http://192.168.72.30:8000 with http://192.168.72.30:8000/v1/models.
+[33mError when probing replica 1 with url http://192.168.72.30:8000: requests.exceptions.ConnectionError: HTTPConnectionPool(host='192.168.72.30', port=8000): Max retries exceeded with url: /v1/models (Caused by NewConnectionError("HTTPConnection(host='192.168.72.30', port=8000): Failed to establish a new connection: [Errno 111] Connection refused")).[0m
+Replica 1 is not ready but within initial delay seconds (132s / 600s). Skipping.
+All replica info for autoscaler: [ReplicaInfo(replica_id=1, cluster_name=centra10-d2-1, version=1, replica_port=8000, is_spot=False, location=None, status=ReplicaStatus.STARTING, launched_at=1794052470)]
+Check replica unrecorverable: first_ready_time None, user_app_failed False, status ReplicaStatus.STARTING
+Old target number of replicas: 1. Current target number of replicas: 1. Final target number of replicas: 1. Num overprovision: None. Upscale counter: 0/15. Downscale counter: 0/60. 
+No scaling needed.
+Received 0 inflight requests.
+Num of requests in the last 60 seconds: 0
+I 11-07 11:57:08.324 PID=1818 httptools_impl.py:476] 127.0.0.1:41150 - "POST /controller/load_balancer_sync HTTP/1.1" 200
+Replicas to probe: replica_1(url=http://192.168.72.30:8000)
+Probing replica 1 with url http://192.168.72.30:8000 with http://192.168.72.30:8000/v1/models.
+[33mError when probing replica 1 with url http://192.168.72.30:8000: requests.exceptions.ConnectionError: HTTPConnectionPool(host='192.168.72.30', port=8000): Max retries exceeded with url: /v1/models (Caused by NewConnectionError("HTTPConnection(host='192.168.72.30', port=8000): Failed to establish a new connection: [Errno 111] Connection refused")).[0m
+Replica 1 is not ready but within initial delay seconds (147s / 600s). Skipping.
+Replicas to probe: replica_1(url=http://192.168.72.30:8000)
+Probing replica 1 with url http://192.168.72.30:8000 with http://192.168.72.30:8000/v1/models.
+[33mError when probing replica 1 with url http://192.168.72.30:8000: requests.exceptions.ConnectionError: HTTPConnectionPool(host='192.168.72.30', port=8000): Max retries exceeded with url: /v1/models (Caused by NewConnectionError("HTTPConnection(host='192.168.72.30', port=8000): Failed to establish a new connection: [Errno 111] Connection refused")).[0m
+Replica 1 is not ready but within initial delay seconds (157s / 600s). Skipping.
+All replica info for autoscaler: [ReplicaInfo(replica_id=1, cluster_name=centra10-d2-1, version=1, replica_port=8000, is_spot=False, location=None, status=ReplicaStatus.STARTING, launched_at=1794052470)]
+Check replica unrecorverable: first_ready_time None, user_app_failed False, status ReplicaStatus.STARTING
+Old target number of replicas: 1. Current target number of replicas: 1. Final target number of replicas: 1. Num overprovision: None. Upscale counter: 0/15. Downscale counter: 0/60. 
+No scaling needed.
+Received 0 inflight requests.
+Num of requests in the last 60 seconds: 0
+I 11-07 11:57:28.350 PID=1818 httptools_impl.py:476] 127.0.0.1:46604 - "POST /controller/load_balancer_sync HTTP/1.1" 200
+Replicas to probe: replica_1(url=http://192.168.72.30:8000)
+Probing replica 1 with url http://192.168.72.30:8000 with http://192.168.72.30:8000/v1/models.
+[33mError when probing replica 1 with url http://192.168.72.30:8000: requests.exceptions.ConnectionError: HTTPConnectionPool(host='192.168.72.30', port=8000): Max retries exceeded with url: /v1/models (Caused by NewConnectionError("HTTPConnection(host='192.168.72.30', port=8000): Failed to establish a new connection: [Errno 111] Connection refused")).[0m
+Replica 1 is not ready but within initial delay seconds (167s / 600s). Skipping.
+Replicas to probe: replica_1(url=http://192.168.72.30:8000)
+Probing replica 1 with url http://192.168.72.30:8000 with http://192.168.72.30:8000/v1/models.
+GET request to replica 1 with url http://192.168.72.30:8000 returned status code 200.
+Replica 1 is the first ready replica. Setting uptime to 1794052660.1783428.
+All replica info for autoscaler: [ReplicaInfo(replica_id=1, cluster_name=centra10-d2-1, version=1, replica_port=8000, is_spot=False, location=None, status=ReplicaStatus.READY, launched_at=1794052470)]
+Old target number of replicas: 1. Current target number of replicas: 1. Final target number of replicas: 1. Num overprovision: None. Upscale counter: 0/15. Downscale counter: 0/60. 
+No scaling needed.
+Received 0 inflight requests.
+Num of requests in the last 60 seconds: 0
+I 11-07 11:57:48.434 PID=1818 httptools_impl.py:476] 127.0.0.1:34216 - "POST /controller/load_balancer_sync HTTP/1.1" 200
+Replicas to probe: replica_1(url=http://192.168.72.30:8000)
+Probing replica 1 with url http://192.168.72.30:8000 with http://192.168.72.30:8000/v1/models.
+GET request to replica 1 with url http://192.168.72.30:8000 returned status code 200.
+Replicas to probe: replica_1(url=http://192.168.72.30:8000)
+Probing replica 1 with url http://192.168.72.30:8000 with http://192.168.72.30:8000/v1/models.
+GET request to replica 1 with url http://192.168.72.30:8000 returned status code 200.
+All replica info for autoscaler: [ReplicaInfo(replica_id=1, cluster_name=centra10-d2-1, version=1, replica_port=8000, is_spot=False, location=None, status=ReplicaStatus.READY, launched_at=1794052470)]
+Old target number of replicas: 1. Current target number of replicas: 1. Final target number of replicas: 1. Num overprovision: None. Upscale counter: 0/15. Downscale counter: 0/60. 
+No scaling needed.
+Received 0 inflight requests.
+Num of requests in the last 60 seconds: 0
+I 11-07 11:58:08.603 PID=1818 httptools_impl.py:476] 127.0.0.1:58802 - "POST /controller/load_balancer_sync HTTP/1.1" 200
+Replicas to probe: replica_1(url=http://192.168.72.30:8000)
+Probing replica 1 with url http://192.168.72.30:8000 with http://192.168.72.30:8000/v1/models.
+GET request to replica 1 with url http://192.168.72.30:8000 returned status code 200.
+Replicas to probe: replica_1(url=http://192.168.72.30:8000)
+Probing replica 1 with url http://192.168.72.30:8000 with http://192.168.72.30:8000/v1/models.
+GET request to replica 1 with url http://192.168.72.30:8000 returned status code 200.
+All replica info for autoscaler: [ReplicaInfo(replica_id=1, cluster_name=centra10-d2-1, version=1, replica_port=8000, is_spot=False, location=None, status=ReplicaStatus.READY, launched_at=1794052470)]
+Old target number of replicas: 1. Current target number of replicas: 1. Final target number of replicas: 1. Num overprovision: None. Upscale counter: 0/15. Downscale counter: 0/60. 
+No scaling needed.
+Received 0 inflight requests.
+Num of requests in the last 60 seconds: 0
+I 11-07 11:58:28.685 PID=1818 httptools_impl.py:476] 127.0.0.1:37814 - "POST /controller/load_balancer_sync HTTP/1.1" 200
+Replicas to probe: replica_1(url=http://192.168.72.30:8000)
+Probing replica 1 with url http://192.168.72.30:8000 with http://192.168.72.30:8000/v1/models.
+GET request to replica 1 with url http://192.168.72.30:8000 returned status code 200.
+Replicas to probe: replica_1(url=http://192.168.72.30:8000)
+Probing replica 1 with url http://192.168.72.30:8000 with http://192.168.72.30:8000/v1/models.
+GET request to replica 1 with url http://192.168.72.30:8000 returned status code 200.
+All replica info for autoscaler: [ReplicaInfo(replica_id=1, cluster_name=centra10-d2-1, version=1, replica_port=8000, is_spot=False, location=None, status=ReplicaStatus.READY, launched_at=1794052470)]
+Old target number of replicas: 1. Current target number of replicas: 1. Final target number of replicas: 1. Num overprovision: None. Upscale counter: 0/15. Downscale counter: 0/60. 
+No scaling needed.
+Received 0 inflight requests.
+Num of requests in the last 60 seconds: 0
+I 11-07 11:58:48.773 PID=1818 httptools_impl.py:476] 127.0.0.1:55578 - "POST /controller/load_balancer_sync HTTP/1.1" 200
+Replicas to probe: replica_1(url=http://192.168.72.30:8000)
+Probing replica 1 with url http://192.168.72.30:8000 with http://192.168.72.30:8000/v1/models.
+GET request to replica 1 with url http://192.168.72.30:8000 returned status code 200.
+Replicas to probe: replica_1(url=http://192.168.72.30:8000)
+Probing replica 1 with url http://192.168.72.30:8000 with http://192.168.72.30:8000/v1/models.
+GET request to replica 1 with url http://192.168.72.30:8000 returned status code 200.
+All replica info for autoscaler: [ReplicaInfo(replica_id=1, cluster_name=centra10-d2-1, version=1, replica_port=8000, is_spot=False, location=None, status=ReplicaStatus.READY, launched_at=1794052470)]
+Old target number of replicas: 1. Current target number of replicas: 1. Final target number of replicas: 1. Num overprovision: None. Upscale counter: 0/15. Downscale counter: 0/60. 
+No scaling needed.
+Received 1 inflight requests.
+Num of requests in the last 60 seconds: 1
+I 11-07 11:59:08.860 PID=1818 httptools_impl.py:476] 127.0.0.1:45796 - "POST /controller/load_balancer_sync HTTP/1.1" 200
+Replicas to probe: replica_1(url=http://192.168.72.30:8000)
+Probing replica 1 with url http://192.168.72.30:8000 with http://192.168.72.30:8000/v1/models.
+GET request to replica 1 with url http://192.168.72.30:8000 returned status code 200.
+Update to new version 2 with update_mode UpdateMode.ROLLING.
+Update to new version version 2: Readiness probe method:           GET /v1/models
+Readiness initial delay seconds:  600
+Readiness probe timeout seconds:  15
+Replica autoscaling policy:       Autoscaling from 1 to 3 replicas (target QPS per replica: 0.2)
+TLS Certificates:                 No TLS Enabled
+Spot Policy:                      No spot policy
+Load Balancing Policy:            least_load
+
+Updating replica 1 to version 2. Replica 1's config {'name': 'centra10-d2', 'resources': {'infra': 'kubernetes', 'accelerators': {'L4': 1}, 'image_id': {None: 'docker:vllm/vllm-openai:v0.32.0'}, 'ports': ['8000'], '_cluster_config_overrides': {'kubernetes': {'pod_config': {'metadata': {'labels': {'centra10-sky-service': 'centra10-d2'}}, 'spec': {'enableServiceLinks': False, 'nodeSelector': {'centra10-role': 'gpu'}, 'containers': [{'name': 'ray-node', 'ports': [{'name': 'http', 'containerPort': 8000}]}], 'terminationGracePeriodSeconds': 150}}}}}, 'num_nodes': 1, 'setup': 'set -e\n/usr/local/bin/hf download "$MODEL_NAME" --revision "$MODEL_REVISION"\n', 'run': 'HF_HUB_OFFLINE=1 /usr/local/bin/vllm serve "$MODEL_NAME" --revision "$MODEL_REVISION" --port 8000 --max-model-len 8192 --no-enable-prefix-caching --shutdown-timeout 120\n', 'envs': {'MODEL_NAME': 'Qwen/Qwen2.5-7B-Instruct', 'MODEL_REVISION': 'a09a35458c702b33eeacc393d103063234e8bc28', 'VLLM_VERSION': '0.32.0'}, 'file_mounts': {}, 'volumes': {}} is the same as latest version's {'name': 'centra10-d2', 'resources': {'infra': 'kubernetes', 'accelerators': {'L4': 1}, 'image_id': {None: 'docker:vllm/vllm-openai:v0.32.0'}, 'ports': ['8000'], '_cluster_config_overrides': {'kubernetes': {'pod_config': {'metadata': {'labels': {'centra10-sky-service': 'centra10-d2'}}, 'spec': {'enableServiceLinks': False, 'nodeSelector': {'centra10-role': 'gpu'}, 'containers': [{'name': 'ray-node', 'ports': [{'name': 'http', 'containerPort': 8000}]}], 'terminationGracePeriodSeconds': 150}}}}}, 'num_nodes': 1, 'setup': 'set -e\n/usr/local/bin/hf download "$MODEL_NAME" --revision "$MODEL_REVISION"\n', 'run': 'HF_HUB_OFFLINE=1 /usr/local/bin/vllm serve "$MODEL_NAME" --revision "$MODEL_REVISION" --port 8000 --max-model-len 8192 --no-enable-prefix-caching --shutdown-timeout 120\n', 'envs': {'MODEL_NAME': 'Qwen/Qwen2.5-7B-Instruct', 'MODEL_REVISION': 'a09a35458c702b33eeacc393d103063234e8bc28', 'VLLM_VERSION': '0.32.0'}, 'file_mounts': {}, 'volumes': {}}.
+I 11-07 11:59:17.746 PID=1818 httptools_impl.py:476] 127.0.0.1:42528 - "POST /controller/update_service HTTP/1.1" 200
+Replicas to probe: replica_1(url=http://192.168.72.30:8000)
+Probing replica 1 with url http://192.168.72.30:8000 with http://192.168.72.30:8000/v1/models.
+GET request to replica 1 with url http://192.168.72.30:8000 returned status code 200.
+All replica info for autoscaler: [ReplicaInfo(replica_id=1, cluster_name=centra10-d2-1, version=2, replica_port=8000, is_spot=False, location=None, status=ReplicaStatus.READY, launched_at=1794052470)]
+Requests per second: 0.016666666666666666. Target number of replicas: 1.
+Old target number of replicas: 1. Current target number of replicas: 1. Final target number of replicas: 1. Num overprovision: None. Upscale counter: 0/0. Downscale counter: 0/6. 
+No scaling needed.
+Received 0 inflight requests.
+Num of requests in the last 60 seconds: 1
+I 11-07 11:59:28.943 PID=1818 httptools_impl.py:476] 127.0.0.1:53070 - "POST /controller/load_balancer_sync HTTP/1.1" 200
+Replicas to probe: replica_1(url=http://192.168.72.30:8000)
+Probing replica 1 with url http://192.168.72.30:8000 with http://192.168.72.30:8000/v1/models.
+GET request to replica 1 with url http://192.168.72.30:8000 returned status code 200.
+Replicas to probe: replica_1(url=http://192.168.72.30:8000)
+Probing replica 1 with url http://192.168.72.30:8000 with http://192.168.72.30:8000/v1/models.
+GET request to replica 1 with url http://192.168.72.30:8000 returned status code 200.
+All replica info for autoscaler: [ReplicaInfo(replica_id=1, cluster_name=centra10-d2-1, version=2, replica_port=8000, is_spot=False, location=None, status=ReplicaStatus.READY, launched_at=1794052470)]
+Requests per second: 0.016666666666666666. Target number of replicas: 1.
+Old target number of replicas: 1. Current target number of replicas: 1. Final target number of replicas: 1. Num overprovision: None. Upscale counter: 0/0. Downscale counter: 0/6. 
+No scaling needed.
+Received 0 inflight requests.
+Num of requests in the last 60 seconds: 1
+I 11-07 11:59:49.034 PID=1818 httptools_impl.py:476] 127.0.0.1:54826 - "POST /controller/load_balancer_sync HTTP/1.1" 200
+Replicas to probe: replica_1(url=http://192.168.72.30:8000)
+Probing replica 1 with url http://192.168.72.30:8000 with http://192.168.72.30:8000/v1/models.
+GET request to replica 1 with url http://192.168.72.30:8000 returned status code 200.
+Replicas to probe: replica_1(url=http://192.168.72.30:8000)
+Probing replica 1 with url http://192.168.72.30:8000 with http://192.168.72.30:8000/v1/models.
+GET request to replica 1 with url http://192.168.72.30:8000 returned status code 200.
+All replica info for autoscaler: [ReplicaInfo(replica_id=1, cluster_name=centra10-d2-1, version=2, replica_port=8000, is_spot=False, location=None, status=ReplicaStatus.READY, launched_at=1794052470)]
+Requests per second: 0.016666666666666666. Target number of replicas: 1.
+Old target number of replicas: 1. Current target number of replicas: 1. Final target number of replicas: 1. Num overprovision: None. Upscale counter: 0/0. Downscale counter: 0/6. 
+No scaling needed.
+Received 0 inflight requests.
+Num of requests in the last 60 seconds: 0
+I 11-07 12:00:09.119 PID=1818 httptools_impl.py:476] 127.0.0.1:56658 - "POST /controller/load_balancer_sync HTTP/1.1" 200
+Replicas to probe: replica_1(url=http://192.168.72.30:8000)
+Probing replica 1 with url http://192.168.72.30:8000 with http://192.168.72.30:8000/v1/models.
+GET request to replica 1 with url http://192.168.72.30:8000 returned status code 200.
+Replicas to probe: replica_1(url=http://192.168.72.30:8000)
+Probing replica 1 with url http://192.168.72.30:8000 with http://192.168.72.30:8000/v1/models.
+GET request to replica 1 with url http://192.168.72.30:8000 returned status code 200.
+All replica info for autoscaler: [ReplicaInfo(replica_id=1, cluster_name=centra10-d2-1, version=2, replica_port=8000, is_spot=False, location=None, status=ReplicaStatus.READY, launched_at=1794052470)]
+Requests per second: 0.0. Target number of replicas: 0.
+Old target number of replicas: 1. Current target number of replicas: 1. Final target number of replicas: 1. Num overprovision: None. Upscale counter: 0/0. Downscale counter: 0/6. 
+No scaling needed.
+Received 0 inflight requests.
+Num of requests in the last 60 seconds: 0
+I 11-07 12:00:29.210 PID=1818 httptools_impl.py:476] 127.0.0.1:38990 - "POST /controller/load_balancer_sync HTTP/1.1" 200
+Replicas to probe: replica_1(url=http://192.168.72.30:8000)
+Probing replica 1 with url http://192.168.72.30:8000 with http://192.168.72.30:8000/v1/models.
+GET request to replica 1 with url http://192.168.72.30:8000 returned status code 200.
+Replicas to probe: replica_1(url=http://192.168.72.30:8000)
+Probing replica 1 with url http://192.168.72.30:8000 with http://192.168.72.30:8000/v1/models.
+GET request to replica 1 with url http://192.168.72.30:8000 returned status code 200.
+All replica info for autoscaler: [ReplicaInfo(replica_id=1, cluster_name=centra10-d2-1, version=2, replica_port=8000, is_spot=False, location=None, status=ReplicaStatus.READY, launched_at=1794052470)]
+Requests per second: 0.0. Target number of replicas: 0.
+Old target number of replicas: 1. Current target number of replicas: 1. Final target number of replicas: 1. Num overprovision: None. Upscale counter: 0/0. Downscale counter: 0/6. 
+No scaling needed.
+Received 1 inflight requests.
+Num of requests in the last 60 seconds: 1
+I 11-07 12:00:49.312 PID=1818 httptools_impl.py:476] 127.0.0.1:44134 - "POST /controller/load_balancer_sync HTTP/1.1" 200
+Replicas to probe: replica_1(url=http://192.168.72.30:8000)
+Probing replica 1 with url http://192.168.72.30:8000 with http://192.168.72.30:8000/v1/models.
+GET request to replica 1 with url http://192.168.72.30:8000 returned status code 200.
+Replicas to probe: replica_1(url=http://192.168.72.30:8000)
+Probing replica 1 with url http://192.168.72.30:8000 with http://192.168.72.30:8000/v1/models.
+GET request to replica 1 with url http://192.168.72.30:8000 returned status code 200.
+All replica info for autoscaler: [ReplicaInfo(replica_id=1, cluster_name=centra10-d2-1, version=2, replica_port=8000, is_spot=False, location=None, status=ReplicaStatus.READY, launched_at=1794052470)]
+Requests per second: 0.016666666666666666. Target number of replicas: 1.
+Old target number of replicas: 1. Current target number of replicas: 1. Final target number of replicas: 1. Num overprovision: None. Upscale counter: 0/0. Downscale counter: 0/6. 
+No scaling needed.
+Received 19 inflight requests.
+Num of requests in the last 60 seconds: 20
+I 11-07 12:01:09.404 PID=1818 httptools_impl.py:476] 127.0.0.1:57530 - "POST /controller/load_balancer_sync HTTP/1.1" 200
+Replicas to probe: replica_1(url=http://192.168.72.30:8000)
+Probing replica 1 with url http://192.168.72.30:8000 with http://192.168.72.30:8000/v1/models.
+GET request to replica 1 with url http://192.168.72.30:8000 returned status code 200.
+All replica info for autoscaler: [ReplicaInfo(replica_id=1, cluster_name=centra10-d2-1, version=2, replica_port=8000, is_spot=False, location=None, status=ReplicaStatus.READY, launched_at=1794052470)]
+Requests per second: 0.3333333333333333. Target number of replicas: 2.
+Old target number of replicas: 1. Current target number of replicas: 2. Final target number of replicas: 2. Num overprovision: None. Upscale counter: 0/0. Downscale counter: 0/6. 
+Number of replicas to scale up: 1
+Scaling option received: AutoscalerDecision(AutoscalerDecisionOperator.SCALE_UP, None)
+Launching replica 2...
+Replicas to probe: replica_1(url=http://192.168.72.30:8000)
+Probing replica 1 with url http://192.168.72.30:8000 with http://192.168.72.30:8000/v1/models.
+GET request to replica 1 with url http://192.168.72.30:8000 returned status code 200.
+Received 22 inflight requests.
+Num of requests in the last 60 seconds: 42
+I 11-07 12:01:29.503 PID=1818 httptools_impl.py:476] 127.0.0.1:60396 - "POST /controller/load_balancer_sync HTTP/1.1" 200
+Replicas to probe: replica_1(url=http://192.168.72.30:8000)
+Probing replica 1 with url http://192.168.72.30:8000 with http://192.168.72.30:8000/v1/models.
+GET request to replica 1 with url http://192.168.72.30:8000 returned status code 200.
+All replica info for autoscaler: [ReplicaInfo(replica_id=1, cluster_name=centra10-d2-1, version=2, replica_port=8000, is_spot=False, location=None, status=ReplicaStatus.READY, launched_at=1794052470), ReplicaInfo(replica_id=2, cluster_name=centra10-d2-2, version=2, replica_port=8000, is_spot=False, location=None, status=ReplicaStatus.PROVISIONING, launched_at=None)]
+Requests per second: 0.7. Target number of replicas: 4.
+Old target number of replicas: 2. Current target number of replicas: 3. Final target number of replicas: 3. Num overprovision: None. Upscale counter: 0/0. Downscale counter: 0/6. 
+Number of replicas to scale up: 1
+Scaling option received: AutoscalerDecision(AutoscalerDecisionOperator.SCALE_UP, None)
+Launching replica 3...
+Replicas to probe: replica_1(url=http://192.168.72.30:8000)
+Probing replica 1 with url http://192.168.72.30:8000 with http://192.168.72.30:8000/v1/models.
+GET request to replica 1 with url http://192.168.72.30:8000 returned status code 200.
+Received 25 inflight requests.
+Num of requests in the last 60 seconds: 66
+I 11-07 12:01:49.603 PID=1818 httptools_impl.py:476] 127.0.0.1:52286 - "POST /controller/load_balancer_sync HTTP/1.1" 200
+Replicas to probe: replica_1(url=http://192.168.72.30:8000)
+Probing replica 1 with url http://192.168.72.30:8000 with http://192.168.72.30:8000/v1/models.
+GET request to replica 1 with url http://192.168.72.30:8000 returned status code 200.
+All replica info for autoscaler: [ReplicaInfo(replica_id=1, cluster_name=centra10-d2-1, version=2, replica_port=8000, is_spot=False, location=None, status=ReplicaStatus.READY, launched_at=1794052470), ReplicaInfo(replica_id=2, cluster_name=centra10-d2-2, version=2, replica_port=8000, is_spot=False, location=None, status=ReplicaStatus.PROVISIONING, launched_at=1794052904), ReplicaInfo(replica_id=3, cluster_name=centra10-d2-3, version=2, replica_port=8000, is_spot=False, location=None, status=ReplicaStatus.PROVISIONING, launched_at=None)]
+Requests per second: 1.1. Target number of replicas: 6.
+Old target number of replicas: 3. Current target number of replicas: 3. Final target number of replicas: 3. Num overprovision: None. Upscale counter: 0/0. Downscale counter: 0/6. 
+No scaling needed.
+Replicas to probe: replica_1(url=http://192.168.72.30:8000)
+Probing replica 1 with url http://192.168.72.30:8000 with http://192.168.72.30:8000/v1/models.
+GET request to replica 1 with url http://192.168.72.30:8000 returned status code 200.
+Received 19 inflight requests.
+Num of requests in the last 60 seconds: 66
+I 11-07 12:02:09.700 PID=1818 httptools_impl.py:476] 127.0.0.1:32898 - "POST /controller/load_balancer_sync HTTP/1.1" 200
+Replicas to probe: replica_1(url=http://192.168.72.30:8000)
+Probing replica 1 with url http://192.168.72.30:8000 with http://192.168.72.30:8000/v1/models.
+GET request to replica 1 with url http://192.168.72.30:8000 returned status code 200.
+All replica info for autoscaler: [ReplicaInfo(replica_id=1, cluster_name=centra10-d2-1, version=2, replica_port=8000, is_spot=False, location=None, status=ReplicaStatus.READY, launched_at=1794052470), ReplicaInfo(replica_id=2, cluster_name=centra10-d2-2, version=2, replica_port=8000, is_spot=False, location=None, status=ReplicaStatus.PROVISIONING, launched_at=1794052941), ReplicaInfo(replica_id=3, cluster_name=centra10-d2-3, version=2, replica_port=8000, is_spot=False, location=None, status=ReplicaStatus.PROVISIONING, launched_at=1794052926)]
+Requests per second: 1.1. Target number of replicas: 6.
+Old target number of replicas: 3. Current target number of replicas: 3. Final target number of replicas: 3. Num overprovision: None. Upscale counter: 0/0. Downscale counter: 0/6. 
+No scaling needed.
+Replicas to probe: replica_1(url=http://192.168.72.30:8000)
+Probing replica 1 with url http://192.168.72.30:8000 with http://192.168.72.30:8000/v1/models.
+GET request to replica 1 with url http://192.168.72.30:8000 returned status code 200.
+Received 22 inflight requests.
+Num of requests in the last 60 seconds: 66
+I 11-07 12:02:29.889 PID=1818 httptools_impl.py:476] 127.0.0.1:33268 - "POST /controller/load_balancer_sync HTTP/1.1" 200
+Replicas to probe: replica_1(url=http://192.168.72.30:8000)
+Probing replica 1 with url http://192.168.72.30:8000 with http://192.168.72.30:8000/v1/models.
+GET request to replica 1 with url http://192.168.72.30:8000 returned status code 200.
+Launch thread for replica 2 finished.
+All replica info for autoscaler: [ReplicaInfo(replica_id=1, cluster_name=centra10-d2-1, version=2, replica_port=8000, is_spot=False, location=None, status=ReplicaStatus.READY, launched_at=1794052470), ReplicaInfo(replica_id=2, cluster_name=centra10-d2-2, version=2, replica_port=8000, is_spot=False, location=None, status=ReplicaStatus.STARTING, launched_at=1794052941), ReplicaInfo(replica_id=3, cluster_name=centra10-d2-3, version=2, replica_port=8000, is_spot=False, location=None, status=ReplicaStatus.PROVISIONING, launched_at=1794052963)]
+Requests per second: 1.1. Target number of replicas: 6.
+Old target number of replicas: 3. Current target number of replicas: 3. Final target number of replicas: 3. Num overprovision: None. Upscale counter: 0/0. Downscale counter: 0/6. 
+No scaling needed.
+Received 16 inflight requests.
+Num of requests in the last 60 seconds: 57
+I 11-07 12:02:50.019 PID=1818 httptools_impl.py:476] 127.0.0.1:36162 - "POST /controller/load_balancer_sync HTTP/1.1" 200
+Replicas to probe: replica_1(url=http://192.168.72.30:8000), replica_2(url=http://192.168.86.134:8000)
+Probing replica 1 with url http://192.168.72.30:8000 with http://192.168.72.30:8000/v1/models.
+Probing replica 2 with url http://192.168.86.134:8000 with http://192.168.86.134:8000/v1/models.
+GET request to replica 1 with url http://192.168.72.30:8000 returned status code 200.
+[33mError when probing replica 2 with url http://192.168.86.134:8000: requests.exceptions.ConnectionError: HTTPConnectionPool(host='192.168.86.134', port=8000): Max retries exceeded with url: /v1/models (Caused by NewConnectionError("HTTPConnection(host='192.168.86.134', port=8000): Failed to establish a new connection: [Errno 111] Connection refused")).[0m
+Replica 2 is not ready but within initial delay seconds (0s / 600s). Skipping.
+Launch thread for replica 3 finished.
+All replica info for autoscaler: [ReplicaInfo(replica_id=1, cluster_name=centra10-d2-1, version=2, replica_port=8000, is_spot=False, location=None, status=ReplicaStatus.READY, launched_at=1794052470), ReplicaInfo(replica_id=2, cluster_name=centra10-d2-2, version=2, replica_port=8000, is_spot=False, location=None, status=ReplicaStatus.STARTING, launched_at=1794052941), ReplicaInfo(replica_id=3, cluster_name=centra10-d2-3, version=2, replica_port=8000, is_spot=False, location=None, status=ReplicaStatus.STARTING, launched_at=1794052963)]
+Requests per second: 0.95. Target number of replicas: 5.
+Old target number of replicas: 3. Current target number of replicas: 3. Final target number of replicas: 3. Num overprovision: None. Upscale counter: 0/0. Downscale counter: 0/6. 
+No scaling needed.
+Probing replica 1 with url http://192.168.72.30:8000 with http://192.168.72.30:8000/v1/models.
+GET request to replica 1 with url http://192.168.72.30:8000 returned status code 200.
+Replicas to probe: replica_1(url=http://192.168.72.30:8000), replica_2(url=http://192.168.86.134:8000), replica_3(url=http://192.168.65.202:8000)
+Probing replica 2 with url http://192.168.86.134:8000 with http://192.168.86.134:8000/v1/models.
+[33mError when probing replica 2 with url http://192.168.86.134:8000: requests.exceptions.ConnectionError: HTTPConnectionPool(host='192.168.86.134', port=8000): Max retries exceeded with url: /v1/models (Caused by NewConnectionError("HTTPConnection(host='192.168.86.134', port=8000): Failed to establish a new connection: [Errno 111] Connection refused")).[0m
+Replica 2 is not ready but within initial delay seconds (14s / 600s). Skipping.
+Probing replica 3 with url http://192.168.65.202:8000 with http://192.168.65.202:8000/v1/models.
+[33mError when probing replica 3 with url http://192.168.65.202:8000: requests.exceptions.ConnectionError: HTTPConnectionPool(host='192.168.65.202', port=8000): Max retries exceeded with url: /v1/models (Caused by NewConnectionError("HTTPConnection(host='192.168.65.202', port=8000): Failed to establish a new connection: [Errno 111] Connection refused")).[0m
+Received 18 inflight requests.
+Num of requests in the last 60 seconds: 56
+I 11-07 12:03:10.141 PID=1818 httptools_impl.py:476] 127.0.0.1:53888 - "POST /controller/load_balancer_sync HTTP/1.1" 200
+Replica 3 is not ready but within initial delay seconds (0s / 600s). Skipping.
+Replicas to probe: replica_1(url=http://192.168.72.30:8000), replica_2(url=http://192.168.86.134:8000), replica_3(url=http://192.168.65.202:8000)
+Probing replica 1 with url http://192.168.72.30:8000 with http://192.168.72.30:8000/v1/models.
+Probing replica 2 with url http://192.168.86.134:8000 with http://192.168.86.134:8000/v1/models.
+GET request to replica 1 with url http://192.168.72.30:8000 returned status code 200.
+[33mError when probing replica 2 with url http://192.168.86.134:8000: requests.exceptions.ConnectionError: HTTPConnectionPool(host='192.168.86.134', port=8000): Max retries exceeded with url: /v1/models (Caused by NewConnectionError("HTTPConnection(host='192.168.86.134', port=8000): Failed to establish a new connection: [Errno 111] Connection refused")).[0m
+Replica 2 is not ready but within initial delay seconds (29s / 600s). Skipping.
+Probing replica 3 with url http://192.168.65.202:8000 with http://192.168.65.202:8000/v1/models.
+[33mError when probing replica 3 with url http://192.168.65.202:8000: requests.exceptions.ConnectionError: HTTPConnectionPool(host='192.168.65.202', port=8000): Max retries exceeded with url: /v1/models (Caused by NewConnectionError("HTTPConnection(host='192.168.65.202', port=8000): Failed to establish a new connection: [Errno 111] Connection refused")).[0m
+Replica 3 is not ready but within initial delay seconds (14s / 600s). Skipping.
+All replica info for autoscaler: [ReplicaInfo(replica_id=1, cluster_name=centra10-d2-1, version=2, replica_port=8000, is_spot=False, location=None, status=ReplicaStatus.READY, launched_at=1794052470), ReplicaInfo(replica_id=2, cluster_name=centra10-d2-2, version=2, replica_port=8000, is_spot=False, location=None, status=ReplicaStatus.STARTING, launched_at=1794052941), ReplicaInfo(replica_id=3, cluster_name=centra10-d2-3, version=2, replica_port=8000, is_spot=False, location=None, status=ReplicaStatus.STARTING, launched_at=1794052963)]
+Requests per second: 0.9333333333333333. Target number of replicas: 5.
+Old target number of replicas: 3. Current target number of replicas: 3. Final target number of replicas: 3. Num overprovision: None. Upscale counter: 0/0. Downscale counter: 0/6. 
+No scaling needed.
+Received 18 inflight requests.
+Num of requests in the last 60 seconds: 52
+I 11-07 12:03:30.289 PID=1818 httptools_impl.py:476] 127.0.0.1:45376 - "POST /controller/load_balancer_sync HTTP/1.1" 200
+Probing replica 1 with url http://192.168.72.30:8000 with http://192.168.72.30:8000/v1/models.
+GET request to replica 1 with url http://192.168.72.30:8000 returned status code 200.
+Replicas to probe: replica_1(url=http://192.168.72.30:8000), replica_2(url=http://192.168.86.134:8000), replica_3(url=http://192.168.65.202:8000)
+Probing replica 2 with url http://192.168.86.134:8000 with http://192.168.86.134:8000/v1/models.
+[33mError when probing replica 2 with url http://192.168.86.134:8000: requests.exceptions.ConnectionError: HTTPConnectionPool(host='192.168.86.134', port=8000): Max retries exceeded with url: /v1/models (Caused by NewConnectionError("HTTPConnection(host='192.168.86.134', port=8000): Failed to establish a new connection: [Errno 111] Connection refused")).[0m
+Replica 2 is not ready but within initial delay seconds (39s / 600s). Skipping.
+Probing replica 3 with url http://192.168.65.202:8000 with http://192.168.65.202:8000/v1/models.
+[33mError when probing replica 3 with url http://192.168.65.202:8000: requests.exceptions.ConnectionError: HTTPConnectionPool(host='192.168.65.202', port=8000): Max retries exceeded with url: /v1/models (Caused by NewConnectionError("HTTPConnection(host='192.168.65.202', port=8000): Failed to establish a new connection: [Errno 111] Connection refused")).[0m
+Replica 3 is not ready but within initial delay seconds (25s / 600s). Skipping.
+Probing replica 1 with url http://192.168.72.30:8000 with http://192.168.72.30:8000/v1/models.
+Replicas to probe: replica_1(url=http://192.168.72.30:8000), replica_2(url=http://192.168.86.134:8000), replica_3(url=http://192.168.65.202:8000)
+GET request to replica 1 with url http://192.168.72.30:8000 returned status code 200.
+Probing replica 2 with url http://192.168.86.134:8000 with http://192.168.86.134:8000/v1/models.
+[33mError when probing replica 2 with url http://192.168.86.134:8000: requests.exceptions.ConnectionError: HTTPConnectionPool(host='192.168.86.134', port=8000): Max retries exceeded with url: /v1/models (Caused by NewConnectionError("HTTPConnection(host='192.168.86.134', port=8000): Failed to establish a new connection: [Errno 111] Connection refused")).[0m
+Replica 2 is not ready but within initial delay seconds (49s / 600s). Skipping.
+Probing replica 3 with url http://192.168.65.202:8000 with http://192.168.65.202:8000/v1/models.
+[33mError when probing replica 3 with url http://192.168.65.202:8000: requests.exceptions.ConnectionError: HTTPConnectionPool(host='192.168.65.202', port=8000): Max retries exceeded with url: /v1/models (Caused by NewConnectionError("HTTPConnection(host='192.168.65.202', port=8000): Failed to establish a new connection: [Errno 111] Connection refused")).[0m
+Replica 3 is not ready but within initial delay seconds (35s / 600s). Skipping.
+All replica info for autoscaler: [ReplicaInfo(replica_id=1, cluster_name=centra10-d2-1, version=2, replica_port=8000, is_spot=False, location=None, status=ReplicaStatus.READY, launched_at=1794052470), ReplicaInfo(replica_id=2, cluster_name=centra10-d2-2, version=2, replica_port=8000, is_spot=False, location=None, status=ReplicaStatus.STARTING, launched_at=1794052941), ReplicaInfo(replica_id=3, cluster_name=centra10-d2-3, version=2, replica_port=8000, is_spot=False, location=None, status=ReplicaStatus.STARTING, launched_at=1794052963)]
+Requests per second: 0.8666666666666667. Target number of replicas: 5.
+Old target number of replicas: 3. Current target number of replicas: 3. Final target number of replicas: 3. Num overprovision: None. Upscale counter: 0/0. Downscale counter: 0/6. 
+No scaling needed.
+Received 21 inflight requests.
+Num of requests in the last 60 seconds: 56
+I 11-07 12:03:50.425 PID=1818 httptools_impl.py:476] 127.0.0.1:37032 - "POST /controller/load_balancer_sync HTTP/1.1" 200
+Replicas to probe: replica_1(url=http://192.168.72.30:8000), replica_2(url=http://192.168.86.134:8000), replica_3(url=http://192.168.65.202:8000)
+Probing replica 1 with url http://192.168.72.30:8000 with http://192.168.72.30:8000/v1/models.
+GET request to replica 1 with url http://192.168.72.30:8000 returned status code 200.
+Probing replica 2 with url http://192.168.86.134:8000 with http://192.168.86.134:8000/v1/models.
+[33mError when probing replica 2 with url http://192.168.86.134:8000: requests.exceptions.ConnectionError: HTTPConnectionPool(host='192.168.86.134', port=8000): Max retries exceeded with url: /v1/models (Caused by NewConnectionError("HTTPConnection(host='192.168.86.134', port=8000): Failed to establish a new connection: [Errno 111] Connection refused")).[0m
+Probing replica 3 with url http://192.168.65.202:8000 with http://192.168.65.202:8000/v1/models.
+[33mError when probing replica 3 with url http://192.168.65.202:8000: requests.exceptions.ConnectionError: HTTPConnectionPool(host='192.168.65.202', port=8000): Max retries exceeded with url: /v1/models (Caused by NewConnectionError("HTTPConnection(host='192.168.65.202', port=8000): Failed to establish a new connection: [Errno 111] Connection refused")).[0m
+Replica 2 is not ready but within initial delay seconds (60s / 600s). Skipping.
+Replica 3 is not ready but within initial delay seconds (45s / 600s). Skipping.
+All replica info for autoscaler: [ReplicaInfo(replica_id=1, cluster_name=centra10-d2-1, version=2, replica_port=8000, is_spot=False, location=None, status=ReplicaStatus.READY, launched_at=1794052470), ReplicaInfo(replica_id=2, cluster_name=centra10-d2-2, version=2, replica_port=8000, is_spot=False, location=None, status=ReplicaStatus.STARTING, launched_at=1794052941), ReplicaInfo(replica_id=3, cluster_name=centra10-d2-3, version=2, replica_port=8000, is_spot=False, location=None, status=ReplicaStatus.STARTING, launched_at=1794052963)]
+Requests per second: 0.9333333333333333. Target number of replicas: 5.
+Old target number of replicas: 3. Current target number of replicas: 3. Final target number of replicas: 3. Num overprovision: None. Upscale counter: 0/0. Downscale counter: 0/6. 
+No scaling needed.
+Replicas to probe: replica_1(url=http://192.168.72.30:8000), replica_2(url=http://192.168.86.134:8000), replica_3(url=http://192.168.65.202:8000)
+Probing replica 1 with url http://192.168.72.30:8000 with http://192.168.72.30:8000/v1/models.
+GET request to replica 1 with url http://192.168.72.30:8000 returned status code 200.
+Probing replica 2 with url http://192.168.86.134:8000 with http://192.168.86.134:8000/v1/models.
+[33mError when probing replica 2 with url http://192.168.86.134:8000: requests.exceptions.ConnectionError: HTTPConnectionPool(host='192.168.86.134', port=8000): Max retries exceeded with url: /v1/models (Caused by NewConnectionError("HTTPConnection(host='192.168.86.134', port=8000): Failed to establish a new connection: [Errno 111] Connection refused")).[0m
+Replica 2 is not ready but within initial delay seconds (75s / 600s). Skipping.
+Probing replica 3 with url http://192.168.65.202:8000 with http://192.168.65.202:8000/v1/models.
+[33mError when probing replica 3 with url http://192.168.65.202:8000: requests.exceptions.ConnectionError: HTTPConnectionPool(host='192.168.65.202', port=8000): Max retries exceeded with url: /v1/models (Caused by NewConnectionError("HTTPConnection(host='192.168.65.202', port=8000): Failed to establish a new connection: [Errno 111] Connection refused")).[0m
+Received 18 inflight requests.
+Num of requests in the last 60 seconds: 57
+I 11-07 12:04:10.616 PID=1818 httptools_impl.py:476] 127.0.0.1:47682 - "POST /controller/load_balancer_sync HTTP/1.1" 200
+Replica 3 is not ready but within initial delay seconds (61s / 600s). Skipping.
+Probing replica 1 with url http://192.168.72.30:8000 with http://192.168.72.30:8000/v1/models.
+Replicas to probe: replica_1(url=http://192.168.72.30:8000), replica_2(url=http://192.168.86.134:8000), replica_3(url=http://192.168.65.202:8000)
+GET request to replica 1 with url http://192.168.72.30:8000 returned status code 200.
+Probing replica 2 with url http://192.168.86.134:8000 with http://192.168.86.134:8000/v1/models.
+[33mError when probing replica 2 with url http://192.168.86.134:8000: requests.exceptions.ConnectionError: HTTPConnectionPool(host='192.168.86.134', port=8000): Max retries exceeded with url: /v1/models (Caused by NewConnectionError("HTTPConnection(host='192.168.86.134', port=8000): Failed to establish a new connection: [Errno 111] Connection refused")).[0m
+Replica 2 is not ready but within initial delay seconds (91s / 600s). Skipping.
+Probing replica 3 with url http://192.168.65.202:8000 with http://192.168.65.202:8000/v1/models.
+[33mError when probing replica 3 with url http://192.168.65.202:8000: requests.exceptions.ConnectionError: HTTPConnectionPool(host='192.168.65.202', port=8000): Max retries exceeded with url: /v1/models (Caused by NewConnectionError("HTTPConnection(host='192.168.65.202', port=8000): Failed to establish a new connection: [Errno 111] Connection refused")).[0m
+Replica 3 is not ready but within initial delay seconds (77s / 600s). Skipping.
+All replica info for autoscaler: [ReplicaInfo(replica_id=1, cluster_name=centra10-d2-1, version=2, replica_port=8000, is_spot=False, location=None, status=ReplicaStatus.READY, launched_at=1794052470), ReplicaInfo(replica_id=2, cluster_name=centra10-d2-2, version=2, replica_port=8000, is_spot=False, location=None, status=ReplicaStatus.STARTING, launched_at=1794052941), ReplicaInfo(replica_id=3, cluster_name=centra10-d2-3, version=2, replica_port=8000, is_spot=False, location=None, status=ReplicaStatus.STARTING, launched_at=1794052963)]
+Requests per second: 0.95. Target number of replicas: 5.
+Old target number of replicas: 3. Current target number of replicas: 3. Final target number of replicas: 3. Num overprovision: None. Upscale counter: 0/0. Downscale counter: 0/6. 
+No scaling needed.
+Received 18 inflight requests.
+Num of requests in the last 60 seconds: 57
+I 11-07 12:04:30.744 PID=1818 httptools_impl.py:476] 127.0.0.1:55170 - "POST /controller/load_balancer_sync HTTP/1.1" 200
+Probing replica 1 with url http://192.168.72.30:8000 with http://192.168.72.30:8000/v1/models.
+Replicas to probe: replica_1(url=http://192.168.72.30:8000), replica_2(url=http://192.168.86.134:8000), replica_3(url=http://192.168.65.202:8000)
+GET request to replica 1 with url http://192.168.72.30:8000 returned status code 200.
+Probing replica 2 with url http://192.168.86.134:8000 with http://192.168.86.134:8000/v1/models.
+[33mError when probing replica 2 with url http://192.168.86.134:8000: requests.exceptions.ConnectionError: HTTPConnectionPool(host='192.168.86.134', port=8000): Max retries exceeded with url: /v1/models (Caused by NewConnectionError("HTTPConnection(host='192.168.86.134', port=8000): Failed to establish a new connection: [Errno 111] Connection refused")).[0m
+Replica 2 is not ready but within initial delay seconds (105s / 600s). Skipping.
+Probing replica 3 with url http://192.168.65.202:8000 with http://192.168.65.202:8000/v1/models.
+[33mError when probing replica 3 with url http://192.168.65.202:8000: requests.exceptions.ConnectionError: HTTPConnectionPool(host='192.168.65.202', port=8000): Max retries exceeded with url: /v1/models (Caused by NewConnectionError("HTTPConnection(host='192.168.65.202', port=8000): Failed to establish a new connection: [Errno 111] Connection refused")).[0m
+Replica 3 is not ready but within initial delay seconds (91s / 600s). Skipping.
+All replica info for autoscaler: [ReplicaInfo(replica_id=1, cluster_name=centra10-d2-1, version=2, replica_port=8000, is_spot=False, location=None, status=ReplicaStatus.READY, launched_at=1794052470), ReplicaInfo(replica_id=2, cluster_name=centra10-d2-2, version=2, replica_port=8000, is_spot=False, location=None, status=ReplicaStatus.STARTING, launched_at=1794052941), ReplicaInfo(replica_id=3, cluster_name=centra10-d2-3, version=2, replica_port=8000, is_spot=False, location=None, status=ReplicaStatus.STARTING, launched_at=1794052963)]
+Requests per second: 0.95. Target number of replicas: 5.
+Old target number of replicas: 3. Current target number of replicas: 3. Final target number of replicas: 3. Num overprovision: None. Upscale counter: 0/0. Downscale counter: 0/6. 
+No scaling needed.
+Probing replica 1 with url http://192.168.72.30:8000 with http://192.168.72.30:8000/v1/models.
+Replicas to probe: replica_1(url=http://192.168.72.30:8000), replica_2(url=http://192.168.86.134:8000), replica_3(url=http://192.168.65.202:8000)
+GET request to replica 1 with url http://192.168.72.30:8000 returned status code 200.
+Probing replica 2 with url http://192.168.86.134:8000 with http://192.168.86.134:8000/v1/models.
+[33mError when probing replica 2 with url http://192.168.86.134:8000: requests.exceptions.ConnectionError: HTTPConnectionPool(host='192.168.86.134', port=8000): Max retries exceeded with url: /v1/models (Caused by NewConnectionError("HTTPConnection(host='192.168.86.134', port=8000): Failed to establish a new connection: [Errno 111] Connection refused")).[0m
+Replica 2 is not ready but within initial delay seconds (115s / 600s). Skipping.
+Probing replica 3 with url http://192.168.65.202:8000 with http://192.168.65.202:8000/v1/models.
+[33mError when probing replica 3 with url http://192.168.65.202:8000: requests.exceptions.ConnectionError: HTTPConnectionPool(host='192.168.65.202', port=8000): Max retries exceeded with url: /v1/models (Caused by NewConnectionError("HTTPConnection(host='192.168.65.202', port=8000): Failed to establish a new connection: [Errno 111] Connection refused")).[0m
+Replica 3 is not ready but within initial delay seconds (101s / 600s). Skipping.
+Received 17 inflight requests.
+Num of requests in the last 60 seconds: 53
+I 11-07 12:04:50.878 PID=1818 httptools_impl.py:476] 127.0.0.1:44134 - "POST /controller/load_balancer_sync HTTP/1.1" 200
+Replicas to probe: replica_1(url=http://192.168.72.30:8000), replica_2(url=http://192.168.86.134:8000), replica_3(url=http://192.168.65.202:8000)
+Probing replica 1 with url http://192.168.72.30:8000 with http://192.168.72.30:8000/v1/models.
+GET request to replica 1 with url http://192.168.72.30:8000 returned status code 200.
+Probing replica 2 with url http://192.168.86.134:8000 with http://192.168.86.134:8000/v1/models.
+Probing replica 3 with url http://192.168.65.202:8000 with http://192.168.65.202:8000/v1/models.
+[33mError when probing replica 2 with url http://192.168.86.134:8000: requests.exceptions.ConnectionError: HTTPConnectionPool(host='192.168.86.134', port=8000): Max retries exceeded with url: /v1/models (Caused by NewConnectionError("HTTPConnection(host='192.168.86.134', port=8000): Failed to establish a new connection: [Errno 111] Connection refused")).[0m
+[33mError when probing replica 3 with url http://192.168.65.202:8000: requests.exceptions.ConnectionError: HTTPConnectionPool(host='192.168.65.202', port=8000): Max retries exceeded with url: /v1/models (Caused by NewConnectionError("HTTPConnection(host='192.168.65.202', port=8000): Failed to establish a new connection: [Errno 111] Connection refused")).[0m
+Replica 2 is not ready but within initial delay seconds (125s / 600s). Skipping.
+Replica 3 is not ready but within initial delay seconds (111s / 600s). Skipping.
+All replica info for autoscaler: [ReplicaInfo(replica_id=1, cluster_name=centra10-d2-1, version=2, replica_port=8000, is_spot=False, location=None, status=ReplicaStatus.READY, launched_at=1794052470), ReplicaInfo(replica_id=2, cluster_name=centra10-d2-2, version=2, replica_port=8000, is_spot=False, location=None, status=ReplicaStatus.STARTING, launched_at=1794052941), ReplicaInfo(replica_id=3, cluster_name=centra10-d2-3, version=2, replica_port=8000, is_spot=False, location=None, status=ReplicaStatus.STARTING, launched_at=1794052963)]
+Requests per second: 0.8833333333333333. Target number of replicas: 5.
+Old target number of replicas: 3. Current target number of replicas: 3. Final target number of replicas: 3. Num overprovision: None. Upscale counter: 0/0. Downscale counter: 0/6. 
+No scaling needed.
+Received 24 inflight requests.
+Num of requests in the last 60 seconds: 59
+I 11-07 12:05:11.012 PID=1818 httptools_impl.py:476] 127.0.0.1:40902 - "POST /controller/load_balancer_sync HTTP/1.1" 200
+Probing replica 1 with url http://192.168.72.30:8000 with http://192.168.72.30:8000/v1/models.
+GET request to replica 1 with url http://192.168.72.30:8000 returned status code 200.
+Replicas to probe: replica_1(url=http://192.168.72.30:8000), replica_2(url=http://192.168.86.134:8000), replica_3(url=http://192.168.65.202:8000)
+Probing replica 2 with url http://192.168.86.134:8000 with http://192.168.86.134:8000/v1/models.
+[33mError when probing replica 2 with url http://192.168.86.134:8000: requests.exceptions.ConnectionError: HTTPConnectionPool(host='192.168.86.134', port=8000): Max retries exceeded with url: /v1/models (Caused by NewConnectionError("HTTPConnection(host='192.168.86.134', port=8000): Failed to establish a new connection: [Errno 111] Connection refused")).[0m
+Replica 2 is not ready but within initial delay seconds (140s / 600s). Skipping.
+Probing replica 3 with url http://192.168.65.202:8000 with http://192.168.65.202:8000/v1/models.
+[33mError when probing replica 3 with url http://192.168.65.202:8000: requests.exceptions.ConnectionError: HTTPConnectionPool(host='192.168.65.202', port=8000): Max retries exceeded with url: /v1/models (Caused by NewConnectionError("HTTPConnection(host='192.168.65.202', port=8000): Failed to establish a new connection: [Errno 111] Connection refused")).[0m
+Replica 3 is not ready but within initial delay seconds (126s / 600s). Skipping.
+All replica info for autoscaler: [ReplicaInfo(replica_id=1, cluster_name=centra10-d2-1, version=2, replica_port=8000, is_spot=False, location=None, status=ReplicaStatus.READY, launched_at=1794052470), ReplicaInfo(replica_id=2, cluster_name=centra10-d2-2, version=2, replica_port=8000, is_spot=False, location=None, status=ReplicaStatus.STARTING, launched_at=1794052941), ReplicaInfo(replica_id=3, cluster_name=centra10-d2-3, version=2, replica_port=8000, is_spot=False, location=None, status=ReplicaStatus.STARTING, launched_at=1794052963)]
+Requests per second: 0.9833333333333333. Target number of replicas: 5.
+Old target number of replicas: 3. Current target number of replicas: 3. Final target number of replicas: 3. Num overprovision: None. Upscale counter: 0/0. Downscale counter: 0/6. 
+No scaling needed.
+Probing replica 1 with url http://192.168.72.30:8000 with http://192.168.72.30:8000/v1/models.
+Replicas to probe: replica_1(url=http://192.168.72.30:8000), replica_2(url=http://192.168.86.134:8000), replica_3(url=http://192.168.65.202:8000)
+GET request to replica 1 with url http://192.168.72.30:8000 returned status code 200.
+Probing replica 2 with url http://192.168.86.134:8000 with http://192.168.86.134:8000/v1/models.
+[33mError when probing replica 2 with url http://192.168.86.134:8000: requests.exceptions.ConnectionError: HTTPConnectionPool(host='192.168.86.134', port=8000): Max retries exceeded with url: /v1/models (Caused by NewConnectionError("HTTPConnection(host='192.168.86.134', port=8000): Failed to establish a new connection: [Errno 111] Connection refused")).[0m
+Replica 2 is not ready but within initial delay seconds (155s / 600s). Skipping.
+Probing replica 3 with url http://192.168.65.202:8000 with http://192.168.65.202:8000/v1/models.
+[33mError when probing replica 3 with url http://192.168.65.202:8000: requests.exceptions.ConnectionError: HTTPConnectionPool(host='192.168.65.202', port=8000): Max retries exceeded with url: /v1/models (Caused by NewConnectionError("HTTPConnection(host='192.168.65.202', port=8000): Failed to establish a new connection: [Errno 111] Connection refused")).[0m
+Replica 3 is not ready but within initial delay seconds (140s / 600s). Skipping.
+Received 18 inflight requests.
+Num of requests in the last 60 seconds: 58
+I 11-07 12:05:31.151 PID=1818 httptools_impl.py:476] 127.0.0.1:51414 - "POST /controller/load_balancer_sync HTTP/1.1" 200
+Probing replica 1 with url http://192.168.72.30:8000 with http://192.168.72.30:8000/v1/models.
+GET request to replica 1 with url http://192.168.72.30:8000 returned status code 200.
+Replicas to probe: replica_1(url=http://192.168.72.30:8000), replica_2(url=http://192.168.86.134:8000), replica_3(url=http://192.168.65.202:8000)
+Probing replica 2 with url http://192.168.86.134:8000 with http://192.168.86.134:8000/v1/models.
+GET request to replica 2 with url http://192.168.86.134:8000 returned status code 200.
+Probing replica 3 with url http://192.168.65.202:8000 with http://192.168.65.202:8000/v1/models.
+[33mError when probing replica 3 with url http://192.168.65.202:8000: requests.exceptions.ConnectionError: HTTPConnectionPool(host='192.168.65.202', port=8000): Max retries exceeded with url: /v1/models (Caused by NewConnectionError("HTTPConnection(host='192.168.65.202', port=8000): Failed to establish a new connection: [Errno 111] Connection refused")).[0m
+Replica 3 is not ready but within initial delay seconds (151s / 600s). Skipping.
+All replica info for autoscaler: [ReplicaInfo(replica_id=1, cluster_name=centra10-d2-1, version=2, replica_port=8000, is_spot=False, location=None, status=ReplicaStatus.READY, launched_at=1794052470), ReplicaInfo(replica_id=2, cluster_name=centra10-d2-2, version=2, replica_port=8000, is_spot=False, location=None, status=ReplicaStatus.READY, launched_at=1794052941), ReplicaInfo(replica_id=3, cluster_name=centra10-d2-3, version=2, replica_port=8000, is_spot=False, location=None, status=ReplicaStatus.STARTING, launched_at=1794052963)]
+Requests per second: 0.9666666666666667. Target number of replicas: 5.
+Old target number of replicas: 3. Current target number of replicas: 3. Final target number of replicas: 3. Num overprovision: None. Upscale counter: 0/0. Downscale counter: 0/6. 
+No scaling needed.
+Probing replica 1 with url http://192.168.72.30:8000 with http://192.168.72.30:8000/v1/models.
+Replicas to probe: replica_1(url=http://192.168.72.30:8000), replica_2(url=http://192.168.86.134:8000), replica_3(url=http://192.168.65.202:8000)
+GET request to replica 1 with url http://192.168.72.30:8000 returned status code 200.
+Probing replica 2 with url http://192.168.86.134:8000 with http://192.168.86.134:8000/v1/models.
+GET request to replica 2 with url http://192.168.86.134:8000 returned status code 200.
+Probing replica 3 with url http://192.168.65.202:8000 with http://192.168.65.202:8000/v1/models.
+[33mError when probing replica 3 with url http://192.168.65.202:8000: requests.exceptions.ConnectionError: HTTPConnectionPool(host='192.168.65.202', port=8000): Max retries exceeded with url: /v1/models (Caused by NewConnectionError("HTTPConnection(host='192.168.65.202', port=8000): Failed to establish a new connection: [Errno 111] Connection refused")).[0m
+Replica 3 is not ready but within initial delay seconds (161s / 600s). Skipping.
+Received 20 inflight requests.
+Num of requests in the last 60 seconds: 62
+I 11-07 12:05:51.342 PID=1818 httptools_impl.py:476] 127.0.0.1:50278 - "POST /controller/load_balancer_sync HTTP/1.1" 200
+Replicas to probe: replica_1(url=http://192.168.72.30:8000), replica_2(url=http://192.168.86.134:8000), replica_3(url=http://192.168.65.202:8000)
+Probing replica 1 with url http://192.168.72.30:8000 with http://192.168.72.30:8000/v1/models.
+GET request to replica 1 with url http://192.168.72.30:8000 returned status code 200.
+Probing replica 2 with url http://192.168.86.134:8000 with http://192.168.86.134:8000/v1/models.
+GET request to replica 2 with url http://192.168.86.134:8000 returned status code 200.
+Probing replica 3 with url http://192.168.65.202:8000 with http://192.168.65.202:8000/v1/models.
+GET request to replica 3 with url http://192.168.65.202:8000 returned status code 200.
+All replica info for autoscaler: [ReplicaInfo(replica_id=1, cluster_name=centra10-d2-1, version=2, replica_port=8000, is_spot=False, location=None, status=ReplicaStatus.READY, launched_at=1794052470), ReplicaInfo(replica_id=2, cluster_name=centra10-d2-2, version=2, replica_port=8000, is_spot=False, location=None, status=ReplicaStatus.READY, launched_at=1794052941), ReplicaInfo(replica_id=3, cluster_name=centra10-d2-3, version=2, replica_port=8000, is_spot=False, location=None, status=ReplicaStatus.READY, launched_at=1794052963)]
+Requests per second: 1.0333333333333334. Target number of replicas: 6.
+Old target number of replicas: 3. Current target number of replicas: 3. Final target number of replicas: 3. Num overprovision: None. Upscale counter: 0/0. Downscale counter: 0/6. 
+No scaling needed.
+Probing replica 1 with url http://192.168.72.30:8000 with http://192.168.72.30:8000/v1/models.
+Replicas to probe: replica_1(url=http://192.168.72.30:8000), replica_2(url=http://192.168.86.134:8000), replica_3(url=http://192.168.65.202:8000)
+GET request to replica 1 with url http://192.168.72.30:8000 returned status code 200.
+Probing replica 2 with url http://192.168.86.134:8000 with http://192.168.86.134:8000/v1/models.
+GET request to replica 2 with url http://192.168.86.134:8000 returned status code 200.
+Probing replica 3 with url http://192.168.65.202:8000 with http://192.168.65.202:8000/v1/models.
+GET request to replica 3 with url http://192.168.65.202:8000 returned status code 200.
+Received 7 inflight requests.
+Num of requests in the last 60 seconds: 45
+I 11-07 12:06:11.600 PID=1818 httptools_impl.py:476] 127.0.0.1:48672 - "POST /controller/load_balancer_sync HTTP/1.1" 200
+Probing replica 1 with url http://192.168.72.30:8000 with http://192.168.72.30:8000/v1/models.
+Replicas to probe: replica_1(url=http://192.168.72.30:8000), replica_2(url=http://192.168.86.134:8000), replica_3(url=http://192.168.65.202:8000)
+GET request to replica 1 with url http://192.168.72.30:8000 returned status code 200.
+Probing replica 2 with url http://192.168.86.134:8000 with http://192.168.86.134:8000/v1/models.
+GET request to replica 2 with url http://192.168.86.134:8000 returned status code 200.
+Probing replica 3 with url http://192.168.65.202:8000 with http://192.168.65.202:8000/v1/models.
+GET request to replica 3 with url http://192.168.65.202:8000 returned status code 200.
+
