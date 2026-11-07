@@ -271,7 +271,8 @@ def run_one(c, mode, workload, repeat, root):
             for stream_index, (kind, rate, duration) in enumerate(streams):
                 filename = f"bench_{index}_{kind}.json"
                 argv = bench(c, url if mode == "D" else c.get("benchmark_url", url), kind, rate, duration,
-                             repeat * 100 + index * 10 + stream_index, remote_folder or folder, filename)
+                             c.get("seed_offset", 0) + repeat * 100 + index * 10 + stream_index,
+                             remote_folder or folder, filename)
                 if remote_folder:
                     # Bound remote execution even if the kubectl connection is interrupted.
                     argv = client_command(c, ["python3", "-c",
@@ -375,6 +376,7 @@ def main():
     parser.add_argument("--workloads", nargs="+", choices=["short", "long", "mixed", "bursty"],
                         default=["short", "long", "mixed", "bursty"])
     parser.add_argument("--repeats", type=int, default=3)
+    parser.add_argument("--repeat-start", type=int, default=1, help="First repetition number, for one-condition Jobs")
     parser.add_argument("--execute", action="store_true")
     parser.add_argument("--smoke", action="store_true", help="One short A run at 0.2 req/s for 30 seconds; no research conclusions")
     parser.add_argument("--resume", action="store_true", help="Skip completed runs with identical configuration")
@@ -382,15 +384,16 @@ def main():
     c = load(args.config)
     if args.smoke:
         args.modes, args.workloads, args.repeats = ["A"], ["short"], 1
+        args.repeat_start = 1
         c.update(request_rate=.2, duration_seconds=30, fixed_replicas=1)
         if args.output == "results":
             args.output = "results/smoke"
-    if args.repeats < 1:
-        parser.error("--repeats must be positive")
+    if args.repeats < 1 or args.repeat_start < 1:
+        parser.error("--repeats and --repeat-start must be positive")
     if c.get("fixed_replicas", 1) != 1 and args.modes != ["A"]:
         parser.error("fixed_replicas other than 1 is for A-only diagnostic runs")
     # Rotate treatment order across repeats to reduce systematic time-of-day bias.
-    plan = [(mode, workload, repeat) for repeat in range(1, args.repeats + 1)
+    plan = [(mode, workload, repeat) for repeat in range(args.repeat_start, args.repeat_start + args.repeats)
             for workload in args.workloads
             for mode in args.modes[(repeat - 1) % len(args.modes):] + args.modes[:(repeat - 1) % len(args.modes)]]
     if not args.execute:

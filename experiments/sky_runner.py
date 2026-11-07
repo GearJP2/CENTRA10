@@ -33,11 +33,19 @@ def prepare(base, output, attempt=1, calibration_threshold=None):
          "benchmark_pod": "benchmark-client", "fixed_replicas": 1,
          "prometheus_url": base["prometheus_internal"], "request_rate": rate,
          "duration_seconds": duration, "qps_threshold": threshold,
-         "shutdown_timeout_seconds": 120, "sky_measurement_revision": 1,
+         "shutdown_timeout_seconds": 120, "sky_measurement_revision": 1, "seed_offset": 0,
          "lifecycle_revision": "bounded-drain-r2", "diagnostic_only": True,
          "ready_timeout_seconds": max(base["ready_timeout_seconds"], 1800)}
     c.pop("benchmark_url", None)  # D always uses the endpoint discovered from SkyServe.
     c.pop("tokenizer_path", None)
+    plan = write_job(c, output, name, job_name, tag, "D", workload)
+    print(json.dumps(plan, indent=2))
+    return plan
+
+
+def write_job(c, output, name, job_name, tag, mode, workload, repeat=1):
+    """Reuse the validated CPU collector template for one condition."""
+    service = c["sky_service"]
     template = list(yaml.safe_load_all(Path("aws/runner.example.yaml").read_text()))
     job = deepcopy(next(d for d in template if d["kind"] == "Job"))
     job["metadata"]["name"] = job_name
@@ -45,7 +53,8 @@ def prepare(base, output, attempt=1, calibration_threshold=None):
     spec = job["spec"]["template"]["spec"]
     spec["containers"][0]["args"][0] = (
         spec["containers"][0]["args"][0].replace("full-validation-C-3", name)
-        .replace("--modes C --workloads long", f"--modes D --workloads {workload}"))
+        .replace("--modes C --workloads long", f"--modes {mode} --workloads {workload}")
+        .replace("--repeats 1", f"--repeats 1 --repeat-start {repeat}"))
     names = {"code": f"sky-collector-code-{tag}", "settings": f"sky-collector-settings-{tag}"}
     for volume in spec["volumes"]:
         if volume["name"] in names:
@@ -69,13 +78,21 @@ def prepare(base, output, attempt=1, calibration_threshold=None):
                             "relabelings": [{"targetLabel": "centra10_service", "replacement": service}]}]}}
     output.mkdir(parents=True, exist_ok=False)
     role = next(d for d in template if d["kind"] == "Role")
-    (output / "bundle.yaml").write_text(yaml.safe_dump_all([role, reader, binding, monitor, *maps, job], sort_keys=False))
+    support = [reader, binding, monitor] if mode == "D" else []
+    if mode != "D":
+        from experiments.render import manifests
+        support = manifests(c)["serving.yaml"]
+        support[0]["spec"]["replicas"] = 0
+    (output / "bundle.yaml").write_text(yaml.safe_dump_all([role, *support, *maps, job], sort_keys=False))
+    from experiments.run import phases
     plan = {"job": job["metadata"]["name"], "service": service, "results": name,
-            "requests": round(rate * duration), "workload": workload,
-            "request_rate": rate, "duration_seconds": duration,
-            "target_qps_per_replica": threshold, "seed": 100, "diagnostic_only": True}
+            "requests": sum(round(rate * duration) for streams in phases(c, workload) for _, rate, duration in streams),
+            "workload": workload, "mode": mode, "repeat": repeat,
+            "request_rate": c["request_rate"], "duration_seconds": c["duration_seconds"],
+            "target_qps_per_replica": c["qps_threshold"],
+            "seed": c.get("seed_offset", 0) + repeat * 100,
+            "diagnostic_only": c["diagnostic_only"]}
     (output / "plan.json").write_text(json.dumps(plan, indent=2) + "\n")
-    print(json.dumps(plan, indent=2))
     return plan
 
 

@@ -16,7 +16,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from unittest.mock import patch
 
-from experiments import run
+from experiments import analyze, run
 from experiments.analyze import summarize
 from experiments.config import load
 
@@ -155,7 +155,7 @@ class RunnerIntegrationTests(unittest.TestCase):
 
     def test_d_remote_operator_and_client_use_discovered_endpoint_and_cleanup(self):
         self.config.update(sky_operator_pod="sky-operator", benchmark_pod="benchmark-client",
-                           benchmark_url="http://wrong-abc-proxy.invalid")
+                           benchmark_url="http://wrong-abc-proxy.invalid", seed_offset=1000)
         run.save(self.config_path, self.config)
         # The local fixture shares its temp directory in place of the EFS mount.
         with patch.object(run.Path, "resolve") as resolve:
@@ -171,12 +171,31 @@ class RunnerIntegrationTests(unittest.TestCase):
         benches = [c for c in commands if c[:3] == ["vllm", "bench", "serve"]]
         self.assertTrue(benches)
         self.assertTrue(all(c[c.index("--base-url") + 1] == self.url for c in benches))
+        self.assertTrue(all(c[c.index("--seed") + 1] == "1100" for c in benches))
         scaling = json.loads((folder / "scaling.json").read_text())
         self.assertEqual(scaling[0]["sky_status"]["active_versions"], [2])
         self.assertTrue((folder / "sky-load-balancer.log").exists())
         logged = next(i for i, c in enumerate(commands) if "--load-balancer" in c and "--no-follow" in c)
         removed = next(i for i, c in enumerate(commands) if "/opt/sky/bin/sky" in c and "down" in c)
         self.assertLess(logged, removed)
+
+    def test_repeat_three_uses_fresh_seed_and_nested_results_are_analyzed(self):
+        self.config["seed_offset"] = 1000
+        run.save(self.config_path, self.config)
+        self.invoke("--modes", "A", "--workloads", "short", "--repeats", "1", "--repeat-start", "3")
+        benches = [c for c in self.commands() if c[:3] == ["vllm", "bench", "serve"]]
+        self.assertEqual(len(benches), 1)
+        self.assertEqual(benches[0][benches[0].index("--seed") + 1], "1300")
+        parent = self.results / "measured-r3-short-A-a1"
+        parent.mkdir()
+        (self.results / "short_A_run3").rename(parent / "short_A_run3")
+        output = self.folder / "analysis"
+        with patch.object(sys, "argv", ["analyze", str(self.results), "--output", str(output)]), patch.object(analyze, "plots"):
+            analyze.main()
+        import csv
+        with (output / "runs.csv").open() as handle:
+            rows = list(csv.DictReader(handle))
+        self.assertEqual([(r["mode"], r["repeat"]) for r in rows], [("A", "3")])
 
     def test_d_preexisting_service_is_not_deleted(self):
         self.config["sky_operator_pod"] = "sky-operator"

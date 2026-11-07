@@ -228,7 +228,7 @@ def main():
     parser.add_argument("--require-complete", action="store_true", help="Require exactly 48 unique conditions")
     args = parser.parse_args()
     rows, series, cold, runtime = [], [], [], []
-    for path in sorted(args.results.glob("*/run.json")):
+    for path in sorted(args.results.rglob("run.json")):
         row, samples, starts = summarize(path.parent)
         rows.append(row)
         series.append((row, samples))

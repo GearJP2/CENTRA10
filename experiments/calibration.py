@@ -31,7 +31,7 @@ def prepare(base, output, attempt=1):
     for key, mode, target, qps, queue in TRIALS:
         name = f"calibration-r2-{mode}-{target}-long-1{suffix}"
         job_name = f"centra10-cal-r2-{key}{suffix}"
-        c = {**base, "fixed_replicas": 1, "shutdown_timeout_seconds": 120,
+        c = {**base, "fixed_replicas": 1, "shutdown_timeout_seconds": 120, "seed_offset": 0,
              "lifecycle_revision": "bounded-drain-r2", "request_rate": 0.5,
              "duration_seconds": 600, "qps_threshold": qps, "queue_threshold": queue,
              "kube_context": "", "k8s_url": "http://vllm-proxy:8000",

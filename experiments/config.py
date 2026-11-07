@@ -11,6 +11,9 @@ def load(path):
     shutdown = config.get("shutdown_timeout_seconds")
     if shutdown is not None and (type(shutdown) is not int or not 0 <= shutdown <= 120):
         raise ValueError("shutdown_timeout_seconds must be an integer between 0 and 120")
+    offset = config.get("seed_offset", 0)
+    if type(offset) is not int or not 0 <= offset <= 2147483647:
+        raise ValueError("seed_offset must be an integer between 0 and 2147483647")
     for key in ("qps_threshold", "queue_threshold", "request_rate", "duration_seconds",
                 "burst_phase_seconds", "sample_seconds", "ready_timeout_seconds",
                 "run_timeout_seconds"):
