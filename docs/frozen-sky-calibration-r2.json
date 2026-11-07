@@ -1,8 +1,8 @@
 {
   "status": "frozen_after_bounded_screening",
   "sky_qps_threshold": 0.1,
-  "evidence_commit": null,
-  "evidence_basis": "CloudShell analysis and validation outputs supplied by the operator; raw D calibration artifacts are not yet available in this checkout for independent verification.",
+  "evidence_commit": "aec8e7c",
+  "evidence_basis": "Raw calibration artifacts archived in commit aec8e7c; both analyses, success counts, cleanup and sample gaps checked locally.",
   "calibration_workload": {
     "kind": "long",
     "input_tokens": 6000,
@@ -29,7 +29,8 @@
       "gpu_hours": 0.4820056505335702,
       "maximum_sample_gap_seconds": 14.649581670761108,
       "cleanup_error": null,
-      "result_directory": "results/calibration-r2-D-qps02-long-1-a1"
+      "result_directory": "results/calibration-r2-D-qps02-long-1-a1",
+      "artifact_verification": "Recomputed from committed raw artifacts with experiments.analyze.summarize; SLO success counts independently checked."
     },
     {
       "threshold": 0.1,
@@ -44,13 +45,15 @@
       "maximum_sample_gap_seconds": 14.246757984161377,
       "cleanup_error": null,
       "load_balancer_log_retained": true,
-      "result_directory": "results/calibration-r2-D-qps01-long-1-a1"
+      "result_directory": "results/calibration-r2-D-qps01-long-1-a1",
+      "artifact_verification": "Recomputed from committed raw artifacts with experiments.analyze.summarize; SLO success counts independently checked.",
+      "load_balancer_read_timeout_count": 11
     }
   ],
   "limits": [
     "One run per candidate; no optimality or statistical superiority claim.",
     "All failed requests count against SLO; p99 uses successful requests only.",
-    "D0.2 stream failures are unconfirmed in cause; D0.1 error details and retained load-balancer log remain to be inspected.",
+    "D0.1 retained load-balancer log contains 11 httpx.ReadTimeout exceptions while streaming response bodies, matching 11 client incomplete-stream errors by count; no per-request causal mapping. D0.2 has no retained load-balancer log.",
     "Actual sample gaps are about 14 s at maximum, not an exact 5 s cadence.",
     "D0.1 adds load-balancer log collection after measurement without changing policy or timeout.",
     "D is a system reference with different routing, demand estimator and model cache lifecycle from B/C.",

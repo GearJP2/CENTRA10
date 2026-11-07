@@ -139,11 +139,25 @@ Its 138 SLO successes exceed D0.2's 111 by 27 requests, outside the six-request
 tie band, so the rule chooses D0.1 despite its higher allocated GPU-hours.
 Keep all failures and stop threshold screening here.
 
-The machine-readable [D freeze record](frozen-sky-calibration-r2.json) explicitly
-identifies its evidence as operator-reported CloudShell analysis/checks. Raw
-calibration directories still need to be committed and independently checked;
-the evidence commit is not yet recorded. Do not claim that the load-balancer
-log's existence establishes the cause of the eleven D0.1 errors.
+The machine-readable [D freeze record](frozen-sky-calibration-r2.json) now points
+to raw-artifact commit `aec8e7c`. Both analyses were recomputed locally and match
+the reported results, including all-attempted-request SLO success counts,
+successful cleanup and maximum sample gaps. The selected threshold is unchanged.
+
+D0.1's retained load-balancer log contains **eleven `httpx.ReadTimeout`
+exceptions during streaming response-body reads**, matching the eleven client
+incomplete-stream errors by count. This provides direct evidence of proxied
+read timeouts and supports that failure path. It does not identify a one-to-one
+request mapping or the underlying reason the backend stopped supplying data.
+The pinned default timeout remains 120 seconds; it was not raised during
+screening. D0.2's similar errors remain unconfirmed in cause without its
+load-balancer log. Do not describe either run's errors as proven scale-down
+failures.
+
+Successful-request p99 omits these failures, so latency alone can hide the slow
+requests cut off by D's proxy. Keep all-attempted-request SLO attainment and
+failure counts alongside p99, especially when comparing D with A/B/C's different
+request paths and timeout settings.
 
 The B/C freeze remains B=0.1 completed QPS and C=2 waiting requests. Workload
 rate selection and the measured repetitions are still pending. Neither the
